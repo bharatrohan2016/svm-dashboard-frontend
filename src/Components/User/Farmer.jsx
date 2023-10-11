@@ -81,15 +81,21 @@ const Farmer = () => {
     [],
   );
   return (
-    <MaterialReactTable
-     columns={columns} 
-     data={data} 
-     muiTablePaginationProps={{
-      rowsPerPageOptions: [5, 10],
-      showFirstButton: true,
-      showLastButton: true,
-    }}
-    />
+    <>
+      <h2 variant="h5" gutterBottom style={{'textAlign': 'initial', 'fontWeight': '300'}}>
+        Farmer Table
+      </h2>
+
+      <MaterialReactTable
+        columns={columns}
+        data={data}
+        muiTablePaginationProps={{
+          rowsPerPageOptions: [5, 10],
+          showFirstButton: true,
+          showLastButton: true,
+        }}
+      />
+    </>
   )
 }
 
