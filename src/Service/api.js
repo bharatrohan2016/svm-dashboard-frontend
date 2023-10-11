@@ -16,3 +16,12 @@ export const signInUser = async(data) => {
         console.log('Error while calling signin api', error.response.data);
     }
 }
+
+export const exportCSV = async (formData) =>{
+    try{
+        const result = await axios.post(`${URL}/api/farmer-csv`, formData);
+        return result.data;
+    }catch(e){
+        console.log(e)
+    }
+}
