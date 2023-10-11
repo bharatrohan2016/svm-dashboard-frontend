@@ -5,8 +5,8 @@ import SignIn from './Components/User/SignIn';
 import DashBoard from './Components/User/DashBoard';
 import Sidebar from './Components/User/Sidebar';
 import Farmer from './Components/User/Farmer';
-import Map from './Components/User/Map';
 import About from './Components/User/About';
+import MapComponent from './Components/User/MapComponent';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
             <Route element={<Sidebar /> }>
               <Route path='/dashboard' element={<DashBoard/>} />
               <Route path='/farmer' element={<Farmer/>} />
-              <Route path='/map' element={<Map/>} />
+              <Route path='/map' element={<MapComponent/>} />
               <Route path='/about' element={<About />} />
             </Route>
           </Routes>
