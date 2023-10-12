@@ -25,3 +25,12 @@ export const exportCSV = async (formData) =>{
         console.log(e)
     }
 }
+
+export const getMapsInfo = async () => {
+    try {
+        const result = await axios.get(`${URL}/api/farmer-maps-data`)
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+}

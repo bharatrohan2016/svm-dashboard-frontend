@@ -1,41 +1,31 @@
-import React, { useEffect } from 'react';
-import 'leaflet/dist/leaflet.css';
+import React, { useState } from 'react';
 import L from 'leaflet';
+import {
+  MapContainer,
+  LayersControl,
+  Circle,
+  TileLayer,
+  Marker,
+  FeatureGroup
+} from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 
-const Map = () => {
-  const latitude = 51.505; // Replace with the desired latitude
-  const longitude = -0.09; // Replace with the desired longitude
-  const zoomLevel = 13; // Replace with the desired zoom level
-  const markerLatitude = 51.505; // Replace with the marker's latitude
-  const markerLongitude = -0.09;
-
-  useEffect(() => {
-    // Check if the map container exists
-    const mapContainer = document.getElementById('map');
-    if (!mapContainer) return;
-
-    // Initialize the map if it doesn't already exist
-    if (!mapContainer._leaflet_id) {
-      const map = L.map('map').setView([latitude, longitude], zoomLevel);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-      }).addTo(map);
-
-      // Create a custom marker icon
-      const customIcon = new L.Icon({
-        iconUrl: '/marker.svg',
-        iconSize: [24, 24], // Size of the icon (width, height)
-        iconAnchor: [16, 32], // The point on the icon that corresponds to the marker's location
-      });
-
-      // Add a marker with the custom icon
-      L.marker([markerLatitude, markerLongitude], { icon: customIcon }).addTo(map);
-    }
-  }, [latitude, longitude, zoomLevel, markerLatitude, markerLongitude]);
+const MapComponent = () => {
+  const [markerIcon, setMarkerIcon] = useState(new L.Icon({
+    iconUrl: '/marker.svg',
+    iconSize: [20, 20],
+    iconAnchor: [10, 10]
+  }));
 
   return (
-    <div id="map" style={{ width: '100%', height: '500px' }}></div>
-  )
+    <MapContainer center={[51.51, -0.09]} zoom={8} style={{ height: '100vh' }}>
+      <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <Marker position={[51.51, -0.09]} icon={markerIcon} />
+    </MapContainer>
+  );
 };
 
-export default Map;
+export default MapComponent;
