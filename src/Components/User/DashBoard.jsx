@@ -9,6 +9,7 @@ const HeaderComponent = styled(Box)`
   justify-content: space-around;
   align-items: center;
   height: 30vh;
+  overflow-y: hidden;
   @media (max-width: 400px) {
     display: flex;
     flex-direction: column;
@@ -25,6 +26,7 @@ const PieCharts = styled(Box)`
   justify-content: space-around;
   align-items: center;
   height: 30vh;
+  overflow-y: hidden;
   @media (max-width: 400px) {
     display: flex;
     flex-direction: column;
@@ -32,6 +34,18 @@ const PieCharts = styled(Box)`
     align-items: start;
     min-height: 50vh; 
     padding: 0;
+  }
+`
+
+const BarBox = styled(Box)`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 40vh;
+  @media (max-width: 400px) {
+    width: 70vw;
+    display: flex;
+    justify-content: start;
   }
 `
 
@@ -57,17 +71,6 @@ const RectangleBox = styled(Box)`
   }
 `
 
-const BarBox = styled(Box)`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 30vh;
-  @media (max-width: 400px) {
-    width: 70vw;
-    display: flex;
-    justify-content: start;
-  }
-`
 
 const DashBoard = () => {
   return (
