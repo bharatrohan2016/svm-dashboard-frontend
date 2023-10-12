@@ -9,7 +9,33 @@ const HeaderComponent = styled(Box)`
   justify-content: space-around;
   align-items: center;
   height: 30vh;
+  @media (max-width: 400px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+    min-height: 50vh;
+    padding: 0;
+    margin: 0;
+  }
 `
+
+const PieCharts = styled(Box)`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 30vh;
+  @media (max-width: 400px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+    min-height: 50vh; 
+    padding: 0;
+  }
+`
+
+
 
 const RectangleBox = styled(Box)`
   display: flex;
@@ -22,7 +48,25 @@ const RectangleBox = styled(Box)`
   align-items: space-around;
   flex-direction: column;
   justify-content: center;
-  color: #808080
+  color: #808080;
+  @media (max-width: 400px) {
+    width: 70vw;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+  }
+`
+
+const BarBox = styled(Box)`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 30vh;
+  @media (max-width: 400px) {
+    width: 70vw;
+    display: flex;
+    justify-content: start;
+  }
 `
 
 const DashBoard = () => {
@@ -39,8 +83,9 @@ const DashBoard = () => {
           <h3>Area Survey: </h3>
         </RectangleBox>
       </HeaderComponent>
-      <HeaderComponent>
+      <PieCharts>
       <PieChart
+        style={{'margin': '0'}}
         series={[
           {
             data: [
@@ -48,9 +93,10 @@ const DashBoard = () => {
               { id: 1, value: 15, label: 'series B' },
               { id: 2, value: 20, label: 'series C' },
             ],
+            cx: 60,
           },
         ]}
-        width={400}
+        width={300}
         height={200}
       />
       <PieChart
@@ -61,20 +107,22 @@ const DashBoard = () => {
               { id: 1, value: 15, label: 'series B' },
               { id: 2, value: 20, label: 'series C' },
             ],
+            cx: 60,
           },
         ]}
-        width={400}
+        width={300}
         height={200}
       />
-      </HeaderComponent>
-      <HeaderComponent>
+      </PieCharts>
+      <BarBox>
         <BarChart
           xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
           series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
-          width={500}
+          width={400}
           height={300}
+          style={{'margin': '0'}}
         />
-      </HeaderComponent>
+      </BarBox>
     </>
   )
 }
