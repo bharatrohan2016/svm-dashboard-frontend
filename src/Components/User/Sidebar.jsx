@@ -136,7 +136,7 @@ export default function Sidebar() {
               localStorage.clear();
               navigate('/')
             }}
-          />} 
+          />}   
         </Tool>
       </AppBar>
       <Drawer variant="permanent" open={open}>
