@@ -220,7 +220,7 @@ export default function Sidebar() {
         </List>
         <Divider />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, overflowX : 'hidden' }}>
         <DrawerHeader />
        <Outlet />
       </Box>

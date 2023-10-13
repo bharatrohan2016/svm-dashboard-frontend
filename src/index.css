@@ -4,10 +4,19 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
+
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.css-1czbne1-MuiTableCell-root{
+  border: none;
+}
+
+.css-80pr5n-MuiPaper-root{
+  box-shadow: none !important;
 }

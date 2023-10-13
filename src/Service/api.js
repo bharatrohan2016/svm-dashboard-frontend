@@ -25,3 +25,22 @@ export const exportCSV = async (formData) =>{
         console.log(e)
     }
 }
+
+export const getFarmers = async () => {
+    try{
+        const result = await axios.get(`${URL}/api/farmer`);
+        return result.data;
+    }catch(e){
+        console.log(e)
+    }
+}
+
+export const getFarmersByQuery  = async (query) => {
+    try{
+        console.log(query)
+        const result = await axios.post(`${URL}/api/filter-farmers`, query);
+        return result.data;
+    }catch(e){
+        console.log(e)
+    }
+}
