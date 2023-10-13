@@ -7,18 +7,25 @@ import Sidebar from './Components/User/Sidebar';
 import Farmer from './Components/User/Farmer';
 import About from './Components/User/About';
 import MapComponent from './Components/User/MapComponent';
+import ProtectedRoute from './Components/User/ProtectedRoute';
+import NavigateDashboard from './Components/User/NavigateDashboard';
 
 function App() {
   return (
     <div className="App">
       <Router>
           <Routes>
-            <Route path='/' element={<SignIn/>} />
+            <Route path='/' element={ <NavigateDashboard> <SignIn/></NavigateDashboard>} />
+            <Route path='/login' element={<NavigateDashboard> <SignIn/></NavigateDashboard>} />
             <Route element={<Sidebar /> }>
-              <Route path='/dashboard' element={<DashBoard/>} />
-              <Route path='/farmer' element={<Farmer/>} />
-              <Route path='/map' element={<MapComponent/>} />
-              <Route path='/about' element={<About />} />
+              <Route path='/dashboard' 
+              element={ <ProtectedRoute> <DashBoard/></ProtectedRoute>} />
+              
+              <Route path='/farmer' 
+              element={<ProtectedRoute> <Farmer/> </ProtectedRoute>} />
+              
+              <Route path='/map' element={<ProtectedRoute> <MapComponent/> </ProtectedRoute>} />
+              <Route path='/about' element={<ProtectedRoute> <About/> </ProtectedRoute>} />
             </Route>
           </Routes>
         </Router>

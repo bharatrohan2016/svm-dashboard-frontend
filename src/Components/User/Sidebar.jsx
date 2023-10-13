@@ -134,7 +134,7 @@ export default function Sidebar() {
             style={{'cursor': 'pointer'}}
             onClick={() => {
               localStorage.clear();
-              navigate('/')
+              navigate('/login')
             }}
           />}   
         </Tool>
