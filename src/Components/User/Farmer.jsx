@@ -3,89 +3,49 @@ import { MaterialReactTable } from 'material-react-table';
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { exportCSV } from '../../Service/api';
+import { exportCSV, getFarmers, getFarmersByQuery } from '../../Service/api';
+import FarmerFilters from './FarmerFilters';
 
-const data = [
-  {
-    name: {
-      firstName: 'John',
-      lastName: 'Doe',
-    },
-    address: '261 Erdman Ford',
-    city: 'East Daphne',
-    state: 'Kentucky',
-  },
-  {
-    name: {
-      firstName: 'Jane',
-      lastName: 'Doe',
-    },
-    address: '769 Dominic Grove',
-    city: 'Columbus',
-    state: 'Ohio',
-  },
-  {
-    name: {
-      firstName: 'Joe',
-      lastName: 'Doe',
-    },
-    address: '566 Brakus Inlet',
-    city: 'South Linda',
-    state: 'West Virginia',
-  },
-  {
-    name: {
-      firstName: 'Kevin',
-      lastName: 'Vandy',
-    },
-    address: '722 Emie Stream',
-    city: 'Lincoln',
-    state: 'Nebraska',
-  },
-  {
-    name: {
-      firstName: 'Joshua',
-      lastName: 'Rolluffs',
-    },
-    address: '32188 Larkin Turnpike',
-    city: 'Charleston',
-    state: 'South Carolina',
-  },
-];
+
 
 
 const Farmer = () => {
   const [isDisabled, setIsDisabled] = useState(false);
+  const [originaldata, setOriginalData] =useState([]); 
+  const [data, setData] = useState([]);
   const columns = useMemo(
     () => [
       {
-        accessorKey: 'name.firstName', //access nested data with dot notation
-        header: 'First Name',
-        size: 150,
+        accessorKey: 'name', //access nested data with dot notation
+        header: 'Name'
       },
       {
-        accessorKey: 'name.lastName',
-        header: 'Last Name',
-        size: 150,
+        accessorKey: 'fathersName',
+        header: 'Fathers Name'
       },
       {
-        accessorKey: 'address', //normal accessorKey
-        header: 'Address',
-        size: 200,
+        accessorKey: 'phone',
+        header: 'Phone'
       },
       {
-        accessorKey: 'city',
-        header: 'City',
-        size: 150,
+        accessorKey: 'village',
+        header: 'Village'
       },
       {
-        accessorKey: 'state',
-        header: 'State',
-        size: 150,
-      },
+        accessorKey: 'numberOfLastYearCrops',
+        header: 'Number of last year crops'
+      }
     ],
     [],
   );
+  
+  const handleFilters = (query) => {
+    
+    getFarmersByQuery(query).then((response) => {
+      console.log(response);
+      setData(response.data);
+    })
+  }
   const fileHandler = (event) => {
     setIsDisabled(true);
     const formData = new FormData();
@@ -99,34 +59,77 @@ const Farmer = () => {
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
     height: 1,
-    overflow: 'hidden',
+   
     position: 'absolute',
     bottom: 0,
     left: 0,
     whiteSpace: 'nowrap',
     width: 1,
   });
+  useEffect(() => {
+    getFarmers().then((response) =>{ setData(response.data); setOriginalData(response.data)});
+  }, [])
   return (
     <>
       <h2 variant="h5" style={{'textAlign': 'initial', 'fontWeight': '300'}}>
         Farmer Table
       </h2>
+      <div className='col-md-3' style={{textAlign : 'left'}}>
+      <Button component="label" sx={{width : '100%'}} variant="contained" startIcon={<CloudUploadIcon/>} >
+              Upload file
+            <VisuallyHiddenInput onChange={fileHandler} type="file" />
+      </Button>
+      </div>
+      <br/>
+      <FarmerFilters select={handleFilters}/>
 
-      <MaterialReactTable
-        columns={columns}
-        data={data}
-        muiTablePaginationProps={{
-          rowsPerPageOptions: [5, 10, 15, 50],
-          showFirstButton: true,
-          showLastButton: true,
-        }}
-        renderTopToolbarCustomActions={() => (
-          <Button component="label" variant="contained" startIcon={<CloudUploadIcon/>}>
-          Upload file
-          <VisuallyHiddenInput onChange={fileHandler} type="file" />
-          </Button>
-        )}
-      />
+      
+      
+     <br/>
+        <MaterialReactTable
+          columns={columns}
+          data={data}
+          //decides initial states
+          initialState={{
+            sorting : [ { id : 'name'}],
+            showGlobalFilter: true,
+          }}
+          
+          // search bar position
+          positionGlobalFilter="left"
+          muiSearchTextFieldProps={{
+            placeholder: 'Search all users',
+            sx : { width : '400px' }
+          }}
+          //removed toggle
+          enableDensityToggle={false}
+
+          //borders
+          muiTableProps={{
+            sx: {
+              border: '1px solid rgba(224, 224, 224, 1)!important',
+            },
+          }}
+          muiTableHeadCellProps={{
+                sx: {
+                border: '1px solid rgba(224, 224, 224, 1)!important',
+                },
+          }}
+          muiTableBodyCellProps={{
+              sx: {
+              border: '1px solid rgba(224, 224, 224, 1)!important',
+              },
+          }}
+
+          //showing first and last button
+          muiTablePaginationProps={{
+            rowsPerPageOptions: [5, 10, 15, 50],
+            showFirstButton: true,
+            showLastButton: true,
+          }}
+
+         
+        />
     </>
   )
 }

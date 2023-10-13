@@ -1,0 +1,8 @@
+.inputSelect{
+    border-radius: 0px !important;
+}
+
+
+.inputSelect:focus{
+   box-shadow: none;
+}
