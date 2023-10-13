@@ -31,7 +31,6 @@ const FarmerFilters = (props) => {
     },[])
     return (
         <form>
-           
             <div className='row gx-2'>
                 <div className='col-md-5 mb-3'>
                     <select className={`form-select ${styles.inputSelect}`} id='village'>

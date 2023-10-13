@@ -42,10 +42,10 @@ export default function SignIn() {
     try {
       let response = await signInUser(login);
       console.log(response);
-      localStorage.setItem("userInfo", JSON.stringify(response))
+      // localStorage.setItem("userInfo", JSON.stringify(response))
       localStorage.setItem("token", JSON.stringify(response.token))
-      localStorage.setItem("user", response.user)
-      localStorage.setItem("id", response.id)
+      // localStorage.setItem("user", response.user)
+      // localStorage.setItem("id", response.id)
       navigate(`/dashboard`)
     } catch (error) {
       console.log(error);
