@@ -3,16 +3,12 @@ import styles from './Farmer.module.css';
 import { getFarmers } from '../../Service/api';
 
 const FarmerFilters = (props) => {
-    const [data, setData] = useState([]);
     const [village, setVillage] = useState([]); 
-    const [source, setSource] = useState([]); 
     const [crops, setCrops] = useState([]); 
-    const cropsSets = new Set();
+
     const handleClick = () => {
         const village_ = Array.from(village)[parseInt(document.getElementById('village').value)];
         const crops_ = Array.from(crops)[parseInt(document.getElementById('crops').value)];
-
-        let value = {};
 
         //props called
         if(village_ !=  "" && village_ !=undefined){
@@ -21,7 +17,6 @@ const FarmerFilters = (props) => {
             //no filter applied
             props.select({});
         }
-
     }
     useEffect(()=> {
         getFarmers().then((response) => {
