@@ -1,9 +1,8 @@
 import { Box, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { PieChart } from '@mui/x-charts/PieChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import styled from '@emotion/styled';
-import { getDBFirstRow } from '../../Service/api';
 
 const HeaderComponent = styled(Box)`
   display: flex;
@@ -60,8 +59,8 @@ const RectangleBox = styled(Box)`
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: column;
   align-items: space-around;
+  flex-direction: column;
   justify-content: center;
   color: #808080;
   @media (max-width: 400px) {
@@ -74,28 +73,17 @@ const RectangleBox = styled(Box)`
 
 
 const DashBoard = () => {
-  console.log('Dashboard Component Rendered');
-  const [data, setData] = useState()
-  useEffect(() => {
-    const random = () => getDBFirstRow().then((response) => {
-      console.log(response.data);
-      setData(response?.data)
-    })
-
-    random()
-  }, [])
-
   return (
     <>
       <HeaderComponent>
         <RectangleBox>
-          <h3>Total Farmers: <span style={{'color': 'black'}}>{data?.totalFarmer}</span></h3>
+          <h3>Total Farmers: </h3>
         </RectangleBox>
         <RectangleBox>
-          <h3>Date Survey: <span style={{'color': 'black'}}>{data?.dateSurvey}</span></h3>
+          <h3>Date Survey: </h3>
         </RectangleBox>
         <RectangleBox>
-          <h3>Area Survey: <span style={{'color': 'black'}}>{parseInt(data?.totalArea)}</span></h3>
+          <h3>Area Survey: </h3>
         </RectangleBox>
       </HeaderComponent>
       <PieCharts>
