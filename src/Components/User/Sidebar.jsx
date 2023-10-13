@@ -21,9 +21,7 @@ import InsightsIcon from '@mui/icons-material/Insights';
 import GroupsIcon from '@mui/icons-material/Groups';
 import MapIcon from '@mui/icons-material/Map';
 import InfoIcon from '@mui/icons-material/Info';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { Button } from '@mui/material';
-import LogoutIcon from '@mui/icons-material/Logout';
+import { Link, Outlet } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -92,16 +90,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const Tool = styled(Toolbar)`
-    display: flex;
-    justify-content: space-between;
-`
-
 export default function Sidebar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const userInfo = localStorage.getItem("token");
-  const navigate = useNavigate();
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -114,7 +106,7 @@ export default function Sidebar() {
     <Box sx={{ display: 'flex' }} style={{'overflow-x': 'hidden'}}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Tool>
+        <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -130,14 +122,7 @@ export default function Sidebar() {
           <Typography variant="h6" noWrap component="div">
             Mini variant drawer
           </Typography>
-          { userInfo && <LogoutIcon
-            style={{'cursor': 'pointer'}}
-            onClick={() => {
-              localStorage.clear();
-              navigate('/login')
-            }}
-          />} 
-        </Tool>
+        </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
