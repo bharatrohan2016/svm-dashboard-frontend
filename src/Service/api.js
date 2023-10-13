@@ -1,5 +1,5 @@
-import axios from 'axios'
-const URL = 'http://localhost:3000'
+import axios from 'axios';
+const URL = 'http://localhost:3000';
 
 
 export const signInUser = async(data) => {
@@ -41,6 +41,15 @@ export const getFarmersByQuery  = async (query) => {
         const result = await axios.post(`${URL}/api/filter-farmers`, query);
         return result.data;
     }catch(e){
-        console.log(e)
+        console.log(e);
+    }
+}
+
+export const getMapsInfo = async () => {
+    try {
+        const result = await axios.get(`${URL}/api/farmer-maps-data`)
+        return result;
+    } catch (error) {
+        console.log(error);
     }
 }

@@ -17,7 +17,10 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import InsightsIcon from '@mui/icons-material/Insights';
+import GroupsIcon from '@mui/icons-material/Groups';
+import MapIcon from '@mui/icons-material/Map';
+import InfoIcon from '@mui/icons-material/Info';
 import { Link, Outlet } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -100,7 +103,7 @@ export default function Sidebar() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex' }} style={{'overflow-x': 'hidden'}}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -145,7 +148,7 @@ export default function Sidebar() {
                     justifyContent: 'center',
                 }}
                 >
-                <InboxIcon />
+                <InsightsIcon />
                 </ListItemIcon>
                 <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
@@ -167,7 +170,7 @@ export default function Sidebar() {
                     justifyContent: 'center',
                 }}
                 >
-                <InboxIcon />
+                <GroupsIcon />
                 </ListItemIcon>
                 <ListItemText primary="Farmer" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
@@ -187,7 +190,7 @@ export default function Sidebar() {
                         justifyContent: 'center',
                     }}
                     >
-                    <InboxIcon />
+                    <MapIcon />
                     </ListItemIcon>
                     <ListItemText primary="Map" sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>
@@ -209,7 +212,7 @@ export default function Sidebar() {
                         justifyContent: 'center',
                     }}
                     >
-                    <InboxIcon />
+                    <InfoIcon />
                     </ListItemIcon>
                     <ListItemText primary="About" sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>
