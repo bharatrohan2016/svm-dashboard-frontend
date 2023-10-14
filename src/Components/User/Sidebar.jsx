@@ -8,6 +8,7 @@ import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
+import Person2Icon from '@mui/icons-material/Person2';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -132,94 +133,117 @@ export default function Sidebar() {
         </DrawerHeader>
         <Divider />
         <List>
-        <ListItem key="Dashboard" disablePadding sx={{ display: 'block' }}>
-            <Link to="/dashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <ListItemButton
-                sx={{
-                minHeight: 48,
-                justifyContent: open ? 'initial' : 'center',
-                px: 2.5,
-                }}
-            >
-                <ListItemIcon
-                sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                }}
-                >
-                <InsightsIcon />
-                </ListItemIcon>
-                <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-            </Link>
-        </ListItem>
-        <ListItem key="Farmer" disablePadding sx={{ display: 'block' }}>
-            <Link to="/farmer" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <ListItemButton
-                sx={{
-                minHeight: 48,
-                justifyContent: open ? 'initial' : 'center',
-                px: 2.5,
-                }}
-            >
-                <ListItemIcon
-                sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                }}
-                >
-                <GroupsIcon />
-                </ListItemIcon>
-                <ListItemText primary="Farmer" sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-                <ListItem key="Map" disablePadding sx={{ display: 'block' }}>
-                <Link to="/map" style={{ textDecoration: 'none', color: 'inherit' }}>
-                <ListItemButton
-                    sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                    }}
-                >
-                    <ListItemIcon
-                    sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : 'auto',
-                        justifyContent: 'center',
-                    }}
-                    >
-                    <MapIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Map" sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
-                </Link>
-            </ListItem>
-            <ListItem key="About" disablePadding sx={{ display: 'block' }}>
-                <Link to="/about" style={{ textDecoration: 'none', color: 'inherit' }}>
-                <ListItemButton
-                    sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                    }}
-                >
-                    <ListItemIcon
-                    sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : 'auto',
-                        justifyContent: 'center',
-                    }}
-                    >
-                    <InfoIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="About" sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
-                </Link>
-            </ListItem>
-            </Link>
-        </ListItem>
+          <ListItem key="Dashboard" disablePadding sx={{ display: 'block' }}>
+              <Link to="/dashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <ListItemButton
+                  sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                  }}
+              >
+                  <ListItemIcon
+                  sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                  }}
+                  >
+                  <InsightsIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+              </Link>
+          </ListItem>
+          <ListItem key="Farmer" disablePadding sx={{ display: 'block' }}>
+              <Link to="/farmer" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <ListItemButton
+                  sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                  }}
+              >
+                  <ListItemIcon
+                  sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                  }}
+                  >
+                  <GroupsIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Farmer" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+              </Link>
+          </ListItem>
+          <ListItem key="Map" disablePadding sx={{ display: 'block' }}>
+                  <Link to="/map" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <ListItemButton
+                      sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                      }}
+                  >
+                      <ListItemIcon
+                      sx={{
+                          minWidth: 0,
+                          mr: open ? 3 : 'auto',
+                          justifyContent: 'center',
+                      }}
+                      >
+                      <MapIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Map" sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                  </Link>
+          </ListItem>
+          <ListItem key="View" disablePadding sx={{ display: 'block' }}>
+              <Link to="/view" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <ListItemButton
+                      sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                      }}
+                  >
+                      <ListItemIcon
+                      sx={{
+                          minWidth: 0,
+                          mr: open ? 3 : 'auto',
+                          justifyContent: 'center',
+                      }}
+                      >
+                      <Person2Icon />
+                      </ListItemIcon>
+                      <ListItemText primary="View" sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                  </Link>
+          </ListItem>
+          <ListItem key="About" disablePadding sx={{ display: 'block' }}>
+                  <Link to="/about" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <ListItemButton
+                      sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                      }}
+                  >
+                      <ListItemIcon
+                      sx={{
+                          minWidth: 0,
+                          mr: open ? 3 : 'auto',
+                          justifyContent: 'center',
+                      }}
+                      >
+                      <InfoIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="About" sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                  </Link>
+          </ListItem>
+
         </List>
         <Divider />
       </Drawer>

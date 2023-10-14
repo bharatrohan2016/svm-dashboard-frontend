@@ -83,8 +83,6 @@ const Farmer = () => {
       <br/>
       <FarmerFilters select={handleFilters}/>
 
-      
-      
      <br/>
         <MaterialReactTable
           columns={columns}

@@ -53,3 +53,8 @@ export const getMapsInfo = async () => {
         console.log(error);
     }
 }
+
+export const getFarmerById = async(id) => {
+    const result = await axios.get(`${URL}/api/farmer/${id}`);
+    return result.data;
+}
