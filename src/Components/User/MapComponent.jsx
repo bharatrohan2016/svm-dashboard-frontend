@@ -42,7 +42,7 @@ const MapComponent = () => {
       />
       {res.map((item) => (
         <Marker key={item.id} position={[item.lat, item.long]} icon={markerIcon}>
-          <Popup>Hello</Popup>
+          <Popup>{item.name}</Popup>
         </Marker>
       ))}
     </MapContainer>

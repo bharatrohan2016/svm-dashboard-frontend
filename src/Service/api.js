@@ -53,3 +53,17 @@ export const getMapsInfo = async () => {
         console.log(error);
     }
 }
+
+export const getDBFirstRow = async() => {
+    try {
+        const config = {
+            headers: {
+                Authorization : `Bearer ${JSON.parse(localStorage.getItem('token'))}`
+            }
+        }
+        const result = await axios.get(`${URL}/api/dashboard/totalitems`, config)
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+}
