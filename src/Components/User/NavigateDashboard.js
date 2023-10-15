@@ -6,7 +6,7 @@ const NavigateDashboard = ({children}) => {
     useEffect(() => {
         if(!localStorage.getItem('token')){
             console.log("hit")
-            navigate('/dashboard');
+            navigate('/');
         }
     },[]);
     

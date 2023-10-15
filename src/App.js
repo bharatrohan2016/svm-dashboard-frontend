@@ -16,7 +16,6 @@ function App() {
       <Router>
           <Routes>
             <Route path='/' element={ <NavigateDashboard> <SignIn/></NavigateDashboard>} />
-            <Route path='/login' element={<NavigateDashboard> <SignIn/></NavigateDashboard>} />
             <Route element={<Sidebar /> }>
               <Route path='/dashboard' 
               element={ <ProtectedRoute> <DashBoard/></ProtectedRoute>} />
