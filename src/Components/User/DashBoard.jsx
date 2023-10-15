@@ -78,7 +78,6 @@ const DashBoard = () => {
   const [data, setData] = useState()
   useEffect(() => {
     const random = () => getDBFirstRow().then((response) => {
-      console.log(response.data);
       setData(response?.data)
     })
 
