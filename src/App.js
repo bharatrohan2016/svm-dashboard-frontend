@@ -18,14 +18,16 @@ function App() {
       <Router>
           <Routes>
             <Route path='/' element={ <NavigateDashboard> <SignIn/></NavigateDashboard>} />
-            <Route path='/login' element={<NavigateDashboard> <SignIn/></NavigateDashboard>} />
-              <Route element={<Sidebar /> }>
-                <Route path='/dashboard' element={ <ProtectedRoute> <DashBoard/></ProtectedRoute>} />
-                <Route path='/farmer' element={<ProtectedRoute> <Farmer/> </ProtectedRoute>} />
-                <Route path='/map' element={<ProtectedRoute> <MapComponent/> </ProtectedRoute>} />
-                <Route path='/view' element={<ProtectedRoute> <FarmerProfile/> </ProtectedRoute>} />
-                <Route path='/about' element={<ProtectedRoute> <About/> </ProtectedRoute>} />
-              </Route>
+            <Route element={<Sidebar /> }>
+              <Route path='/dashboard' 
+              element={ <ProtectedRoute> <DashBoard/></ProtectedRoute>} />
+              
+              <Route path='/farmer' 
+              element={<ProtectedRoute> <Farmer/> </ProtectedRoute>} />
+              <Route path='/view' element={<ProtectedRoute> <FarmerProfile/> </ProtectedRoute>} />
+              <Route path='/map' element={<ProtectedRoute> <MapComponent/> </ProtectedRoute>} />
+              <Route path='/about' element={<ProtectedRoute> <About/> </ProtectedRoute>} />
+            </Route>
           </Routes>
         </Router>
     </div>

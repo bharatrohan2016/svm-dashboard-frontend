@@ -4,6 +4,11 @@ import { PieChart } from '@mui/x-charts/PieChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import styled from '@emotion/styled';
 import { ToastContainer, toast } from 'react-toastify';
+import React, { useEffect, useState } from 'react'
+import { PieChart } from '@mui/x-charts/PieChart';
+import { BarChart } from '@mui/x-charts/BarChart';
+import styled from '@emotion/styled';
+import { getDBFirstRow } from '../../Service/api';
 
 const HeaderComponent = styled(Box)`
   display: flex;
@@ -33,8 +38,9 @@ const PieCharts = styled(Box)`
     flex-direction: column;
     justify-content: space-around;
     align-items: start;
-    min-height: 50vh; 
+    min-height: 40vh; 
     padding: 0;
+    overflow-x: visible;
   }
 `
 
@@ -81,18 +87,33 @@ const DashBoard = () => {
       autoClose : 2000
     });
   },[]);
+  console.log('Dashboard Component Rendered');
+  const [data, setData] = useState()
+  useEffect(() => {
+    const random = () => getDBFirstRow().then((response) => {
+      setData(response?.data)
+    })
+
+    random()
+  }, [])
+
+  const date = new Date(data?.dateSurvey);
   return (
     <>
      <ToastContainer/>
       <HeaderComponent>
         <RectangleBox>
-          <h3>Total Farmers: </h3>
+          <h3>Total Farmers: <span style={{'color': 'black'}}>{data?.totalFarmer}</span></h3>
         </RectangleBox>
         <RectangleBox>
-          <h3>Date Survey: </h3>
+          <h3>Date Survey: <span style={{'color': 'black'}}>{date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          })}</span></h3>
         </RectangleBox>
         <RectangleBox>
-          <h3>Area Survey: </h3>
+          <h3>Area Survey: <span style={{'color': 'black'}}>{parseInt(data?.totalArea)}</span></h3>
         </RectangleBox>
       </HeaderComponent>
       <PieCharts>
@@ -101,14 +122,14 @@ const DashBoard = () => {
         series={[
           {
             data: [
-              { id: 0, value: 10, label: 'series A' },
-              { id: 1, value: 15, label: 'series B' },
-              { id: 2, value: 20, label: 'series C' },
+              { id: 0, value: 38, label: 'Farmer Having Whatsapp' },
+              { id: 1, value: 17, label: 'Farmer Having Cell Phone' },
+              { id: 2, value: 56, label: 'Farmer Having No Whatsapp' },
             ],
-            cx: 60,
+            cx: 70,
           },
         ]}
-        width={300}
+        width={250}
         height={200}
       />
       <PieChart
@@ -119,10 +140,10 @@ const DashBoard = () => {
               { id: 1, value: 15, label: 'series B' },
               { id: 2, value: 20, label: 'series C' },
             ],
-            cx: 60,
+            cx: 70,
           },
         ]}
-        width={300}
+        width={250}
         height={200}
       />
       </PieCharts>
