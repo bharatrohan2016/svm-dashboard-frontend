@@ -1,8 +1,9 @@
 import { Box, Typography } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { PieChart } from '@mui/x-charts/PieChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import styled from '@emotion/styled';
+import { ToastContainer, toast } from 'react-toastify';
 
 const HeaderComponent = styled(Box)`
   display: flex;
@@ -73,8 +74,16 @@ const RectangleBox = styled(Box)`
 
 
 const DashBoard = () => {
+  useEffect(() => {
+    toast.success("Welcome to the dashboard", {
+      toastId : '1',
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose : 2000
+    });
+  },[]);
   return (
     <>
+     <ToastContainer/>
       <HeaderComponent>
         <RectangleBox>
           <h3>Total Farmers: </h3>
@@ -126,6 +135,7 @@ const DashBoard = () => {
           style={{'margin': '0'}}
         />
       </BarBox>
+     
     </>
   )
 }

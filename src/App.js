@@ -10,6 +10,7 @@ import MapComponent from './Components/User/MapComponent';
 import ProtectedRoute from './Components/User/ProtectedRoute';
 import NavigateDashboard from './Components/User/NavigateDashboard';
 import FarmerProfile from './Components/User/FarmerProfile';
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (

@@ -1,7 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
 import { useState } from 'react';
@@ -9,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { Avatar, Button, Grid, TextField, Typography } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import { signInUser } from '../../Service/api';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Copyright(props) {
   return (
@@ -41,12 +40,17 @@ export default function SignIn() {
   const loginUser = async () => {
     try {
       let response = await signInUser(login);
-      console.log(response);
-      // localStorage.setItem("userInfo", JSON.stringify(response))
-      localStorage.setItem("token", JSON.stringify(response.token))
-      // localStorage.setItem("user", response.user)
-      // localStorage.setItem("id", response.id)
-      navigate(`/dashboard`)
+    
+      if(response){
+        console.log("hit1");
+        localStorage.setItem("token", JSON.stringify(response.token));
+        navigate(`/dashboard`)
+      }else{
+        console.log("hit");
+        toast.error("Incorrect username or password",{
+          position: toast.POSITION.TOP_CENTER,toastId:2, autoClose : 1000
+        })
+      }
     } catch (error) {
       console.log(error);
     }
@@ -129,6 +133,7 @@ export default function SignIn() {
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
+        <ToastContainer/>
       </Container>
     // </ThemeProvider>
   );

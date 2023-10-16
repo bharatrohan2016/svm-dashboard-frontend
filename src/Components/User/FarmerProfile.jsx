@@ -20,7 +20,7 @@ const FarmerProfile = () => {
             <div>
             <hr/>
             <div className="card mt-2">
-                <p style={{fontSize : '18px', padding : 0, margin: 0}}>{data.name}</p>
+                <p style={{fontSize : '18px', padding : 0, margin: 0}}><b>{data.name}</b></p>
             </div>
             <div className="card mt-2">
                 <h4>Personal Details  </h4>
