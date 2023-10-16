@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const NavigateDashboard = ({children}) => {
     const navigate = useNavigate();
     useEffect(() => {
-        if(!localStorage.getItem('token')){
+        if(localStorage.getItem('token')){
             console.log("hit")
             navigate('/dashboard');
         }

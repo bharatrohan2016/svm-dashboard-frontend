@@ -6,7 +6,7 @@ const ProtectedRoute = ({children}) => {
     useEffect(() => {
         if(!localStorage.getItem('token')){
             console.log("hit")
-            navigate('/login');
+            navigate('/');
         }
     },[]);
     

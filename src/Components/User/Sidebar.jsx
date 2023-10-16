@@ -22,7 +22,10 @@ import InsightsIcon from '@mui/icons-material/Insights';
 import GroupsIcon from '@mui/icons-material/Groups';
 import MapIcon from '@mui/icons-material/Map';
 import InfoIcon from '@mui/icons-material/Info';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
+
 
 const drawerWidth = 240;
 
@@ -94,6 +97,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function Sidebar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const Tool = styled(Toolbar)`
+    display: flex;
+    justify-content: space-between;
+  `
+  const userInfo = localStorage.getItem("token");
+  const navigate = useNavigate();
+
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -104,10 +114,11 @@ export default function Sidebar() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }} style={{'overflow-x': 'hidden'}}>
+    <>
+      <Box sx={{ display: 'flex' }} style={{'overflow-x': 'hidden'}}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar>
+        <Tool>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -123,7 +134,14 @@ export default function Sidebar() {
           <Typography variant="h6" noWrap component="div">
             Mini variant drawer
           </Typography>
-        </Toolbar>
+          { userInfo && <LogoutIcon
+            style={{'cursor': 'pointer'}}
+            onClick={() => {
+              localStorage.clear();
+              navigate('/')
+            }}
+          />} 
+        </Tool>
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
@@ -133,8 +151,8 @@ export default function Sidebar() {
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItem key="Dashboard" disablePadding sx={{ display: 'block' }}>
-              <Link to="/dashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <ListItem key="Dashboard" disablePadding sx={{ display: 'block' }}>
+            <Link to="/dashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
               <ListItemButton
                   sx={{
                   minHeight: 48,
@@ -242,15 +260,21 @@ export default function Sidebar() {
                       <ListItemText primary="About" sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
                   </Link>
+              </ListItem>
+              </Link>
           </ListItem>
-
-        </List>
-        <Divider />
-      </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3, overflowX : 'hidden' }}>
-        <DrawerHeader />
-       <Outlet />
+          </List>
+          <Divider />
+        </Drawer>
+        <Box component="main" sx={{ flexGrow: 1, p: 3, overflowX : 'hidden'  }}>
+          <DrawerHeader />
+        <Outlet />
+        </Box>
       </Box>
-    </Box>
+      
+      <Box style={{'color': 'lightgrey', 'border-top': '1px solid lightgrey'}}>
+        Copyright © 2023 BharatRohan® - Revitalizing agriculture
+      </Box>
+    </>
   );
 }
