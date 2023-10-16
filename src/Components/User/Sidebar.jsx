@@ -22,10 +22,7 @@ import InsightsIcon from '@mui/icons-material/Insights';
 import GroupsIcon from '@mui/icons-material/Groups';
 import MapIcon from '@mui/icons-material/Map';
 import InfoIcon from '@mui/icons-material/Info';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { Button } from '@mui/material';
-import LogoutIcon from '@mui/icons-material/Logout';
-
+import { Link, Outlet } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -97,13 +94,6 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function Sidebar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const Tool = styled(Toolbar)`
-    display: flex;
-    justify-content: space-between;
-  `
-  const userInfo = localStorage.getItem("token");
-  const navigate = useNavigate();
-
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -116,162 +106,153 @@ export default function Sidebar() {
   return (
     <>
       <Box sx={{ display: 'flex' }} style={{'overflow-x': 'hidden'}}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Tool>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: 5,
-              ...(open && { display: 'none' }),
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
-          </Typography>
-          { userInfo && <LogoutIcon
-            style={{'cursor': 'pointer'}}
-            onClick={() => {
-              localStorage.clear();
-              navigate('/')
-            }}
-          />} 
-        </Tool>
-      </AppBar>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-        <ListItem key="Dashboard" disablePadding sx={{ display: 'block' }}>
-            <Link to="/dashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <ListItemButton
-                  sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                  }}
-              >
-                  <ListItemIcon
-                  sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : 'auto',
-                      justifyContent: 'center',
-                  }}
-                  >
-                  <InsightsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-              </Link>
-          </ListItem>
-          <ListItem key="Farmer" disablePadding sx={{ display: 'block' }}>
-              <Link to="/farmer" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <ListItemButton
-                  sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                  }}
-              >
-                  <ListItemIcon
-                  sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : 'auto',
-                      justifyContent: 'center',
-                  }}
-                  >
-                  <GroupsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Farmer" sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-              </Link>
-          </ListItem>
-          <ListItem key="Map" disablePadding sx={{ display: 'block' }}>
-                  <Link to="/map" style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <ListItemButton
-                      sx={{
-                      minHeight: 48,
-                      justifyContent: open ? 'initial' : 'center',
-                      px: 2.5,
-                      }}
-                  >
-                      <ListItemIcon
-                      sx={{
-                          minWidth: 0,
-                          mr: open ? 3 : 'auto',
-                          justifyContent: 'center',
-                      }}
-                      >
-                      <MapIcon />
-                      </ListItemIcon>
-                      <ListItemText primary="Map" sx={{ opacity: open ? 1 : 0 }} />
-                  </ListItemButton>
-                  </Link>
-          </ListItem>
-          <ListItem key="View" disablePadding sx={{ display: 'block' }}>
-              <Link to="/view" style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <ListItemButton
-                      sx={{
-                      minHeight: 48,
-                      justifyContent: open ? 'initial' : 'center',
-                      px: 2.5,
-                      }}
-                  >
-                      <ListItemIcon
-                      sx={{
-                          minWidth: 0,
-                          mr: open ? 3 : 'auto',
-                          justifyContent: 'center',
-                      }}
-                      >
-                      <Person2Icon />
-                      </ListItemIcon>
-                      <ListItemText primary="View" sx={{ opacity: open ? 1 : 0 }} />
-                  </ListItemButton>
-                  </Link>
-          </ListItem>
-          <ListItem key="About" disablePadding sx={{ display: 'block' }}>
-                  <Link to="/about" style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <ListItemButton
-                      sx={{
-                      minHeight: 48,
-                      justifyContent: open ? 'initial' : 'center',
-                      px: 2.5,
-                      }}
-                  >
-                      <ListItemIcon
-                      sx={{
-                          minWidth: 0,
-                          mr: open ? 3 : 'auto',
-                          justifyContent: 'center',
-                      }}
-                      >
-                      <InfoIcon />
-                      </ListItemIcon>
-                      <ListItemText primary="About" sx={{ opacity: open ? 1 : 0 }} />
-                  </ListItemButton>
-                  </Link>
-              </ListItem>
-              </Link>
-          </ListItem>
+        <CssBaseline />
+        <AppBar position="fixed" open={open}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{
+                marginRight: 5,
+                ...(open && { display: 'none' }),
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              Mini variant drawer
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer variant="permanent" open={open}>
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
+          <List>
+            <ListItem key="Dashboard" disablePadding sx={{ display: 'block' }}>
+                <Link to="/dashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <ListItemButton
+                    sx={{
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
+                    }}
+                >
+                    <ListItemIcon
+                    sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                    }}
+                    >
+                    <InsightsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+                </Link>
+            </ListItem>
+            <ListItem key="Farmer" disablePadding sx={{ display: 'block' }}>
+                <Link to="/farmer" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <ListItemButton
+                    sx={{
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
+                    }}
+                >
+                    <ListItemIcon
+                    sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                    }}
+                    >
+                    <GroupsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Farmer" sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+                </Link>
+            </ListItem>
+            <ListItem key="Map" disablePadding sx={{ display: 'block' }}>
+                    <Link to="/map" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <ListItemButton
+                        sx={{
+                        minHeight: 48,
+                        justifyContent: open ? 'initial' : 'center',
+                        px: 2.5,
+                        }}
+                    >
+                        <ListItemIcon
+                        sx={{
+                            minWidth: 0,
+                            mr: open ? 3 : 'auto',
+                            justifyContent: 'center',
+                        }}
+                        >
+                        <MapIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Map" sx={{ opacity: open ? 1 : 0 }} />
+                    </ListItemButton>
+                    </Link>
+            </ListItem>
+            <ListItem key="View" disablePadding sx={{ display: 'block' }}>
+                <Link to="/view" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <ListItemButton
+                        sx={{
+                        minHeight: 48,
+                        justifyContent: open ? 'initial' : 'center',
+                        px: 2.5,
+                        }}
+                    >
+                        <ListItemIcon
+                        sx={{
+                            minWidth: 0,
+                            mr: open ? 3 : 'auto',
+                            justifyContent: 'center',
+                        }}
+                        >
+                        <Person2Icon />
+                        </ListItemIcon>
+                        <ListItemText primary="View" sx={{ opacity: open ? 1 : 0 }} />
+                    </ListItemButton>
+                    </Link>
+            </ListItem>
+            <ListItem key="About" disablePadding sx={{ display: 'block' }}>
+                    <Link to="/about" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <ListItemButton
+                        sx={{
+                        minHeight: 48,
+                        justifyContent: open ? 'initial' : 'center',
+                        px: 2.5,
+                        }}
+                    >
+                        <ListItemIcon
+                        sx={{
+                            minWidth: 0,
+                            mr: open ? 3 : 'auto',
+                            justifyContent: 'center',
+                        }}
+                        >
+                        <InfoIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="About" sx={{ opacity: open ? 1 : 0 }} />
+                    </ListItemButton>
+                    </Link>
+            </ListItem>
+
           </List>
           <Divider />
         </Drawer>
-        <Box component="main" sx={{ flexGrow: 1, p: 3, overflowX : 'hidden'  }}>
+        <Box component="main" sx={{ flexGrow: 1, p: 3, overflowX : 'hidden' }}>
           <DrawerHeader />
         <Outlet />
         </Box>
       </Box>
-      
       <Box style={{'color': 'lightgrey', 'border-top': '1px solid lightgrey'}}>
         Copyright © 2023 BharatRohan® - Revitalizing agriculture
       </Box>
