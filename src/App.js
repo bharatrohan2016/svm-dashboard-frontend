@@ -9,6 +9,7 @@ import About from './Components/User/About';
 import MapComponent from './Components/User/MapComponent';
 import ProtectedRoute from './Components/User/ProtectedRoute';
 import NavigateDashboard from './Components/User/NavigateDashboard';
+import FarmerProfile from './Components/User/FarmerProfile';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
               
               <Route path='/farmer' 
               element={<ProtectedRoute> <Farmer/> </ProtectedRoute>} />
-              
+              <Route path='/view' element={<ProtectedRoute> <FarmerProfile/> </ProtectedRoute>} />
               <Route path='/map' element={<ProtectedRoute> <MapComponent/> </ProtectedRoute>} />
               <Route path='/about' element={<ProtectedRoute> <About/> </ProtectedRoute>} />
             </Route>

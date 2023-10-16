@@ -54,6 +54,7 @@ export const getMapsInfo = async () => {
     }
 }
 
+
 export const getDBFirstRow = async() => {
     try {
         const config = {
@@ -66,4 +67,8 @@ export const getDBFirstRow = async() => {
     } catch (error) {
         console.log(error);
     }
+}
+export const getFarmerById = async(id) => {
+    const result = await axios.get(`${URL}/api/farmer/${id}`);
+    return result.data;
 }

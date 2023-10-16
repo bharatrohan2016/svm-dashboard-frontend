@@ -8,6 +8,7 @@ import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
+import Person2Icon from '@mui/icons-material/Person2';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -192,7 +193,9 @@ export default function Sidebar() {
                   </ListItemIcon>
                   <ListItemText primary="Farmer" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
-                  <ListItem key="Map" disablePadding sx={{ display: 'block' }}>
+              </Link>
+          </ListItem>
+          <ListItem key="Map" disablePadding sx={{ display: 'block' }}>
                   <Link to="/map" style={{ textDecoration: 'none', color: 'inherit' }}>
                   <ListItemButton
                       sx={{
@@ -213,8 +216,30 @@ export default function Sidebar() {
                       <ListItemText primary="Map" sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
                   </Link>
-              </ListItem>
-              <ListItem key="About" disablePadding sx={{ display: 'block' }}>
+          </ListItem>
+          <ListItem key="View" disablePadding sx={{ display: 'block' }}>
+              <Link to="/view" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <ListItemButton
+                      sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                      }}
+                  >
+                      <ListItemIcon
+                      sx={{
+                          minWidth: 0,
+                          mr: open ? 3 : 'auto',
+                          justifyContent: 'center',
+                      }}
+                      >
+                      <Person2Icon />
+                      </ListItemIcon>
+                      <ListItemText primary="View" sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                  </Link>
+          </ListItem>
+          <ListItem key="About" disablePadding sx={{ display: 'block' }}>
                   <Link to="/about" style={{ textDecoration: 'none', color: 'inherit' }}>
                   <ListItemButton
                       sx={{
@@ -241,7 +266,7 @@ export default function Sidebar() {
           </List>
           <Divider />
         </Drawer>
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Box component="main" sx={{ flexGrow: 1, p: 3, overflowX : 'hidden'  }}>
           <DrawerHeader />
         <Outlet />
         </Box>
