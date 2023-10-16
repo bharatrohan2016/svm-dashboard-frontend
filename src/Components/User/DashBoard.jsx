@@ -158,8 +158,8 @@ const DashBoard = () => {
             cx: 70
           },
         ]}
-        width={250}
-        height={300}
+        width={300}
+        height={350}
         slotProps={{
           legend: {     
             position: { vertical: 'middle', horizontal: 'right' },
@@ -180,8 +180,8 @@ const DashBoard = () => {
             cx: 70,
           },
         ]}
-        width={250}
-        height={300}
+        width={300}
+        height={350}
         slotProps={{
           legend: {     
             position: { vertical: 'middle', horizontal: 'right' },
