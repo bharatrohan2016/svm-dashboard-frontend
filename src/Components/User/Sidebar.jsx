@@ -122,7 +122,7 @@ export default function Sidebar() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              Mini variant drawer
+              SVM Dashboard
             </Typography>
           </Toolbar>
         </AppBar>
@@ -253,7 +253,7 @@ export default function Sidebar() {
         <Outlet />
         </Box>
       </Box>
-      <Box style={{'color': 'lightgrey', 'border-top': '1px solid lightgrey'}}>
+      <Box style={{'color': 'lightgrey', 'border-top': '1px solid lightgrey', marginBottom : '2px'}}>
         Copyright © 2023 BharatRohan® - Revitalizing agriculture
       </Box>
     </>

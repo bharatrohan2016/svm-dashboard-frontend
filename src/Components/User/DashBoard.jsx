@@ -4,9 +4,6 @@ import { PieChart } from '@mui/x-charts/PieChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import styled from '@emotion/styled';
 import { ToastContainer, toast } from 'react-toastify';
-import { PieChart } from '@mui/x-charts/PieChart';
-import { BarChart } from '@mui/x-charts/BarChart';
-import styled from '@emotion/styled';
 import { getDBFirstRow } from '../../Service/api';
 
 const HeaderComponent = styled(Box)`
