@@ -24,6 +24,7 @@ import MapIcon from '@mui/icons-material/Map';
 import InfoIcon from '@mui/icons-material/Info';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { toast } from 'react-toastify';
 
 const drawerWidth = 240;
 
@@ -136,6 +137,7 @@ export default function Sidebar() {
               onClick={() => {
                 localStorage.clear();
                 navigate('/')
+                toast.success('Logged Out Successfully')
               }}
             />}  
           </Tool>

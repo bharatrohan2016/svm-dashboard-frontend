@@ -76,14 +76,6 @@ const RectangleBox = styled(Box)`
 
 
 const DashBoard = () => {
-  useEffect(() => {
-    toast.success("Welcome to the dashboard", {
-      toastId : '1',
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose : 2000
-    });
-  },[]);
-  console.log('Dashboard Component Rendered');
   const [data, setData] = useState()
   useEffect(() => {
     const random = () => getDBFirstRow().then((response) => {
