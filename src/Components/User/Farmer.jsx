@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { exportCSV, getFarmers, getFarmersByQuery } from '../../Service/api';
 import FarmerFilters from './FarmerFilters';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -52,6 +53,13 @@ const Farmer = () => {
     formData.append('csv', event.target.files[0])
     exportCSV(formData).then((response) => {
       console.log(response);
+      if(response.result==='success'){
+        toast.success("CSV file added succesfully", {
+          position: toast.POSITION.TOP_RIGHT,
+          toastId:3,
+          autoClose : 2000,
+        })
+      }
       setIsDisabled(false);
     })
   }
@@ -71,6 +79,7 @@ const Farmer = () => {
   }, [])
   return (
     <>
+      <ToastContainer/>
       <h2 variant="h5" style={{'textAlign': 'initial', 'fontWeight': '300'}}>
         Farmer Table
       </h2>
