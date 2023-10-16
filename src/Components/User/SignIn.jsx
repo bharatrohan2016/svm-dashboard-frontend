@@ -39,6 +39,9 @@ export default function SignIn() {
   const navigate = useNavigate(); 
 
   const loginUser = async () => {
+    if (!login.email.filled) {
+      alert('Please Fill email')
+    }
     try {
       let response = await signInUser(login);
       console.log(response);
