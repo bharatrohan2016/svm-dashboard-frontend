@@ -41,3 +41,43 @@ body {
     transform: rotate(360deg);
   }
 }
+
+
+.Mui-focused{
+  color: black;
+}
+
+header{
+  background-color: #242b4d !important;
+}
+
+.css-2dum1v-MuiDrawer-docked .MuiDrawer-paper{
+  background-color: #242b4d !important;
+}
+
+.css-2dum1v-MuiDrawer-docked .MuiDrawer-paper svg{
+  color: white;
+}
+
+.css-1hsz34s-MuiDrawer-docked .MuiDrawer-paper {
+  background-color: #242b4d !important;
+  color: white;
+}
+
+.css-1hsz34s-MuiDrawer-docked .MuiDrawer-paper svg {
+  color: white;
+}
+
+.css-1m5i5w0-MuiButtonBase-root-MuiListItemButton-root{
+  padding: 5px;
+}
+.css-1m5i5w0-MuiButtonBase-root-MuiListItemButton-root:hover{
+background-color: #1a1f35 !important;
+border-left: 5px solid green;
+}
+
+@media (max-width : 400px) {
+  .dashboard-img{
+    display: none;
+  }
+}

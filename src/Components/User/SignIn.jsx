@@ -8,13 +8,13 @@ import { Avatar, Button, Grid, TextField, Typography } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import { signInUser } from '../../Service/api';
 import { ToastContainer, toast } from 'react-toastify';
-
+import styles from './SignIn.module.css';
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography variant="body2" color="#242b4d" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://bharatrohan.in/">
+        Bharat Rohan
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -38,9 +38,7 @@ export default function SignIn() {
   const navigate = useNavigate(); 
 
   const loginUser = async () => {
-    // if (!login.email.filled) {
-    //   alert('Please Fill email')
-    // }
+  
     try {
       let response = await signInUser(login);
     
@@ -71,26 +69,26 @@ export default function SignIn() {
 
 
   return (
-    // <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs" style={{ backgroundColor: "#F0FFF0" }}>
+    <div className={styles.loginDiv}>
+      <Container className={styles.loginContainer} component="main" maxWidth="xs">
         {/* <CssBaseline /> */}
         <Box
           sx={{
-            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#242b4d' }}>
             <LockIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             User's Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, color : '#242b4d' }}>
             <TextField
               margin="normal"
+              color="primary"
               required
               fullWidth
               id="email"
@@ -116,13 +114,24 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              style={{ backgroundColor: "#00B000" }}
+              style={{ backgroundColor: "#242b4d", height : '50px', borderRadius : '20px' }}
               sx={{ mt: 3, mb: 2 }}
               onClick={() => loginUser()}
             >
               Sign In
             </Button>
-            {/* <Grid container>
+            
+          </Box>
+        </Box>
+        <Copyright sx={{ mt: 4, mb: 4 }} />
+        <ToastContainer/>
+      </Container>
+      </div>
+    // </ThemeProvider>
+  );
+}
+
+{/* <Grid container>
               <Grid item>
                 <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
@@ -134,11 +143,3 @@ export default function SignIn() {
                 </Link>
               </Grid>
             </Grid> */}
-          </Box>
-        </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-        <ToastContainer/>
-      </Container>
-    // </ThemeProvider>
-  );
-}

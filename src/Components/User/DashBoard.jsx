@@ -5,7 +5,7 @@ import { BarChart } from '@mui/x-charts/BarChart';
 import { ToastContainer, toast } from 'react-toastify';
 import styled from '@emotion/styled';
 import { getDBFirstRow } from '../../Service/api';
-
+import styles from './Dashboard.module.css'
 const HeaderComponent = styled(Box)`
   display: flex;
   justify-content: space-around;
@@ -25,20 +25,25 @@ const HeaderComponent = styled(Box)`
 
 const PieCharts = styled(Box)`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  height: 30vh;
+  height: 40vh;
   overflow-y: hidden;
+  margin-left : 30px;
+  margin-right : 30px;
   @media (max-width: 400px) {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: start;
-    min-height: 40vh; 
+    min-height: 65vh; 
     padding: 0;
+    padding : 20px;
     overflow-x: visible;
   }
 `
+
+
 
 const BarBox = styled(Box)`
   display: flex;
@@ -56,24 +61,41 @@ const BarBox = styled(Box)`
 
 const RectangleBox = styled(Box)`
   display: flex;
-  height: 20vh;
-  width: 20vw;
+  align-items : center;
+  width: 26vw;
   border: 1px solid #d3d3d3;
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: space-around;
-  flex-direction: column;
-  justify-content: center;
-  color: #808080;
+  text-align : left;
+  padding : 30px;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: white;
+  font-size:20px;
+  font-weight : bold;
   @media (max-width: 400px) {
     width: 70vw;
-    height: 10vh;
+    padding : 20px;
     display: flex;
-    flex-direction: column;
   }
 `
-
+const VisualBox =  styled(Box)`
+display: flex;
+align-items : center;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+border: 1px solid #d3d3d3;
+text-align : left;
+padding : 30px;
+border-radius: 30px;
+color: white;
+width : 35vw;
+margin-top:10px;
+font-size:20px;
+font-weight : bold;
+@media (max-width: 400px) {
+  width: 70vw;
+  padding : 20px;
+  display: flex;
+}
+`
 
 const DashBoard = () => {
   const [data, setData] = useState()
@@ -90,37 +112,60 @@ const DashBoard = () => {
     <>
      <ToastContainer/>
       <HeaderComponent>
-        <RectangleBox>
-          <h3>Total Farmers: <span style={{'color': 'black'}}>{data?.totalFarmer}</span></h3>
+        <RectangleBox className={styles.dashboard1}>
+         <div className='col-md-9'>
+          <span>Total Farmers </span> <br/><br/>
+          <span >{data?.totalFarmer}</span>
+          </div>
+          <div className='col-md-3'>
+             <img src='https://cdn-icons-png.flaticon.com/512/187/187039.png' height={80} width={80} className='dashboard-img'/>
+          </div>
         </RectangleBox>
-        <RectangleBox>
-          <h3>Date Survey: <span style={{'color': 'black'}}>{date.toLocaleDateString('en-US', {
+        <RectangleBox className={styles.dashboard2}>
+        <div className='col-md-9'>
+          <span>Date Survey</span> <br/><br/>
+          <span>
+          {date.toLocaleDateString('en-US', {
             year: 'numeric',
             month: '2-digit',
             day: '2-digit',
-          })}</span></h3>
+          })}
+          </span>
+          </div>
+          <div className='col-md-3'>
+             <img src='https://cdn-icons-png.flaticon.com/512/187/187039.png' height={80} width={80} className='dashboard-img'/>
+          </div>
         </RectangleBox>
-        <RectangleBox>
-          <h3>Area Survey: <span style={{'color': 'black'}}>{parseInt(data?.totalArea)}</span></h3>
+        <RectangleBox className={styles.dashboard3}>
+        <div className='col-md-9'>
+          <span>Area Survey</span> <br/><br/>
+          <span >62 Acres</span>
+          </div>
+          <div className='col-md-3'>
+             <img src='https://cdn-icons-png.flaticon.com/512/187/187039.png' height={80} width={80} className='dashboard-img'/>
+          </div>
         </RectangleBox>
       </HeaderComponent>
+      
       <PieCharts>
       <PieChart
         style={{'margin': '0'}}
         series={[
           {
             data: [
-              { id: 0, value: 38, label: 'Farmer Having Whatsapp' },
-              { id: 1, value: 17, label: 'Farmer Having Cell Phone' },
-              { id: 2, value: 56, label: 'Farmer Having No Whatsapp' },
+              { id: 0, value: 38, label: 'Whatsapp' },
+              { id: 1, value: 17, label: 'Cell Phone' },
+              { id: 2, value: 56, label: 'No Whatsapp' },
             ],
             cx: 70,
           },
         ]}
-        width={250}
+        width={300}
         height={200}
       />
+    
       <PieChart
+        
         series={[
           {
             data: [
@@ -131,10 +176,13 @@ const DashBoard = () => {
             cx: 70,
           },
         ]}
-        width={250}
+      width={300}
         height={200}
       />
+     
       </PieCharts>
+      
+      
       <BarBox>
         <BarChart
           xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
