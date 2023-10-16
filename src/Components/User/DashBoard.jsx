@@ -1,10 +1,9 @@
-import { Box, Typography } from '@mui/material'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react';
+import { Box } from '@mui/material'
 import { PieChart } from '@mui/x-charts/PieChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import styled from '@emotion/styled';
 import { ToastContainer, toast } from 'react-toastify';
-import React, { useEffect, useState } from 'react'
 import { PieChart } from '@mui/x-charts/PieChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import styled from '@emotion/styled';
