@@ -11,6 +11,8 @@ import ProtectedRoute from './Components/User/ProtectedRoute';
 import NavigateDashboard from './Components/User/NavigateDashboard';
 import FarmerProfile from './Components/User/FarmerProfile';
 import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
             </Route>
           </Routes>
         </Router>
+        <ToastContainer />
     </div>
   );
 }

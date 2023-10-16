@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material'
 import { PieChart } from '@mui/x-charts/PieChart';
 import { BarChart } from '@mui/x-charts/BarChart';
-import styled from '@emotion/styled';
 import { ToastContainer, toast } from 'react-toastify';
+import styled from '@emotion/styled';
 import { getDBFirstRow } from '../../Service/api';
 
 const HeaderComponent = styled(Box)`
@@ -76,14 +76,6 @@ const RectangleBox = styled(Box)`
 
 
 const DashBoard = () => {
-  useEffect(() => {
-    toast.success("Welcome to the dashboard", {
-      toastId : '1',
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose : 2000
-    });
-  },[]);
-  console.log('Dashboard Component Rendered');
   const [data, setData] = useState()
   useEffect(() => {
     const random = () => getDBFirstRow().then((response) => {

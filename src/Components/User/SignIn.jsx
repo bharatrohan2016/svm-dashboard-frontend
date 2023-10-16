@@ -38,6 +38,9 @@ export default function SignIn() {
   const navigate = useNavigate(); 
 
   const loginUser = async () => {
+    // if (!login.email.filled) {
+    //   alert('Please Fill email')
+    // }
     try {
       let response = await signInUser(login);
     
@@ -45,6 +48,7 @@ export default function SignIn() {
         console.log("hit1");
         localStorage.setItem("token", JSON.stringify(response.token));
         navigate(`/dashboard`)
+        toast.success('Login Successfull')
       }else{
         console.log("hit");
         toast.error("Incorrect username or password",{
