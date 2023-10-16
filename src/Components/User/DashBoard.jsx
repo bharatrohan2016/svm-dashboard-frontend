@@ -33,8 +33,9 @@ const PieCharts = styled(Box)`
     flex-direction: column;
     justify-content: space-around;
     align-items: start;
-    min-height: 50vh; 
+    min-height: 40vh; 
     padding: 0;
+    overflow-x: visible;
   }
 `
 
@@ -112,10 +113,10 @@ const DashBoard = () => {
               { id: 1, value: 17, label: 'Farmer Having Cell Phone' },
               { id: 2, value: 56, label: 'Farmer Having No Whatsapp' },
             ],
-            cx: 60,
+            cx: 70,
           },
         ]}
-        width={300}
+        width={250}
         height={200}
       />
       <PieChart
@@ -126,10 +127,10 @@ const DashBoard = () => {
               { id: 1, value: 15, label: 'series B' },
               { id: 2, value: 20, label: 'series C' },
             ],
-            cx: 60,
+            cx: 70,
           },
         ]}
-        width={300}
+        width={250}
         height={200}
       />
       </PieCharts>
