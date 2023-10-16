@@ -1,11 +1,9 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
+import React, { useState } from 'react';
+import { Box, Typography, Container } from '@mui/material';
 import Link from '@mui/material/Link';
-import Container from '@mui/material/Container';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Avatar, Button, Grid, TextField, Typography } from '@mui/material';
+import { Avatar, Button, TextField } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
+import { useNavigate } from 'react-router-dom';
 import { signInUser } from '../../Service/api';
 import { ToastContainer, toast } from 'react-toastify';
 import styles from './SignIn.module.css';
@@ -33,40 +31,51 @@ export default function SignIn() {
   const [login, setLogin] = useState(loginInitialValues)
 
   const onValueChange = (e) => {
-    setLogin({...login, [e.target.name]: e.target.value});
-  }
-  const navigate = useNavigate(); 
+    setLogin({ ...login, [e.target.name]: e.target.value });
+  };
 
+  const validateEmail = (email) => {
+    // Regular expression for validating an email address
+    const regex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    return regex.test(email);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!login.email.trim() || !login.password.trim()) {
+      // Check if either field is empty
+      toast.error('Both fields must be filled');
+      return;
+    }
+
+    if (!validateEmail(login.email)) {
+      // Check if the email is in a valid format
+      toast.error('Invalid email format');
+      return;
+    }
+
+    loginUser();
+  };
   const loginUser = async () => {
-  
     try {
-      let response = await signInUser(login);
-    
-      if(response){
-        console.log("hit1");
-        localStorage.setItem("token", JSON.stringify(response.token));
-        navigate(`/dashboard`)
-        toast.success('Login Successfull')
-      }else{
-        console.log("hit");
-        toast.error("Incorrect username or password",{
-          position: toast.POSITION.TOP_CENTER,toastId:2, autoClose : 1000
-        })
+      const response = await signInUser(login);
+
+      if (response) {
+        localStorage.setItem('token', JSON.stringify(response.token));
+        navigate(`/dashboard`);
+        toast.success('Login Successful');
+      } else {
+        toast.error('Incorrect username or password', {
+          position: toast.POSITION.TOP_CENTER,
+          toastId: 2,
+          autoClose: 1000,
+        });
       }
     } catch (error) {
       console.log(error);
     }
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
   };
-
 
   return (
     <div className={styles.loginDiv}>
@@ -114,9 +123,8 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              style={{ backgroundColor: "#242b4d", height : '50px', borderRadius : '20px' }}
+              style={{ backgroundColor: '#00B000' }}
               sx={{ mt: 3, mb: 2 }}
-              onClick={() => loginUser()}
             >
               Sign In
             </Button>

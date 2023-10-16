@@ -13,6 +13,7 @@ import FarmerProfile from './Components/User/FarmerProfile';
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ErrorPage from './Components/ErrorPage';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route path='/map' element={<ProtectedRoute> <MapComponent/> </ProtectedRoute>} />
               <Route path='/about' element={<ProtectedRoute> <About/> </ProtectedRoute>} />
             </Route>
+            <Route path='*' element={<ErrorPage />} />
           </Routes>
         </Router>
         <ToastContainer />

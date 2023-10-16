@@ -44,23 +44,26 @@ const About = () => {
               http://www.bharatrohan.com/
             </a>
           </Typography>
-          <Img style={{'height': '30vh',  'width': '100%', 'borderRadius': '10px'}} component='img' src='/About_1.jpg'/>
+          <Img style={{'height': '20vh',  'width': '20%', 'borderRadius': '10px'}} component='img' src='/Bharat_rohan.svg'/>
         </MainBox>
       </Section>
-
       <Section>
         <Typography variant="h4" gutterBottom>
           About Smart Village Movement
         </Typography>
         <MainBox>
-          <Img style={{'height': '30vh',  'width': '100%', 'borderRadius': '10px'}} component='img' src='/About_2.jpg'/>
+          <Img style={{'height': '10%',  'width': '20%', 'borderRadius': '10px'}} component='img' src='/svm_logo.png'/>
           <Typography variant="body1">
             The Smart Village Movement is a collaborative process facilitated by the SVM organization in conjunction with the Berkeley-Haas Center of Growth Markets, aimed at establishing a Smart Village ecosystem. The organization actively partners with government, academia, corporations, and rural communities, fostering independence and promoting sustainable rural development in Indian villages and other emerging markets. Its primary objective is to empower rural communities by leveraging digital technologies and open innovation platforms, thereby enabling them to access global markets.
           </Typography>
         </MainBox>
       </Section>
       <Box style={{'display': 'flex', 'flex-direction': 'column', 'justify-content': 'center', 'align-items': 'center'}}>
-        <Img style={{'height': '30%',  'width': '30%', 'borderRadius': '10px'}} component='img' src='/About_3.jpg'/>
+        <Box style={{'display': 'flex', 'justifyContent': 'space-around', 'width': '100%'}}>
+          <Img style={{'height': '20vh',  'width': '20%', 'borderRadius': '10px'}} component='img' src='/About_3.jpg'/>
+          <Img style={{'height': '20vh',  'width': '20%', 'borderRadius': '10px'}} component='img' src='/About_2.jpg'/>
+          <Img style={{'height': '20vh',  'width': '20%', 'borderRadius': '10px'}} component='img' src='/About_1.jpg'/>
+        </Box>
         <i>Educating Farmers for better future.</i>
       </Box>
     </Container>
