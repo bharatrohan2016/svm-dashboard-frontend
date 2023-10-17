@@ -135,7 +135,7 @@ export default function Sidebar() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              SVM Dashboard
+              SVM &nbsp; ANALYTICS
             </Typography>
               { userInfo && <LogoutIcon
               style={{'cursor': 'pointer'}}

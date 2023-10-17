@@ -51,7 +51,7 @@ const About = () => {
               </a>
             </div>
             <div className='col-md-3' style={{textAlign:'center'}}>
-            <Img style={{'height': '20vh', margin : '5px'}} component='img' src='/Bharat_rohan.svg'/> <br/>
+            <Img style={{height : '20vh',width : '90%'}} component='img' src='/Bharat_rohan.svg'/> <br/>
               Bharat Rohan Airborne Innovations
             </div>
           </div>
@@ -64,10 +64,10 @@ const About = () => {
         </Typography>
         <MainBox>
           <div className='row' style={{display :'flex', justifyContent : 'space-between'}}>
-            <div className='col-md-5 col-xl-5' style={{display:'flex', alignItems : 'center', justifyContent:'center'}}>
-              <Img component='img' src='/svm_logo.png'/>
+            <div className='col-md-5 col-xl-5 mb-2' style={{display:'flex', alignItems : 'center', justifyContent:'center'}}>
+              <Img component='img' style={{width : '90%', height : '10vh'}} src='/svm_logo.png'/>
             </div> 
-            <div className='col-md-7 col-xl-7'>
+            <div className='col-md-7 col-xl-7 mb-2'>
             The Smart Village Movement is a collaborative process facilitated by the SVM organization in conjunction with the Berkeley-Haas Center of Growth Markets, aimed at establishing a Smart Village ecosystem. The organization actively partners with government, academia, corporations, and rural communities, fostering independence and promoting sustainable rural development in Indian villages and other emerging markets. Its primary objective is to empower rural communities by leveraging digital technologies and open innovation platforms, thereby enabling them to access global markets.
             </div>
           </div>
