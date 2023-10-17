@@ -17,7 +17,7 @@ const HeaderComponent = styled(Box)`
     flex-direction: column;
     justify-content: space-around;
     align-items: start;
-    min-height: 50vh;
+    min-height: 70vh;
     padding: 0;
     margin: 0;
   }
@@ -28,18 +28,17 @@ const PieCharts = styled(Box)`
   justify-content: space-between;
   align-items: center;
   height: 40vh;
+  width: 80vw;
   overflow-y: hidden;
-  margin-left : 30px;
-  margin-right : 30px;
   @media (max-width: 400px) {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: start;
-    min-height: 65vh; 
+    min-height: 60vh; 
+    width: 100vw;
     padding: 0;
-    padding : 20px;
-    overflow-x: visible;
+    overflow-x: scroll;
   }
 `
 
@@ -107,10 +106,10 @@ const DashBoard = () => {
     random()
   }, [])
 
+
   const date = new Date(data?.dateSurvey);
   return (
-    <>
-     <ToastContainer/>
+    <Box style={{'padding': '0'}}>
       <HeaderComponent>
         <RectangleBox className={styles.dashboard1}>
          <div className='col-md-9'>
@@ -149,19 +148,24 @@ const DashBoard = () => {
       
       <PieCharts>
       <PieChart
-        style={{'margin': '0'}}
         series={[
           {
             data: [
-              { id: 0, value: 38, label: 'Whatsapp' },
-              { id: 1, value: 17, label: 'Cell Phone' },
-              { id: 2, value: 56, label: 'No Whatsapp' },
+              { id: 0, value: 38, label: 'Whatsapp'},
+              { id: 1, value: 17, label: 'Mobiles' },
+              { id: 2, value: 56, label: 'No\nWhatsapp' },
             ],
-            cx: 70,
+            cx: 70
           },
         ]}
         width={300}
-        height={200}
+        height={350}
+        slotProps={{
+          legend: {     
+            position: { vertical: 'middle', horizontal: 'right' },
+          }
+        }}
+        style={{ whiteSpace: 'pre-line' }}
       />
     
       <PieChart
@@ -176,8 +180,13 @@ const DashBoard = () => {
             cx: 70,
           },
         ]}
-      width={300}
-        height={200}
+        width={300}
+        height={350}
+        slotProps={{
+          legend: {     
+            position: { vertical: 'middle', horizontal: 'right' },
+          }
+        }}
       />
      
       </PieCharts>
@@ -193,7 +202,7 @@ const DashBoard = () => {
         />
       </BarBox>
      
-    </>
+    </Box>
   )
 }
 

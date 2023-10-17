@@ -30,7 +30,7 @@ const loginInitialValues = {
 export default function SignIn() {
   const navigate = useNavigate();
   const [login, setLogin] = useState(loginInitialValues)
-
+  const navigate = useNavigate()
   const onValueChange = (e) => {
     setLogin({ ...login, [e.target.name]: e.target.value });
   };
@@ -43,7 +43,6 @@ export default function SignIn() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     if (!login.email.trim() || !login.password.trim()) {
       // Check if either field is empty
       toast.error('Both fields must be filled');
