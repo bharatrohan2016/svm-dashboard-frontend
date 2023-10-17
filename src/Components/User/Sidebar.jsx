@@ -98,6 +98,14 @@ const Tool = styled(Toolbar)`
     justify-content: space-between;
 `
 
+const Footer = styled('div')({
+  background: 'lightgrey',
+  borderTop: '1px solid lightgrey',
+  textAlign: 'center',
+  padding: '10px',
+  width: '100vw',
+});
+
 
 export default function Sidebar() {
   const theme = useTheme();
@@ -269,13 +277,15 @@ export default function Sidebar() {
           </List>
           <Divider />
         </Drawer>
-        <Box component="main" sx={{ flexGrow: 1, p: 3, overflowX : 'hidden' }}>
-          <DrawerHeader />
-        <Outlet />
+        <Box component="main" sx={{ flexGrow: 1, overflowX : 'hidden' }}>
+          <Box sx={{p: 3}} style={{minHeight: '95vh'}}>
+            <DrawerHeader />
+            <Outlet />
+          </Box>
+          <Footer>
+            Copyright © 2023 BharatRohan® - Revitalizing agriculture
+          </Footer>
         </Box>
-      </Box>
-      <Box style={{'color': 'lightgrey', borderTop: '1px solid lightgrey'}}>
-        Copyright © 2023 BharatRohan® - Revitalizing agriculture
       </Box>
     </>
   );
