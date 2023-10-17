@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -22,10 +22,10 @@ import InsightsIcon from '@mui/icons-material/Insights';
 import GroupsIcon from '@mui/icons-material/Groups';
 import MapIcon from '@mui/icons-material/Map';
 import InfoIcon from '@mui/icons-material/Info';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { toast } from 'react-toastify';
-
+import styles from './Sidebar.module.css';
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -98,9 +98,11 @@ const Tool = styled(Toolbar)`
     justify-content: space-between;
 `
 
+
 export default function Sidebar() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const location = useLocation();
+  const [open, setOpen] = React.useState(true);
   const navigate = useNavigate();
   const userInfo = localStorage.getItem("token");
   const handleDrawerOpen = () => {
@@ -111,6 +113,9 @@ export default function Sidebar() {
     setOpen(false);
   };
 
+  useEffect(()=>{
+    
+  },[])
   return (
     <>
       <Box sx={{ display: 'flex' }} style={{'overflow-x': 'hidden'}}>
@@ -150,7 +155,7 @@ export default function Sidebar() {
           </DrawerHeader>
           <Divider />
           <List>
-            <ListItem key="Dashboard" disablePadding sx={{ display: 'block' }}>
+            <ListItem className={location.pathname==='/dashboard' ? styles.listColor : ''} key="Dashboard" disablePadding sx={{ display: 'block' }}>
                 <Link to="/dashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <ListItemButton
                     sx={{
@@ -172,7 +177,7 @@ export default function Sidebar() {
                 </ListItemButton>
                 </Link>
             </ListItem>
-            <ListItem key="Farmer" disablePadding sx={{ display: 'block' }}>
+            <ListItem className={location.pathname==='/farmer' ? styles.listColor : ''} key="Farmer" disablePadding sx={{ display: 'block' }}>
                 <Link to="/farmer" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <ListItemButton
                     sx={{
@@ -194,7 +199,7 @@ export default function Sidebar() {
                 </ListItemButton>
                 </Link>
             </ListItem>
-            <ListItem key="Map" disablePadding sx={{ display: 'block' }}>
+            <ListItem className={location.pathname==='/map' ? styles.listColor : ''} key="Map" disablePadding sx={{ display: 'block' }}>
                     <Link to="/map" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <ListItemButton
                         sx={{
@@ -216,7 +221,7 @@ export default function Sidebar() {
                     </ListItemButton>
                     </Link>
             </ListItem>
-            <ListItem key="View" disablePadding sx={{ display: 'block' }}>
+            <ListItem className={location.pathname==='/view' ? styles.listColor : ''} key="View" disablePadding sx={{ display: 'block' }}>
                 <Link to="/view" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <ListItemButton
                         sx={{
@@ -238,7 +243,7 @@ export default function Sidebar() {
                     </ListItemButton>
                     </Link>
             </ListItem>
-            <ListItem key="About" disablePadding sx={{ display: 'block' }}>
+            <ListItem className={location.pathname==='/about' ? styles.listColor : ''} key="About" disablePadding sx={{ display: 'block' }}>
                     <Link to="/about" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <ListItemButton
                         sx={{

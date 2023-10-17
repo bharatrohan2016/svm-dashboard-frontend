@@ -71,10 +71,7 @@ header{
 .css-1m5i5w0-MuiButtonBase-root-MuiListItemButton-root{
   padding: 5px;
 }
-.css-1m5i5w0-MuiButtonBase-root-MuiListItemButton-root:hover{
-background-color: #1a1f35 !important;
-border-left: 5px solid green;
-}
+
 
 @media (max-width : 400px) {
   .dashboard-img{

@@ -6,8 +6,8 @@ const Section = styled('section')({
   padding: '26px',
   marginBottom: '26px',
   backgroundColor: '#f7f7f7',
-  borderLeft : '3px solid #FA8072 !important',
-  borderTop : '3px solid #FA8072',
+  borderLeft : '3px solid  #4AAFD5 !important',
+  borderTop : '3px solid  #4AAFD5',
   textAlign : 'left',
   borderRadius : '60px 0px 60px 0px',
   boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
@@ -58,7 +58,7 @@ const About = () => {
         </MainBox>
       </Section>
 
-      <Section sx={{textAlign : 'left'}}>
+      <Section sx={{textAlign : 'left', borderTop : '3px solid #00246B', borderLeft : '3px solid #00246B !important' }}>
         <Typography variant="h4" gutterBottom>
           About SVM
         </Typography>
