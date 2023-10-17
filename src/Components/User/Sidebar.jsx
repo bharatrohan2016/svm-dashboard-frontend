@@ -269,9 +269,7 @@ export default function Sidebar() {
         <Outlet />
         </Box>
       </Box>
-      <Box style={{'color': 'lightgrey', 'border-top': '1px solid lightgrey', marginBottom : '2px'}}>
-        Copyright © 2023 BharatRohan® - Revitalizing agriculture
-      </Box>
+      
     </>
   );
 }

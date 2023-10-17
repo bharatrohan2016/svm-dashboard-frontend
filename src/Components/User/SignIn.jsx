@@ -28,6 +28,7 @@ const loginInitialValues = {
 }
 
 export default function SignIn() {
+  const navigate = useNavigate();
   const [login, setLogin] = useState(loginInitialValues)
 
   const onValueChange = (e) => {
@@ -123,7 +124,7 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              style={{ backgroundColor: '#00B000' }}
+              style={{ backgroundColor: "#242b4d", height : '50px', borderRadius : '20px' }}
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In
@@ -138,16 +139,3 @@ export default function SignIn() {
     // </ThemeProvider>
   );
 }
-
-{/* <Grid container>
-              <Grid item>
-                <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/business/signup" variant="body2">
-                  {"Want to become a seller, just click..."}
-                </Link>
-              </Grid>
-            </Grid> */}

@@ -1,14 +1,18 @@
 import React from 'react';
-import { Box, Typography, Container } from '@mui/material';
+import { Box, Typography, Container, Stack } from '@mui/material';
 import { styled } from '@mui/system';
 
 const Section = styled('section')({
-  padding: '16px',
-  marginBottom: '16px',
+  padding: '26px',
+  marginBottom: '26px',
   backgroundColor: '#f7f7f7',
-  borderRadius: '8px',
+  borderLeft : '3px solid #FA8072 !important',
+  borderTop : '3px solid #FA8072',
+  textAlign : 'left',
+  borderRadius : '60px 0px 60px 0px',
   boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
 });
+
 
 const MainBox = styled(Box)({
   display: 'flex',
@@ -32,41 +36,64 @@ const Img = styled(Box)({
 
 const About = () => {
   return (
-    <Container maxWidth="lg">
-      <Section>
+    <Stack >
+      
+      <Section  sx={{textAlign : 'left'}}>
         <Typography variant="h4" gutterBottom>
           About BharatRohan
         </Typography>
         <MainBox>
-          <Typography variant="body1">
-            BharatRohan is an agri-tech start-up specializing in UAV/drone spectral imaging-based Decision Support System (DSS) for farmers. They offer a comprehensive procurement platform to institutional buyers with traceability as a key value addition. The solution is vertically integrated and offers farmers and FPOs access to the markets through buyback arrangements. The value proposition for paying customers is access to pesticide and residue-free agricultural commodities, along with a farm-traceability platform. The company is tapping into the export market demand, which can offer higher margins to the farmer. For more information, visit{' '}
-            <a href="http://www.bharatrohan.com/" target="_blank" rel="noopener noreferrer">
-              http://www.bharatrohan.com/
-            </a>
-          </Typography>
-          <Img style={{'height': '20vh',  'width': '20%', 'borderRadius': '10px'}} component='img' src='/Bharat_rohan.svg'/>
+          <div className='row' style={{display :'flex', justifyContent : 'space-between'}}>
+            <div className='col-md-9'>
+              BharatRohan is an agri-tech start-up specializing in UAV/drone spectral imaging-based Decision Support System (DSS) for farmers. They offer a comprehensive procurement platform to institutional buyers with traceability as a key value addition. The solution is vertically integrated and offers farmers and FPOs access to the markets through buyback arrangements. The value proposition for paying customers is access to pesticide and residue-free agricultural commodities, along with a farm-traceability platform. The company is tapping into the export market demand, which can offer higher margins to the farmer. For more information, visit{' '}
+              <a href="http://www.bharatrohan.com/" target="_blank" rel="noopener noreferrer">
+                http://www.bharatrohan.com/
+              </a>
+            </div>
+            <div className='col-md-3' style={{textAlign:'center'}}>
+            <Img style={{'height': '20vh', margin : '5px'}} component='img' src='/Bharat_rohan.svg'/> <br/>
+              Bharat Rohan Airborne Innovations
+            </div>
+          </div>
         </MainBox>
       </Section>
-      <Section>
+
+      <Section sx={{textAlign : 'left'}}>
         <Typography variant="h4" gutterBottom>
-          About Smart Village Movement
+          About SVM
         </Typography>
         <MainBox>
-          <Img style={{'height': '10%',  'width': '20%', 'borderRadius': '10px'}} component='img' src='/svm_logo.png'/>
-          <Typography variant="body1">
+          <div className='row' style={{display :'flex', justifyContent : 'space-between'}}>
+            <div className='col-md-5 col-xl-5' style={{display:'flex', alignItems : 'center', justifyContent:'center'}}>
+              <Img component='img' src='/svm_logo.png'/>
+            </div> 
+            <div className='col-md-7 col-xl-7'>
             The Smart Village Movement is a collaborative process facilitated by the SVM organization in conjunction with the Berkeley-Haas Center of Growth Markets, aimed at establishing a Smart Village ecosystem. The organization actively partners with government, academia, corporations, and rural communities, fostering independence and promoting sustainable rural development in Indian villages and other emerging markets. Its primary objective is to empower rural communities by leveraging digital technologies and open innovation platforms, thereby enabling them to access global markets.
-          </Typography>
+            </div>
+          </div>
         </MainBox>
       </Section>
-      <Box style={{'display': 'flex', 'flex-direction': 'column', 'justify-content': 'center', 'align-items': 'center'}}>
-        <Box style={{'display': 'flex', 'justifyContent': 'space-around', 'width': '100%'}}>
-          <Img style={{'height': '20vh',  'width': '20%', 'borderRadius': '10px'}} component='img' src='/About_3.jpg'/>
-          <Img style={{'height': '20vh',  'width': '20%', 'borderRadius': '10px'}} component='img' src='/About_2.jpg'/>
-          <Img style={{'height': '20vh',  'width': '20%', 'borderRadius': '10px'}} component='img' src='/About_1.jpg'/>
-        </Box>
-        <i>Educating Farmers for better future.</i>
-      </Box>
-    </Container>
+
+
+      <Section sx={{textAlign : 'left'}}>
+        <Typography variant="h4" gutterBottom>
+          Testimonials
+        </Typography>
+        <div className='row'>
+          <div className='col-md-4 mb-2 text-center'>
+          <Img style={{'height': '35vh',width : '90%', 'borderRadius': '10px'}} component='img' src='/About_3.jpg'/>
+          </div>
+          <div className='col-md-4 mb-2 text-center'>
+          <Img style={{'height': '35vh',width : '90%',  'borderRadius': '10px'}} component='img' src='/About_2.jpg'/>
+          </div>
+          <div className='col-md-4 mb-2  text-center'>
+          <Img style={{'height': '35vh',width : '90%',  'borderRadius': '10px'}} component='img' src='/About_1.jpg'/>
+          </div>
+        </div>
+            
+      </Section>
+     
+    </Stack>
   );
 };
 

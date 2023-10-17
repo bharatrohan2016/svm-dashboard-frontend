@@ -28,24 +28,24 @@ const MapComponent = () => {
     fetchData();
   }, []);
 
-  if (!res) {
-    return <div>Loading...</div>;
-  }
-
-  console.log(res[0]);
 
   return (
-    <MapContainer center={[res[0].lat, res[0].long]} zoom={8} style={{ height: '100vh' }}>
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      {res.map((item) => (
-        <Marker key={item.id} position={[item.lat, item.long]} icon={markerIcon}>
-          <Popup>{item.name}</Popup>
-        </Marker>
-      ))}
-    </MapContainer>
+    <>
+    {
+      res!=undefined && res.length!=0 ?
+      <MapContainer center={[res[0].lat, res[0].long]} zoom={8} style={{ height: '100vh' }}>
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {res.map((item) => (
+            <Marker key={item.id} position={[item.lat, item.long]} icon={markerIcon}>
+              <Popup>{item.name}</Popup>
+            </Marker>
+          ))}
+    </MapContainer> : 'No records exists.'
+    }
+    </>
   );
 };
 
