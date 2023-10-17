@@ -118,7 +118,7 @@ export default function Sidebar() {
   },[])
   return (
     <>
-      <Box sx={{ display: 'flex' }} style={{'overflow-x': 'hidden'}}>
+      <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="fixed" open={open}>
           <Tool>
@@ -274,7 +274,9 @@ export default function Sidebar() {
         <Outlet />
         </Box>
       </Box>
-      
+      <Box style={{'color': 'lightgrey', borderTop: '1px solid lightgrey'}}>
+        Copyright © 2023 BharatRohan® - Revitalizing agriculture
+      </Box>
     </>
   );
 }
