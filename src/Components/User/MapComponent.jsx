@@ -28,13 +28,7 @@ const MapComponent = () => {
     fetchData();
   }, []);
 
-  if ( typeof res === 'undefined') {
-    return(
-      <h1>Loading...</h1>
-    )
-  }
 
-  console.log(res[0].lat);
   return (
     <>
     {
