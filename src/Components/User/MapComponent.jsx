@@ -29,36 +29,47 @@ const MapComponent = () => {
   }, []);
 
   if ( typeof res === 'undefined') {
-    return(
+    return (
       <h1>Loading...</h1>
-    )
+    );
   }
 
   console.log(res[0].lat);
   return (
     <>
-      {
-        res!=undefined && res.length!=0 ?
-        <MapContainer center={[res[0].lat, res[0].long]} zoom={12} style={{ height: '100vh' }}>
-            <TileLayer
-              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            {res.map((item) => (
-              // Check if both lat and long are not null before rendering the Marker
-              (item.lat !== null && item.long !== null) ? (
-                <Marker key={item.id} position={[item.lat, item.long]} icon={markerIcon}>
-                  <Popup>
-                    <h6>Feild Number: {item.excel_id}</h6>
-                    <h6>Farmer Name: {item.farmer_name}</h6>
-                    <h6>Village Name: {item.village}</h6>
-                    <h6>Area: {item.area}</h6>
-                  </Popup>
-                </Marker>
-              ) : null // If either lat or long is null, don't render the Marker
-            ))}
-      </MapContainer> : 'No records exists.'
-      }
+      {res != undefined && res.length !== 0 ? (
+        <MapContainer center={[res[0].lat, res[0].long]} zoom={10} style={{ height: '100%' }}>
+          <LayersControl position="topright">
+            <LayersControl.BaseLayer name="Street Map" checked>
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+            </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer name="Satellite Map">
+              <TileLayer
+                attribution='&copy; <a href="http://mapbox.com/copyright">Mapbox</a>'
+                url='https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'
+                subdomains={['mt1','mt2','mt3']}
+              />
+            </LayersControl.BaseLayer>
+          </LayersControl>
+
+          {res.map((item) => (
+            // Check if both lat and long are not null before rendering the Marker
+            item.lat !== null && item.long !== null ? (
+              <Marker key={item.id} position={[item.lat, item.long]} icon={markerIcon}>
+                <Popup>
+                  <h6>Field Number: {item.excel_id}</h6>
+                  <h6>Farmer Name: {item.farmer_name}</h6>
+                  <h6>Village Name: {item.village}</h6>
+                  <h6>Area: {item.area}</h6>
+                </Popup>
+              </Marker>
+            ) : null // If either lat or long is null, don't render the Marker
+          ))}
+        </MapContainer>
+      ) : 'No records exist.'}
     </>
   );
 };

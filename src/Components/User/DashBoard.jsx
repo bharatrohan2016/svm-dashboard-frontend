@@ -7,6 +7,7 @@ import styled from '@emotion/styled';
 import { getDBFirstRow } from '../../Service/api';
 import styles from './Dashboard.module.css'
 import { useTheme } from '@emotion/react';
+import MapComponent from './MapComponent';
 const HeaderComponent = styled(Box)`
   display: flex;
   justify-content: space-around;
@@ -57,6 +58,23 @@ const BarBox = styled(Box)`
   }
 `
 
+const SectionThree = styled(Box)`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 40vh;
+  @media (max-width: 400px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+    min-height: 85vh; 
+    width: 100vw;
+    padding: 0;
+    overflow-x: hidden;
+  }
+`
+
 
 
 const RectangleBox = styled(Box)`
@@ -77,25 +95,15 @@ const RectangleBox = styled(Box)`
     display: flex;
   }
 `
-const VisualBox =  styled(Box)`
-display: flex;
-align-items : center;
-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-border: 1px solid #d3d3d3;
-text-align : left;
-padding : 30px;
-border-radius: 30px;
-color: white;
-width : 35vw;
-margin-top:10px;
-font-size:20px;
-font-weight : bold;
-@media (max-width: 400px) {
-  width: 70vw;
-  padding : 20px;
-  display: flex;
-}
-`
+
+const MapBox = styled(Box)({
+  height: '40vh',
+  width: '20vw',
+  '@media (max-width: 768px)': {
+    height: '40vh',
+    width: '70vw'
+  },
+})
 
 const DashBoard = () => {
   const [data, setData] = useState()
@@ -208,17 +216,20 @@ const DashBoard = () => {
       />
      
       </PieCharts>
-      
-      
-      <BarBox>
-        <BarChart
-          xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
-          series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
-          width={400}
-          height={300}
-          style={{'margin': '0'}}
-        />
-      </BarBox>
+      <SectionThree>
+        <MapBox>
+          <MapComponent />
+        </MapBox>
+        <BarBox>
+          <BarChart
+            xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
+            series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
+            width={400}
+            height={300}
+            style={{'margin': '0'}}
+          />
+        </BarBox>
+      </SectionThree>
      
     </Box>
   )

@@ -111,8 +111,9 @@ const Footer = styled('div')({
 
 
 export default function Sidebar() {
-  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
+  const theme = useTheme();
   const navigate = useNavigate();
   const userInfo = localStorage.getItem("token");
   const handleDrawerOpen = () => {
@@ -122,6 +123,19 @@ export default function Sidebar() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      // Check the window width to determine if it's a mobile device
+      setIsMobile(window.innerWidth <= 768); // You can adjust the threshold as needed
+    };
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <>
@@ -141,17 +155,34 @@ export default function Sidebar() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
-              SVM &nbsp; ANALYTICS
-            </Typography>
-              { userInfo && <LogoutIcon
-              style={{'cursor': 'pointer'}}
-              onClick={() => {
-                localStorage.clear();
-                navigate('/')
-                toast.success('Logged Out Successfully')
-              }}
-            />}  
+            <Box sx={{width: '100%', display: 'flex', justifyContent: 'space-between'}}> 
+              {
+                !isMobile && <Box component='img' sx={{
+                  height: '5vh',
+                  width: '3vw'
+                }} src='/Bharat_rohan.svg'></Box>
+              }
+              <Typography variant="h6" noWrap component="div">
+                Crop Assurance
+              </Typography>
+              <Box>
+                {
+                  !isMobile && <Box component='img' sx={{
+                    height: '5vh',
+                    width: '12vw',
+                    paddingRight: '2vw'
+                  }} src='/svm_logo.png'></Box>
+                }
+                  { userInfo && <LogoutIcon
+                  style={{'cursor': 'pointer'}}
+                  onClick={() => {
+                    localStorage.clear();
+                    navigate('/')
+                    toast.success('Logged Out Successfully')
+                  }}
+                />}   
+              </Box> 
+            </Box>  
           </Tool>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -206,7 +237,7 @@ export default function Sidebar() {
                 </ListItemButton>
                 </Link>
             </ListItem>
-            <ListItem key="Map" disablePadding sx={{ display: 'block' }}>
+            {/* <ListItem key="Map" disablePadding sx={{ display: 'block' }}>
                     <Link to="/map" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <ListItemButton
                         sx={{
@@ -227,7 +258,7 @@ export default function Sidebar() {
                         <ListItemText primary="Map" sx={{ opacity: open ? 1 : 0 }} />
                     </ListItemButton>
                     </Link>
-            </ListItem>
+            </ListItem> */}
             <ListItem key="View" disablePadding sx={{ display: 'block' }}>
                 <Link to="/view" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <ListItemButton
