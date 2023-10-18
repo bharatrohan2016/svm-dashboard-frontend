@@ -104,7 +104,6 @@ const Footer = styled('div')({
   textAlign: 'center',
   padding: '10px',
   width: '100vw',
-  display: 'flex',
   '@media (max-width: 400px)': {
     width: '90vw'
   },
