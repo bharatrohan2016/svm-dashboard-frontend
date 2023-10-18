@@ -22,10 +22,11 @@ import InsightsIcon from '@mui/icons-material/Insights';
 import GroupsIcon from '@mui/icons-material/Groups';
 import MapIcon from '@mui/icons-material/Map';
 import InfoIcon from '@mui/icons-material/Info';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { toast } from 'react-toastify';
-
+import styles from './Sidebar.module.css';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -114,6 +115,7 @@ export default function Sidebar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const userInfo = localStorage.getItem("token");
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -123,6 +125,17 @@ export default function Sidebar() {
     setOpen(false);
   };
 
+  const BootstrapTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: theme.palette.common.black,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.black,
+    },
+  }));
+  
   return (
     <>
       <Box sx={{ display: 'flex' }} style={{'overflow-x': 'hidden'}}>
@@ -144,14 +157,14 @@ export default function Sidebar() {
             <Typography variant="h6" noWrap component="div">
               SVM &nbsp; ANALYTICS
             </Typography>
-              { userInfo && <LogoutIcon
+              { userInfo && <BootstrapTooltip><LogoutIcon
               style={{'cursor': 'pointer'}}
               onClick={() => {
                 localStorage.clear();
                 navigate('/')
                 toast.success('Logged Out Successfully')
               }}
-            />}  
+            /></BootstrapTooltip> }  
           </Tool>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -162,8 +175,8 @@ export default function Sidebar() {
           </DrawerHeader>
           <Divider />
           <List>
-            <ListItem key="Dashboard" disablePadding sx={{ display: 'block' }}>
-                <Link to="/dashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <ListItem key="Dashboard" className={location.pathname==='/dashboard' ? styles.listColor : ''} disablePadding sx={{ display: 'block' }}>
+                <Link to="/dashboard"  style={{ textDecoration: 'none', color: 'inherit' }}>
                 <ListItemButton
                     sx={{
                     minHeight: 48,
@@ -184,8 +197,8 @@ export default function Sidebar() {
                 </ListItemButton>
                 </Link>
             </ListItem>
-            <ListItem key="Farmer" disablePadding sx={{ display: 'block' }}>
-                <Link to="/farmer" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <ListItem key="Farmers" className={location.pathname==='/farmers' ? styles.listColor : ''} disablePadding sx={{ display: 'block' }}>
+                <Link to="/farmers" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <ListItemButton
                     sx={{
                     minHeight: 48,
@@ -206,7 +219,7 @@ export default function Sidebar() {
                 </ListItemButton>
                 </Link>
             </ListItem>
-            <ListItem key="Map" disablePadding sx={{ display: 'block' }}>
+            <ListItem key="Map" className={location.pathname==='/map' ? styles.listColor : ''} disablePadding sx={{ display: 'block' }}>
                     <Link to="/map" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <ListItemButton
                         sx={{
@@ -228,8 +241,8 @@ export default function Sidebar() {
                     </ListItemButton>
                     </Link>
             </ListItem>
-            <ListItem key="View" disablePadding sx={{ display: 'block' }}>
-                <Link to="/view" style={{ textDecoration: 'none', color: 'inherit' }}>
+            {/* <ListItem key="Farmers" className={location.pathname==='/farmers' ? styles.listColor : ''} disablePadding sx={{ display: 'block' }}>
+                <Link to="/farmers" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <ListItemButton
                         sx={{
                         minHeight: 48,
@@ -249,8 +262,8 @@ export default function Sidebar() {
                         <ListItemText primary="View" sx={{ opacity: open ? 1 : 0 }} />
                     </ListItemButton>
                     </Link>
-            </ListItem>
-            <ListItem key="About" disablePadding sx={{ display: 'block' }}>
+            </ListItem> */}
+            <ListItem key="About" className={location.pathname==='/about' ? styles.listColor : ''} disablePadding sx={{ display: 'block' }}>
                     <Link to="/about" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <ListItemButton
                         sx={{

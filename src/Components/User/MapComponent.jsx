@@ -34,7 +34,6 @@ const MapComponent = () => {
     )
   }
 
-  console.log(res[0].lat);
   return (
     <>
       {

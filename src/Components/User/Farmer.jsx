@@ -11,14 +11,23 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 const Farmer = () => {
-  const [isDisabled, setIsDisabled] = useState(false);
-  const [originaldata, setOriginalData] =useState([]); 
+  // const [isDisabled, setIsDisabled] = useState(false);
+  // const [originaldata, setOriginalData] =useState([]); 
   const [data, setData] = useState([]);
   const columns = useMemo(
     () => [
       {
-        accessorKey: 'name', //access nested data with dot notation
-        header: 'Name'
+        id : 'name',
+        header: 'Name',
+        accessorFn: (data) => {
+            return data.name;
+        },
+        Cell: ({ cell }) => {
+          console.log(cell);
+            return (<div>
+              <a href={`/profile/${cell.row.original?._id}`} target='_blank'>{cell.row.original?.name}</a>
+            </div>);
+        }
       },
       {
         accessorKey: 'fathersName',
@@ -51,37 +60,37 @@ const Farmer = () => {
       setData(response.data);
     })
   }
-  const fileHandler = (event) => {
-    setIsDisabled(true);
-    const formData = new FormData();
-    formData.append('csv', event.target.files[0])
-    exportCSV(formData).then((response) => {
-      console.log(response);
-      if(response.result==='success'){
-        setData(response.data);
-        setIsDisabled(false);
-        toast.success("CSV file added succesfully", {
-          position: toast.POSITION.TOP_RIGHT,
-          toastId:3,
-          autoClose : 2000,
-        })
-      }
+  // const fileHandler = (event) => {
+  //   setIsDisabled(true);
+  //   const formData = new FormData();
+  //   formData.append('csv', event.target.files[0])
+  //   exportCSV(formData).then((response) => {
+  //     console.log(response);
+  //     if(response.result==='success'){
+  //       setData(response.data);
+  //       setIsDisabled(false);
+  //       toast.success("CSV file added succesfully", {
+  //         position: toast.POSITION.TOP_RIGHT,
+  //         toastId:3,
+  //         autoClose : 2000,
+  //       })
+  //     }
      
-    })
-  }
-  const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 1,
+  //   })
+  // }
+  // const VisuallyHiddenInput = styled('input')({
+  //   clip: 'rect(0 0 0 0)',
+  //   clipPath: 'inset(50%)',
+  //   height: 1,
    
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
-  });
+  //   position: 'absolute',
+  //   bottom: 0,
+  //   left: 0,
+  //   whiteSpace: 'nowrap',
+  //   width: 1,
+  // });
   useEffect(() => {
-    getFarmers().then((response) =>{ setData(response.data); setOriginalData(response.data)});
+    getFarmers().then((response) =>{ setData(response.data); });
   }, [])
   return (
     <>
@@ -89,13 +98,13 @@ const Farmer = () => {
       <h2 variant="h5" style={{'textAlign': 'initial', 'fontWeight': '300'}}>
         Farmer Table
       </h2>
-      <div className='col-md-3' style={{textAlign : 'left'}}>
+      {/* <div className='col-md-3' style={{textAlign : 'left'}}>
       <Button component="label" sx={{width : '100%'}} variant="contained" startIcon={<CloudUploadIcon/>} disabled={isDisabled}>
             {isDisabled === true ? 'Uploading..' : 'Upload file'}  
             <VisuallyHiddenInput onChange={fileHandler} type="file" />
       </Button>
-      </div>
-      <br/>
+      </div> 
+      <br/>*/}
       <FarmerFilters select={handleFilters}/>
 
      <br/>

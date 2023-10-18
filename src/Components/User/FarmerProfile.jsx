@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
 import Filter from "./Filter";
 import { getFarmerById } from "../../Service/api";
+import { useParams } from "react-router-dom";
 
 const FarmerProfile = () => {
+    const {id} = useParams();
     const [data, setData] = useState(undefined);
 
-    //recives id from Filter.jsx
-    const changeHandler = (id) => {
+    useEffect(()=>{
         getFarmerById(id).then((response) => {
             console.log(response);
             setData(response.data);
         })
-    }
+    },[])
      return (
        <>
        <h3 style={{textAlign : 'left', color : '#242b4d'}}>Farmers Profile</h3>
-       <Filter value={changeHandler} />
         {
             data!=undefined ? 
-            <div>
+            <div style={{textAlign : 'left'}}>
             <hr/>
             <div className="card mt-4">
                 <p style={{fontSize : '28px', padding : 0, margin: 0, color : "#242b4d"}}><b>{data.name}</b></p>
@@ -59,6 +59,10 @@ const FarmerProfile = () => {
                 <p>Billing City : {data.billingCity && data.billingCity!="" ?  <span>{data.billingCity}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
                 <p>Billing State : {data.billingState && data.billingState!="" ?  <span>{data.billingState}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
                 <p>Billing Country : {data.billingCountry &&data.billingCountry!="" ?  <span>{data.billingCountry}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                
+            </div>
+            <div>
+                <h5>Advisory Details</h5>
                 
             </div>
            
