@@ -63,7 +63,7 @@ export default function SignIn() {
       if (response) {
         localStorage.setItem('token', JSON.stringify(response.token));
         navigate(`/dashboard`);
-        toast.success('Login Successful', { autoClose : 2000 });
+        toast.success('Login Successful');
       } else {
         toast.error('Incorrect username or password', {
           position: toast.POSITION.TOP_CENTER,
