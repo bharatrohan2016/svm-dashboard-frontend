@@ -33,8 +33,12 @@ const Farmer = () => {
         header: 'Village'
       },
       {
-        accessorKey: 'numberOfLastYearCrops',
-        header: 'Number of last year crops'
+        accessorKey: 'totalAreaUnderCultivation',
+        header: 'Area'
+      },
+      {
+        accessorKey: 'cropsGrown',
+        header: 'Crops Grown'
       }
     ],
     [],
