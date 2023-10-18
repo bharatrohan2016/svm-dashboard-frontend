@@ -126,7 +126,7 @@ export default function Sidebar() {
   },[])
   return (
     <>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex' }} style={{'overflow-x': 'hidden'}}>
         <CssBaseline />
         <AppBar position="fixed" open={open}>
           <Tool>
@@ -287,6 +287,7 @@ export default function Sidebar() {
           </Footer>
         </Box>
       </Box>
+      
     </>
   );
 }
