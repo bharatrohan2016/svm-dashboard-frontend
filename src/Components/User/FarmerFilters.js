@@ -29,7 +29,7 @@ const FarmerFilters = (props) => {
             <div className='row gx-2'>
                 <div className='col-md-5 mb-3'>
                     <select className={`form-select ${styles.inputSelect}`} id='village'>
-                        <option>Select Village</option>
+                        <option value="" defaultValue={true}>Select Village</option>
                         {
                             Array.from(village).map((item, index) => <option key={index} value={index}>{item}</option>)
                         }

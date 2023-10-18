@@ -54,13 +54,15 @@ const Farmer = () => {
     exportCSV(formData).then((response) => {
       console.log(response);
       if(response.result==='success'){
+        setData(response.data);
+        setIsDisabled(false);
         toast.success("CSV file added succesfully", {
           position: toast.POSITION.TOP_RIGHT,
           toastId:3,
           autoClose : 2000,
         })
       }
-      setIsDisabled(false);
+     
     })
   }
   const VisuallyHiddenInput = styled('input')({
@@ -84,8 +86,8 @@ const Farmer = () => {
         Farmer Table
       </h2>
       <div className='col-md-3' style={{textAlign : 'left'}}>
-      <Button component="label" sx={{width : '100%'}} variant="contained" startIcon={<CloudUploadIcon/>} >
-              Upload file
+      <Button component="label" sx={{width : '100%'}} variant="contained" startIcon={<CloudUploadIcon/>} disabled={isDisabled}>
+            {isDisabled === true ? 'Uploading..' : 'Upload file'}  
             <VisuallyHiddenInput onChange={fileHandler} type="file" />
       </Button>
       </div>
