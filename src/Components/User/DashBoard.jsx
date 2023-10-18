@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material'
-import { PieChart } from '@mui/x-charts/PieChart';
+import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { ToastContainer, toast } from 'react-toastify';
 import styled from '@emotion/styled';
 import { getDBFirstRow } from '../../Service/api';
 import styles from './Dashboard.module.css'
+import { useTheme } from '@emotion/react';
 const HeaderComponent = styled(Box)`
   display: flex;
   justify-content: space-around;
@@ -28,7 +29,7 @@ const PieCharts = styled(Box)`
   justify-content: space-between;
   align-items: center;
   height: 40vh;
-  width: 80vw;
+  width: 90vw;
   overflow-y: hidden;
   @media (max-width: 400px) {
     display: flex;
@@ -38,7 +39,7 @@ const PieCharts = styled(Box)`
     min-height: 60vh; 
     width: 100vw;
     padding: 0;
-    overflow-x: scroll;
+    overflow-x: hidden;
   }
 `
 
@@ -98,6 +99,7 @@ font-weight : bold;
 
 const DashBoard = () => {
   const [data, setData] = useState()
+  const theme = useTheme();
   useEffect(() => {
     const random = () => getDBFirstRow().then((response) => {
       setData(response?.data)
@@ -108,6 +110,7 @@ const DashBoard = () => {
 
 
   const date = new Date(data?.dateSurvey);
+  
   return (
     <Box style={{'padding': '0'}}>
       <HeaderComponent>
@@ -155,9 +158,17 @@ const DashBoard = () => {
               { id: 1, value: 17, label: 'Mobiles' },
               { id: 2, value: 56, label: 'No\nWhatsapp' },
             ],
+            arcLabel: (item) => `${item.label} (${item.value})`,
             cx: 70
           },
         ]}
+        sx={{
+          [`& .${pieArcLabelClasses.root}`]: {
+            fill: 'white',
+            fontWeight: 'bold',
+            fontSize: '10px'
+          },
+        }}
         width={300}
         height={350}
         slotProps={{
@@ -165,7 +176,6 @@ const DashBoard = () => {
             position: { vertical: 'middle', horizontal: 'right' },
           }
         }}
-        style={{ whiteSpace: 'pre-line' }}
       />
     
       <PieChart
@@ -177,9 +187,17 @@ const DashBoard = () => {
               { id: 1, value: 15, label: 'series B' },
               { id: 2, value: 20, label: 'series C' },
             ],
+            arcLabel: (item) => `${item.label} (${item.value})`,
             cx: 70,
           },
         ]}
+        sx={{
+          [`& .${pieArcLabelClasses.root}`]: {
+            fill: 'white',
+            fontWeight: 'bold',
+            fontSize: '10px'
+          },
+        }} 
         width={300}
         height={350}
         slotProps={{

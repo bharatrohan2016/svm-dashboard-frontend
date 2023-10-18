@@ -59,11 +59,11 @@ export default function SignIn() {
   const loginUser = async () => {
     try {
       const response = await signInUser(login);
-      console.log(response)
+
       if (response) {
         localStorage.setItem('token', JSON.stringify(response.token));
         navigate(`/dashboard`);
-        toast.success('Login Successful', { autoClose : 2000 });
+        toast.success('Login Successful');
       } else {
         toast.error('Incorrect username or password', {
           position: toast.POSITION.TOP_CENTER,
@@ -72,11 +72,6 @@ export default function SignIn() {
         });
       }
     } catch (error) {
-      toast.error('Something went wrong', {
-        position: toast.POSITION.TOP_CENTER,
-        toastId: 2,
-        autoClose: 1000,
-      });
       console.log(error);
     }
   };
