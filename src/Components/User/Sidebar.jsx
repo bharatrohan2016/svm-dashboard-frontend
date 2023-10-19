@@ -163,7 +163,7 @@ export default function Sidebar() {
                 }} src='/Bharat_rohan.svg'></Box>
               }
               <Typography variant="h6" noWrap component="div">
-                Crop Assurance
+                CropAssure ®
               </Typography>
               <Box>
                 {
