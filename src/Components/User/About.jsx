@@ -39,7 +39,7 @@ const About = () => {
     <Stack >
       
       <Section  sx={{textAlign : 'left'}}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h5" gutterBottom>
           About BharatRohan
         </Typography>
         <MainBox>
@@ -59,7 +59,7 @@ const About = () => {
       </Section>
 
       <Section sx={{textAlign : 'left'}}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h5" gutterBottom>
           About SVM
         </Typography>
         <MainBox>
@@ -76,7 +76,7 @@ const About = () => {
 
 
       <Section sx={{textAlign : 'left'}}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h5" gutterBottom>
           Testimonials
         </Typography>
         <div className='row'>
