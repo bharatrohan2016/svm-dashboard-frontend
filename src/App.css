@@ -72,10 +72,16 @@ header{
   padding: 5px;
 }
 .css-1m5i5w0-MuiButtonBase-root-MuiListItemButton-root:hover{
-background-color: #1a1f35 !important;
-border-left: 5px solid green;
+background-color: #333955 !important;
 }
 
+
+.card{
+  padding: 10px;
+  border-radius: 0;
+  border-left: 3px solid #333955;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
 @media (max-width : 400px) {
   .dashboard-img{
     display: none;

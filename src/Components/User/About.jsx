@@ -6,11 +6,11 @@ const Section = styled('section')({
   padding: '26px',
   marginBottom: '26px',
   backgroundColor: '#f7f7f7',
-  borderLeft : '3px solid #FA8072 !important',
-  borderTop : '3px solid #FA8072',
+  borderLeft : '3px solid #333955 !important',
+  borderTop : '3px solid #333955',
   textAlign : 'left',
   borderRadius : '60px 0px 60px 0px',
-  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+  boxShadow: 'rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset',
 });
 
 
@@ -39,7 +39,7 @@ const About = () => {
     <Stack >
       
       <Section  sx={{textAlign : 'left'}}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h5" gutterBottom>
           About BharatRohan
         </Typography>
         <MainBox>
@@ -59,7 +59,7 @@ const About = () => {
       </Section>
 
       <Section sx={{textAlign : 'left'}}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h5" gutterBottom>
           About SVM
         </Typography>
         <MainBox>
@@ -76,7 +76,7 @@ const About = () => {
 
 
       <Section sx={{textAlign : 'left'}}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h5" gutterBottom>
           Testimonials
         </Typography>
         <div className='row'>

@@ -26,10 +26,9 @@ function App() {
               <Route path='/dashboard' 
               element={ <ProtectedRoute> <DashBoard/></ProtectedRoute>} />
               
-              <Route path='/farmer' 
-              element={<ProtectedRoute> <Farmer/> </ProtectedRoute>} />
-              <Route path='/view' element={<ProtectedRoute> <FarmerProfile/> </ProtectedRoute>} />
-              {/* <Route path='/map' element={<ProtectedRoute> <MapComponent/> </ProtectedRoute>} /> */}
+              <Route path='/farmers' element={<ProtectedRoute> <Farmer/> </ProtectedRoute>} />
+              <Route path='/profile/:id' element={<ProtectedRoute> <FarmerProfile/> </ProtectedRoute>} />
+              <Route path='/map' element={<ProtectedRoute> <MapComponent/> </ProtectedRoute>} />
               <Route path='/about' element={<ProtectedRoute> <About/> </ProtectedRoute>} />
               
               <Route element={<Box style={{'color': 'lightgrey', borderTop: '1px solid lightgrey'}}>

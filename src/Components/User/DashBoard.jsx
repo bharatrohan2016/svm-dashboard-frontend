@@ -133,7 +133,7 @@ const DashBoard = () => {
         </RectangleBox>
         <RectangleBox className={styles.dashboard2}>
         <div className='col-md-9'>
-          <span>Date Survey</span> <br/><br/>
+          <span>Last Date of Survey</span> <br/><br/>
           <span>
           {date.toLocaleDateString('en-US', {
             year: 'numeric',
@@ -148,7 +148,7 @@ const DashBoard = () => {
         </RectangleBox>
         <RectangleBox className={styles.dashboard3}>
         <div className='col-md-9'>
-          <span>Area Survey</span> <br/><br/>
+          <span>Total Area Surveyed</span> <br/><br/>
           <span >62 Acres</span>
           </div>
           <div className='col-md-3'>
