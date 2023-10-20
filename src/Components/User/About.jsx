@@ -52,7 +52,7 @@ const About = () => {
             </div>
             <div className='col-md-3' style={{textAlign:'center'}}>
             <Img style={{height : '20vh',width : '90%'}} component='img' src='/Bharat_rohan.svg'/> <br/>
-              Bharat Rohan Airborne Innovations
+              Bharat Rohan
             </div>
           </div>
         </MainBox>
