@@ -10,7 +10,7 @@ const Section = styled('section')({
   borderTop : '3px solid #333955',
   textAlign : 'left',
   borderRadius : '60px 0px 60px 0px',
-  boxShadow: 'rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset',
+  boxShadow: 'rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px',
 });
 
 

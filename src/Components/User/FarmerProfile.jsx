@@ -55,15 +55,44 @@ const FarmerProfile = () => {
                 <h5 className="text-primary">Billing Address </h5>
 
                 <p>Billing Street : {data.billingStreet && data.billingStreet!="" ?  <span>{data.billingStreet}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-                <p>Billing Zip Code : {data.billingZipCode &&data.billingZipCode!="" ?  <span>{data.billingZipCode}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-                <p>Billing City : {data.billingCity && data.billingCity!="" ?  <span>{data.billingCity}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-                <p>Billing State : {data.billingState && data.billingState!="" ?  <span>{data.billingState}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-                <p>Billing Country : {data.billingCountry &&data.billingCountry!="" ?  <span>{data.billingCountry}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                <p>Billing Zip Code : {data.billingZipCode&& data.billingStreet!="-"  &&data.billingZipCode!="" ?  <span>{data.billingZipCode}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                <p>Billing City : {data.billingCity && data.billingCity!="-" ?  <span>{data.billingCity}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                <p>Billing State : {data.billingState && data.billingState!="-" ?  <span>{data.billingState}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                <p>Billing Country : {data.billingCountry &&data.billingCountry!="-" ?  <span>{data.billingCountry}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
                 
             </div>
-            <div>
-                <h5>Advisory Details</h5>
+            <div  className="card mt-3">
+                <h5 className="text-primary">Advisory Information </h5>
                 
+                <div className="row">
+                   
+                    <div className="col-md-6">
+                        <select className="form-select">
+                            <option>Select year</option>
+                            <option value='2023'>2023</option>
+                            <option value='2022'>2022</option>
+                            <option value='2021'>2021</option>
+                            <option value='2020'>2020</option>
+                        </select>
+                    </div>
+
+                    <div className="col-md-6">
+                        <select className="form-select">
+                            <option>Select season</option>
+                            <option value='kharif'>Kharif</option>
+                            <option value='rabi'>Rabi</option>
+                            <option value='zaid'>Zaid</option>
+                        </select>
+                    </div>
+                
+                </div>
+               <div className="row m-1">
+                     <h4>Survey Details :</h4>
+
+                    <iframe src={data.map1link} frameborder="0"></iframe>
+
+                
+               </div>
             </div>
            
         </div> : 'Select a farmer name whose profile you want to view.'
