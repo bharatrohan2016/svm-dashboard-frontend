@@ -63,7 +63,7 @@ const SectionThree = styled(Box)`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 40vh;
+  height: 50vh;
   @media (max-width: 400px) {
     display: flex;
     flex-direction: column;
