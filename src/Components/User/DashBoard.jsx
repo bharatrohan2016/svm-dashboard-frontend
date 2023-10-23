@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,6 +8,7 @@ import { getDBFirstRow, getFarmers } from '../../Service/api';
 import styles from './Dashboard.module.css'
 import { useTheme } from '@emotion/react';
 import MapComponent from './MapComponent';
+import { useNavigate } from 'react-router-dom';
 const HeaderComponent = styled(Box)`
   display: flex;
   justify-content: space-around;
@@ -35,10 +36,10 @@ const PieCharts = styled(Box)`
   @media (max-width: 400px) {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: start;
-    min-height: 60vh; 
-    width: 100vw;
+    min-height: 80vh; 
+    width: 100vw; 
     padding: 0;
     overflow-x: hidden;
   }
@@ -51,7 +52,6 @@ const BarBox = styled(Box)`
   justify-content: space-around;
   align-items: center;
   height: 40vh;
-  width : 70vh;
   @media (max-width: 400px) {
     width: 70vw;
     display: flex;
@@ -69,7 +69,7 @@ const SectionThree = styled(Box)`
     flex-direction: column;
     justify-content: space-around;
     align-items: start;
-    min-height: 85vh; 
+    min-height: 60vh; 
     width: 100vw;
     padding: 0;
     overflow-x: hidden;
@@ -99,7 +99,7 @@ const RectangleBox = styled(Box)`
 
 const MapBox = styled(Box)({
   height: '40vh',
-  width: '20vw',
+  width: '80vw',
   '@media (max-width: 768px)': {
     height: '40vh',
     width: '70vw'
@@ -107,8 +107,7 @@ const MapBox = styled(Box)({
 })
 
 const DashBoard = () => {
-  const [data, setData] = useState();
-  const [object, setObject] = useState({});
+  const [data, setData] = useState()
   const theme = useTheme();
   useEffect(() => {
     const random = () => getDBFirstRow().then((response) => {
@@ -172,63 +171,52 @@ const DashBoard = () => {
         </RectangleBox>
       </HeaderComponent>
       
-      <PieCharts>
-      <PieChart
-        series={[
-          {
-            data: [
-              { id: 0, value: 38, label: 'Whatsapp'},
-              { id: 1, value: 17, label: 'Mobiles' },
-              { id: 2, value: 56, label: 'No\nWhatsapp' },
-            ],
-            arcLabel: (item) => `${item.label} (${item.value})`,
-            cx: 70
-          },
-        ]}
-        sx={{
-          [`& .${pieArcLabelClasses.root}`]: {
-            fill: 'white',
-            fontWeight: 'bold',
-            fontSize: '10px'
-          },
-        }}
-        width={300}
-        height={350}
-        slotProps={{
-          legend: {     
-            position: { vertical: 'middle', horizontal: 'right' },
-          }
-        }}
-      />
-    
-      <PieChart
+      <SectionThree>
+        <MapBox>
+          <MapComponent />
+          <Button onClick={() => {
+            navigate('/map')
+          }}> View Full Map</Button>
+        </MapBox>
         
-        series={[
-          {
-            data: [
-              { id: 0, value: 10, label: 'series A' },
-              { id: 1, value: 15, label: 'series B' },
-              { id: 2, value: 20, label: 'series C' },
-            ],
-            arcLabel: (item) => `${item.label} (${item.value})`,
-            cx: 70,
-          },
-        ]}
-        sx={{
-          [`& .${pieArcLabelClasses.root}`]: {
-            fill: 'white',
-            fontWeight: 'bold',
-            fontSize: '10px'
-          },
-        }} 
-        width={300}
-        height={350}
-        slotProps={{
-          legend: {     
-            position: { vertical: 'middle', horizontal: 'right' },
-          }
-        }}
-      />
+      </SectionThree>
+      <PieCharts>
+        <PieChart
+          series={[
+            {
+              data: [
+                { id: 0, value: 38, label: 'Whatsapp'},
+                { id: 1, value: 17, label: 'Mobiles' },
+                { id: 2, value: 56, label: 'No\nWhatsapp' },
+              ],
+              arcLabel: (item) => `${item.label} (${item.value})`,
+              cx: 70
+            },
+          ]}
+          sx={{
+            [`& .${pieArcLabelClasses.root}`]: {
+              fill: 'white',
+              fontWeight: 'bold',
+              fontSize: '10px'
+            },
+          }}
+          width={300}
+          height={350}
+          slotProps={{
+            legend: {     
+              position: { vertical: 'middle', horizontal: 'right' },
+            }
+          }}
+        />
+    
+          {/* <BarBox style={{padding: '0'}}> */}
+            <BarChart
+              xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
+              series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
+              width={350}
+              height={300}
+            />
+          {/* </BarBox> */}
      
       </PieCharts>
       <SectionThree>
@@ -237,11 +225,8 @@ const DashBoard = () => {
         </MapBox>
         <BarBox>
           <BarChart
-
-            xAxis={[{ scaleType: 'band', data: Object.keys(object) }]}
-            series={[
-              { data: Object.values(object), label: 'Number Of Farmers', id: 'farmers', stack: 'total' }
-            ]}
+            xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
+            series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
             width={400}
             height={300}
             style={{'margin': '0'}}
