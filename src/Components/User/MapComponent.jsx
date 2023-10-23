@@ -37,7 +37,7 @@ const MapComponent = () => {
   return (
     <>
       {res != undefined && res.length !== 0 ? (
-        <MapContainer center={[res[0].lat, res[0].long]} zoom={10} style={{ height: '100%' }}>
+        <MapContainer center={[res[0].lat, res[0].long]} zoom={10} style={{ height: '100%', width: '100%' }}>
           <LayersControl position="topright">
             <LayersControl.BaseLayer name="Street Map" checked>
               <TileLayer

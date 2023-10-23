@@ -6,7 +6,6 @@ import DashBoard from './Components/User/DashBoard';
 import Sidebar from './Components/User/Sidebar';
 import Farmer from './Components/User/Farmer';
 import About from './Components/User/About';
-import MapComponent from './Components/User/MapComponent';
 import ProtectedRoute from './Components/User/ProtectedRoute';
 import NavigateDashboard from './Components/User/NavigateDashboard';
 import FarmerProfile from './Components/User/FarmerProfile';
@@ -15,6 +14,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ErrorPage from './Components/ErrorPage';
 import { Box } from '@mui/material';
+import Map from './Components/User/Map';
 
 function App() {
   return (
@@ -28,13 +28,13 @@ function App() {
               
               <Route path='/farmers' element={<ProtectedRoute> <Farmer/> </ProtectedRoute>} />
               <Route path='/profile/:id' element={<ProtectedRoute> <FarmerProfile/> </ProtectedRoute>} />
-              <Route path='/map' element={<ProtectedRoute> <MapComponent/> </ProtectedRoute>} />
               <Route path='/about' element={<ProtectedRoute> <About/> </ProtectedRoute>} />
               
               <Route element={<Box style={{'color': 'lightgrey', borderTop: '1px solid lightgrey'}}>
-        Copyright © 2023 BharatRohan® - Revitalizing agriculture
-      </Box>}/>
+                Copyright © 2023 BharatRohan® - Revitalizing agriculture
+              </Box>}/>
             </Route>
+            <Route path='/map' element={<ProtectedRoute> <Map/> </ProtectedRoute>} />
             <Route path='*' element={<ErrorPage />} />
           </Routes>
         </Router>
