@@ -218,7 +218,7 @@ export default function Sidebar() {
                 </ListItemButton>
                 </Link>
             </ListItem>
-            <ListItem key="Farmers" className={location.pathname==='/farmers' ? styles.listColor : ''} disablePadding sx={{ display: 'block' }}>
+            <ListItem key="Farmers" className={location.pathname==='/farmers' || location.pathname.includes('profile') ? styles.listColor : ''} disablePadding sx={{ display: 'block' }}>
                 <Link to="/farmers" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <ListItemButton
                     sx={{

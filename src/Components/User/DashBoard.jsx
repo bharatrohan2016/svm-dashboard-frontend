@@ -4,7 +4,7 @@ import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { ToastContainer, toast } from 'react-toastify';
 import styled from '@emotion/styled';
-import { getDBFirstRow } from '../../Service/api';
+import { getDBFirstRow, getFarmers } from '../../Service/api';
 import styles from './Dashboard.module.css'
 import { useTheme } from '@emotion/react';
 import MapComponent from './MapComponent';
@@ -51,6 +51,7 @@ const BarBox = styled(Box)`
   justify-content: space-around;
   align-items: center;
   height: 40vh;
+  width : 70vh;
   @media (max-width: 400px) {
     width: 70vw;
     display: flex;
@@ -106,14 +107,28 @@ const MapBox = styled(Box)({
 })
 
 const DashBoard = () => {
-  const [data, setData] = useState()
+  const [data, setData] = useState();
+  const [object, setObject] = useState({});
   const theme = useTheme();
   useEffect(() => {
     const random = () => getDBFirstRow().then((response) => {
-      setData(response?.data)
+      console.log(response?.data)
+      setData(response?.data);
     })
 
+    const api_calls = async() =>{
+      const response = await getFarmers();
+      if(response.data){
+        let obj = {};
+        for(let item of response?.data){
+          obj[item.village] = obj[item.village] === undefined ? 1 : obj[item.village] + 1;
+        }
+        setObject(obj);
+      }
+    }
+
     random()
+    api_calls();
   }, [])
 
 
@@ -222,8 +237,11 @@ const DashBoard = () => {
         </MapBox>
         <BarBox>
           <BarChart
-            xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
-            series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
+
+            xAxis={[{ scaleType: 'band', data: Object.keys(object) }]}
+            series={[
+              { data: Object.values(object), label: 'Number Of Farmers', id: 'farmers', stack: 'total' }
+            ]}
             width={400}
             height={300}
             style={{'margin': '0'}}

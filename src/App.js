@@ -15,6 +15,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ErrorPage from './Components/ErrorPage';
 import { Box } from '@mui/material';
+import TestFile from './Components/User/TestFile';
 
 function App() {
   return (
@@ -25,10 +26,10 @@ function App() {
             <Route element={<Sidebar /> }>
               <Route path='/dashboard' 
               element={ <ProtectedRoute> <DashBoard/></ProtectedRoute>} />
-              
+              <Route path='/maps' element={<ProtectedRoute> <MapComponent/> </ProtectedRoute>}/>
               <Route path='/farmers' element={<ProtectedRoute> <Farmer/> </ProtectedRoute>} />
               <Route path='/profile/:id' element={<ProtectedRoute> <FarmerProfile/> </ProtectedRoute>} />
-              <Route path='/map' element={<ProtectedRoute> <MapComponent/> </ProtectedRoute>} />
+              <Route path='/test-url' element={<ProtectedRoute> <TestFile/> </ProtectedRoute>} />
               <Route path='/about' element={<ProtectedRoute> <About/> </ProtectedRoute>} />
               
               <Route element={<Box style={{'color': 'lightgrey', borderTop: '1px solid lightgrey'}}>

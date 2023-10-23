@@ -20,7 +20,7 @@ const Farmer = () => {
         id : 'name',
         header: 'Name',
         accessorFn: (data) => {
-            return data.name;
+            return data?.name;
         },
         Cell: ({ cell }) => {
           console.log(cell);
@@ -57,6 +57,7 @@ const Farmer = () => {
     
     getFarmersByQuery(query).then((response) => {
       console.log(response);
+      console.log(response)
       setData(response.data);
     })
   }

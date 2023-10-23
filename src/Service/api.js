@@ -73,3 +73,14 @@ export const getFarmerById = async(id) => {
     const result = await axios.get(`${URL}/api/farmer/${id}`);
     return result.data;
 }
+
+export const getFileIdFromDriveLink = (link) => {
+    const match = link.match(/\/file\/d\/([^/]+)/);
+  
+    if (match && match[1]) {
+      return match[1];
+    } else {
+      return null; // Link doesn't match the expected format
+    }
+  }
+

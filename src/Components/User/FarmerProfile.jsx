@@ -1,12 +1,37 @@
 import { useEffect, useState } from "react";
 import Filter from "./Filter";
-import { getFarmerById } from "../../Service/api";
+import { getFarmerById, getFileIdFromDriveLink } from "../../Service/api";
 import { useParams } from "react-router-dom";
 
 const FarmerProfile = () => {
     const {id} = useParams();
     const [data, setData] = useState(undefined);
+    const [surveys, setSurveys] = useState([]);
+    const [message, setMessage] = useState("");
+    const changeHandler = (event) => {
+        const year = event.target.value;
+        const {surveydate1, surveydate2} = data;
 
+        let surveys_ = [];
+        
+        if(surveydate1 && surveydate1.includes(year)){
+            surveys_.push({ surveydate :  surveydate1, maplink : data.map1link })
+        }
+
+        if(surveydate2 && surveydate2.includes(year)){
+            surveys_.push({ surveydate : surveydate2, maplink : data.map2link })
+        }
+
+        if(surveys_.length === 0){
+            setMessage("No Survey happened in this year.")
+        }else{
+            setMessage("");
+            setSurveys(surveys_);
+        }
+
+        
+
+    }
     useEffect(()=>{
         getFarmerById(id).then((response) => {
             console.log(response);
@@ -64,10 +89,10 @@ const FarmerProfile = () => {
             <div  className="card mt-3">
                 <h5 className="text-primary">Advisory Information </h5>
                 
-                <div className="row">
-                   
+                <div className="row mt-3">
+                <h5>Survey Details :</h5>
                     <div className="col-md-6">
-                        <select className="form-select">
+                        <select className="form-select" onChange={changeHandler} style={{outline : 'none', borderRadius : 0, boxShadow : 'none'}}>
                             <option>Select year</option>
                             <option value='2023'>2023</option>
                             <option value='2022'>2022</option>
@@ -77,8 +102,8 @@ const FarmerProfile = () => {
                     </div>
 
                     <div className="col-md-6">
-                        <select className="form-select">
-                            <option>Select season</option>
+                        <select className="form-select" defaultValue='kharif' style={{outline : 'none', borderRadius : 0, boxShadow : 'none'}}>
+                            <option disabled={true}>Select season</option>
                             <option value='kharif'>Kharif</option>
                             <option value='rabi'>Rabi</option>
                             <option value='zaid'>Zaid</option>
@@ -86,12 +111,21 @@ const FarmerProfile = () => {
                     </div>
                 
                 </div>
-               <div className="row m-1">
-                     <h4>Survey Details :</h4>
+               <div className="row m-1 mt-3">
+                    
+                    {
+                        message==="" ?
 
-                    <iframe src={data.map1link} frameborder="0"></iframe>
-
-                
+                        surveys.map((survey, index) => 
+                            <div>
+                                
+                                <div>
+                                    <p><u>Survey Date </u>: {survey.surveydate}</p>
+                                    <iframe style={{width : '100%'}} src={`https://drive.google.com/file/d/${getFileIdFromDriveLink(survey.maplink)}/preview`} width="640" height="480" allow="autoplay"></iframe>
+                                </div>
+                            </div>
+                        ) : message
+                    }
                </div>
             </div>
            
