@@ -9,7 +9,7 @@ import {
   Popup
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { getMapsInfo } from '../../Service/api';
+import { getFarmers, getMapsInfo } from '../../Service/api';
 
 const MapComponent = () => {
   const [res, setRes] = useState();
@@ -21,7 +21,7 @@ const MapComponent = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getMapsInfo();
+      const result = await getFarmers();
       setRes(result?.data);
     };
 
@@ -39,13 +39,13 @@ const MapComponent = () => {
       {res != undefined && res.length !== 0 ? (
         <MapContainer center={[res[0].lat, res[0].long]} zoom={10} style={{ height: '100%', width: '100%' }}>
           <LayersControl position="topright">
-            <LayersControl.BaseLayer name="Street Map" checked>
+            <LayersControl.BaseLayer name="Street Map" >
               <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
             </LayersControl.BaseLayer>
-            <LayersControl.BaseLayer name="Satellite Map">
+            <LayersControl.BaseLayer name="Satellite Map" checked>
               <TileLayer
                 attribution='&copy; <a href="http://mapbox.com/copyright">Mapbox</a>'
                 url='https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'
@@ -59,8 +59,8 @@ const MapComponent = () => {
             item.lat !== null && item.long !== null ? (
               <Marker key={item.id} position={[item.lat, item.long]} icon={markerIcon}>
                 <Popup>
-                  <h6>Field Number: {item.excel_id}</h6>
-                  <h6>Farmer Name: {item.farmer_name}</h6>
+                  <h6>Field Number: {item.feildNumber}</h6>
+                  <h6>Farmer Name: <a href={`/profile/${item._id}`} target='_blank'>{item.name}</a> </h6>
                   <h6>Village Name: {item.village}</h6>
                   <h6>Area: {item.area}</h6>
                 </Popup>

@@ -26,7 +26,6 @@ function App() {
             <Route element={<Sidebar /> }>
               <Route path='/dashboard' 
               element={ <ProtectedRoute> <DashBoard/></ProtectedRoute>} />
-              <Route path='/maps' element={<ProtectedRoute> <MapComponent/> </ProtectedRoute>}/>
               <Route path='/farmers' element={<ProtectedRoute> <Farmer/> </ProtectedRoute>} />
               <Route path='/profile/:id' element={<ProtectedRoute> <FarmerProfile/> </ProtectedRoute>} />
               <Route path='/test-url' element={<ProtectedRoute> <TestFile/> </ProtectedRoute>} />

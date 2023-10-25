@@ -115,17 +115,26 @@ const FarmerProfile = () => {
                     
                     {
                         message==="" ?
-
-                        surveys.map((survey, index) => 
-                            <div>
-                                
+                            surveys.map((survey, index) => 
                                 <div>
-                                    <p><u>Survey Date </u>: {survey.surveydate}</p>
-                                    <iframe style={{width : '100%'}} src={`https://drive.google.com/file/d/${getFileIdFromDriveLink(survey.maplink)}/preview`} width="640" height="480" allow="autoplay"></iframe>
+                                        <p><u>Survey Date </u>: {survey.surveydate}</p>
+                                        <iframe style={{width : '100%'}} src={`https://drive.google.com/file/d/${getFileIdFromDriveLink(survey.maplink)}/preview`} width="640" height="480" allow="autoplay"></iframe>
+
+                                        {
+                                            index === surveys.length-1 ? 
+                                            <>
+                                            <h5 className="mt-3"><span className="badge bg-warning">Agronomic Advisory</span></h5>
+                                            <p>Hi BharatRohan farmer 👋, based on our recent drone survey done on August 18-20, we have identified that your farm has been diagnosed with Rhizome rot and wilt. Please use Silver Shakti with a dosage of 400g by spraying method for treating your farm.
+                                            Hope we were able to help you out! 🙂🙂 
+                                           <br/>
+                                            <span style={{fontSize : '16px', fontWeight : 'bolder'}}>- BharatRohan Airborne Innovations</span></p></> : ''
+                                        }
                                 </div>
-                            </div>
-                        ) : message
+                            )
+                         : message
                     }
+
+
                </div>
             </div>
            

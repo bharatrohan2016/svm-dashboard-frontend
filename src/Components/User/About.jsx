@@ -49,10 +49,11 @@ const About = () => {
               <a href="http://www.bharatrohan.com/" target="_blank" rel="noopener noreferrer">
                 http://www.bharatrohan.com/
               </a>
+              <br/> <br/>
+              BharatRohan empowers Indian agriculture industry with an extraordinary in-depth understanding of land and crops by using unique UAV/drone based hyperspectral remote sensing and artificial intelligence. They transform data from the cameras into actionable informational which makes techniques like precision agriculture, integrated pest management and contract farming real and viable. They collaborate with different companies in contract farming to provide pesticide residue-free seeds and other agri-commodities from farmers' fields. Moreover, they are an end-to-end information support system for their contract farming customers regarding traceability and source of procurement.
             </div>
-            <div className='col-md-3' style={{textAlign:'center'}}>
-            <Img style={{height : '20vh',width : '90%'}} component='img' src='/Bharat_rohan.svg'/> <br/>
-              Bharat Rohan
+            <div className='col-md-3' style={{textAlign:'center', display : 'flex', alignItems : 'center'}}>
+            <Img style={{height : '35vh',width : '100%'}} component='img' src='/BharatRohan_Logo.jpg'/> <br/>
             </div>
           </div>
         </MainBox>

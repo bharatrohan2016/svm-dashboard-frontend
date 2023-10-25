@@ -97,6 +97,18 @@ const RectangleBox = styled(Box)`
   }
 `
 
+const BarBx = styled(Box)({
+  '@media(max-width: 400px)':{
+    overflowX: 'scroll',
+    paddingLeft : '5vw',
+    width: '80vw',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'start',
+    justifyContent: 'center',
+  }
+})
+
 const MapBox = styled(Box)({
   height: '40vh',
   width: '80vw',
@@ -107,7 +119,9 @@ const MapBox = styled(Box)({
 })
 
 const DashBoard = () => {
-  const [data, setData] = useState()
+  const navigate = useNavigate();
+  const [data, setData] = useState();
+  const [object, setObject] = useState();
   const theme = useTheme();
   useEffect(() => {
     const random = () => getDBFirstRow().then((response) => {
@@ -122,6 +136,7 @@ const DashBoard = () => {
         for(let item of response?.data){
           obj[item.village] = obj[item.village] === undefined ? 1 : obj[item.village] + 1;
         }
+        console.log(obj)
         setObject(obj);
       }
     }
@@ -132,7 +147,11 @@ const DashBoard = () => {
 
 
   const date = new Date(data?.dateSurvey);
-  
+  if(typeof object === 'undefined'){
+    return (
+      <h1>Loading...</h1>
+    )
+  }
   return (
     <Box style={{'padding': '0'}}>
       <HeaderComponent>
@@ -215,24 +234,42 @@ const DashBoard = () => {
               series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
               width={350}
               height={300}
+              
             />
           {/* </BarBox> */}
      
       </PieCharts>
-      <SectionThree>
-        <MapBox>
-          <MapComponent />
-        </MapBox>
-        <BarBox>
-          <BarChart
-            xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
-            series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
-            width={400}
-            height={300}
-            style={{'margin': '0'}}
-          />
-        </BarBox>
-      </SectionThree>
+      
+        <BarBx sx={{width: '100vw', display: 'flex', justifyContent: 'center', backgroundColor : '#F8F8F8'}}>
+          {
+            object!={} ? 
+            <>
+            <BarChart
+                yAxis={[{ scaleType: 'band', data: Object.keys(object)
+              }]}
+                series={[
+                  { data: Object.values(object), label: 'Number Of Farmers', id: 'farmers', stack: 'total' }
+                ]}
+                slotProps={{
+                  legend: {
+                    labelStyle: {
+                      fontSize: 14,
+                      fill: 'blue',
+                    },
+                  },
+                }}
+                
+                width={1000}
+                height={700}
+                layout='horizontal'
+                
+              />
+            </> : ''
+          }
+        
+        </BarBx>
+
+     
      
     </Box>
   )
