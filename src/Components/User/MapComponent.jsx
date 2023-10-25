@@ -10,6 +10,7 @@ import {
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { getFarmers, getMapsInfo } from '../../Service/api';
+import { CircularProgress } from '@mui/material';
 
 const MapComponent = () => {
   const [res, setRes] = useState();
@@ -30,7 +31,7 @@ const MapComponent = () => {
 
   if ( typeof res === 'undefined') {
     return (
-      <h1>Loading...</h1>
+      <CircularProgress/>
     );
   }
 

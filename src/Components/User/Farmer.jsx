@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState, useEffect } from 'react';
 import { MaterialReactTable } from 'material-react-table';
-import { Button } from '@mui/material';
+import { Button, LinearProgress } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { exportCSV, getFarmers, getFarmersByQuery } from '../../Service/api';
@@ -109,50 +109,54 @@ const Farmer = () => {
       <FarmerFilters select={handleFilters}/>
 
      <br/>
-        <MaterialReactTable
-          columns={columns}
-          data={data}
-          //decides initial states
-          initialState={{
-            sorting : [ { id : 'name'}],
-            showGlobalFilter: true,
-          }}
-          
-          // search bar position
-          positionGlobalFilter="left"
-          muiSearchTextFieldProps={{
-            placeholder: 'Search all users',
-            sx : { width : '400px' }
-          }}
-          //removed toggle
-          enableDensityToggle={false}
+     {
+      data.length!=0 ? 
+      <MaterialReactTable
+      columns={columns}
+      data={data}
+      //decides initial states
+      initialState={{
+        sorting : [ { id : 'name'}],
+        showGlobalFilter: true,
+      }}
+      
+      // search bar position
+      positionGlobalFilter="left"
+      muiSearchTextFieldProps={{
+        placeholder: 'Search all users',
+        sx : { width : '400px' }
+      }}
+      //removed toggle
+      enableDensityToggle={false}
 
-          //borders
-          muiTableProps={{
+      //borders
+      muiTableProps={{
+        sx: {
+          border: '1px solid rgba(224, 224, 224, 1)!important',
+        },
+      }}
+      muiTableHeadCellProps={{
             sx: {
-              border: '1px solid rgba(224, 224, 224, 1)!important',
+            border: '1px solid rgba(224, 224, 224, 1)!important',
             },
-          }}
-          muiTableHeadCellProps={{
-                sx: {
-                border: '1px solid rgba(224, 224, 224, 1)!important',
-                },
-          }}
-          muiTableBodyCellProps={{
-              sx: {
-              border: '1px solid rgba(224, 224, 224, 1)!important',
-              },
-          }}
+      }}
+      muiTableBodyCellProps={{
+          sx: {
+          border: '1px solid rgba(224, 224, 224, 1)!important',
+          },
+      }}
 
-          //showing first and last button
-          muiTablePaginationProps={{
-            rowsPerPageOptions: [5, 10, 15, 50],
-            showFirstButton: true,
-            showLastButton: true,
-          }}
+      //showing first and last button
+      muiTablePaginationProps={{
+        rowsPerPageOptions: [5, 10, 15, 50],
+        showFirstButton: true,
+        showLastButton: true,
+      }}
 
-         
-        />
+     
+    /> : <LinearProgress/>
+     }
+
     </>
   )
 }

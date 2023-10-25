@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button } from '@mui/material'
+import { Box, Button, CircularProgress, LinearProgress } from '@mui/material'
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { ToastContainer, toast } from 'react-toastify';
@@ -125,21 +125,20 @@ const DashBoard = () => {
   const theme = useTheme();
   useEffect(() => {
     const random = () => getDBFirstRow().then((response) => {
-      console.log(response?.data)
       setData(response?.data);
     })
 
     const api_calls = async() =>{
       const response = await getFarmers();
-      if(response.data){
+      console.log(response);
+      if(response?.data){
         let obj = {};
         for(let item of response?.data){
           obj[item.village] = obj[item.village] === undefined ? 1 : obj[item.village] + 1;
         }
-        console.log(obj)
         setObject(obj);
       }
-    }
+     }
 
     random()
     api_calls();
@@ -149,7 +148,12 @@ const DashBoard = () => {
   const date = new Date(data?.dateSurvey);
   if(typeof object === 'undefined'){
     return (
-      <h1>Loading...</h1>
+      <LinearProgress color="primary" />
+    )
+  }
+  if(Object.keys(object).length === 0){
+    return (
+      <h3>No entries has been made.</h3>
     )
   }
   return (
