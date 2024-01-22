@@ -23,6 +23,7 @@ const MapComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await getFarmers();
+      console.log(result);
       setRes(result?.data);
     };
 

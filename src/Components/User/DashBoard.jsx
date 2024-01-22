@@ -126,6 +126,10 @@ const DashBoard = () => {
   useEffect(() => {
     const random = () => getDBFirstRow().then((response) => {
       setData(response?.data);
+    }).catch((error) => {
+      if(error.response.code === 401){
+        navigate('/');
+      }
     })
 
     const api_calls = async() =>{

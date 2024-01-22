@@ -1,5 +1,6 @@
 import axios from 'axios';
-const URL = 'https://svm-dashboard.uw.r.appspot.com';
+// const URL = 'https://svm-dashboard.uw.r.appspot.com';
+const URL = "http://localhost:3200"
 
 
 export const signInUser = async(data) => {
@@ -58,12 +59,15 @@ export const getMapsInfo = async () => {
 
 export const getDBFirstRow = async() => {
     try {
+        console.log(JSON.parse(localStorage.getItem('token')));
         const config = {
             headers: {
-                Authorization : `Bearer ${JSON.parse(localStorage.getItem('token'))}`
+                Authorization : `Bearer ${localStorage.getItem('token')}`
             }
         }
-        const result = await axios.get(`${URL}/api/dashboard/totalitems`, config)
+        console.log(config);
+        const result = await axios.get(`${URL}/api/dashboard/totalitems`, config);
+        console.log(result);
         return result;
     } catch (error) {
         console.log(error);
