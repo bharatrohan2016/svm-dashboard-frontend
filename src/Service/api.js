@@ -62,7 +62,7 @@ export const getDBFirstRow = async() => {
         console.log(JSON.parse(localStorage.getItem('token')));
         const config = {
             headers: {
-                Authorization : `Bearer ${localStorage.getItem('token')}`
+                Authorization : `Bearer ${JSON.parse(localStorage.getItem('token'))}`
             }
         }
         console.log(config);
