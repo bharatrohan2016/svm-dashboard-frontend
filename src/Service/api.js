@@ -1,6 +1,6 @@
 import axios from 'axios';
-// const URL = 'https://svm-dashboard.uw.r.appspot.com';
-const URL = "http://localhost:3200"
+const URL = 'http://139.59.6.186';
+// const URL = "http://localhost:3200"
 
 
 export const signInUser = async(data) => {
