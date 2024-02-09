@@ -64,7 +64,7 @@ const MapComponent = () => {
                   <h6>Field Number: {item.feildNumber}</h6>
                   <h6>Farmer Name: <a href={`/profile/${item._id}`} target='_blank'>{item.name}</a> </h6>
                   <h6>Village Name: {item.village}</h6>
-                  <h6>Area: {item.area}</h6>
+                  <h6>Area: {parseFloat(item.area).toFixed(2)} Acres</h6>
                 </Popup>
               </Marker>
             ) : null // If either lat or long is null, don't render the Marker

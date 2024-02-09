@@ -4,7 +4,7 @@ import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { ToastContainer, toast } from 'react-toastify';
 import styled from '@emotion/styled';
-import { getDBFirstRow, getFarmers } from '../../Service/api';
+import { getDashboardInfo, getFarmers } from '../../Service/api';
 import styles from './Dashboard.module.css'
 import { useTheme } from '@emotion/react';
 import MapComponent from './MapComponent';
@@ -120,11 +120,11 @@ const MapBox = styled(Box)({
 
 const DashBoard = () => {
   const navigate = useNavigate();
-  const [data, setData] = useState();
+  const [data, setData] = useState(undefined);
   const [object, setObject] = useState();
   const theme = useTheme();
   useEffect(() => {
-    const random = () => getDBFirstRow().then((response) => {
+    const random = () => getDashboardInfo().then((response) => {
       setData(response?.data);
     }).catch((error) => {
       if(error.response.code === 401){
@@ -134,13 +134,14 @@ const DashBoard = () => {
 
     const api_calls = async() =>{
       const response = await getFarmers();
-      console.log(response);
       if(response?.data){
         let obj = {};
         for(let item of response?.data){
           obj[item.village] = obj[item.village] === undefined ? 1 : obj[item.village] + 1;
         }
         setObject(obj);
+      }else{
+        navigate('/');
       }
      }
 
@@ -150,7 +151,7 @@ const DashBoard = () => {
 
 
   const date = new Date(data?.dateSurvey);
-  if(typeof object === 'undefined'){
+  if(typeof object === 'undefined' || data === undefined){
     return (
       <LinearProgress color="primary" />
     )
@@ -190,7 +191,7 @@ const DashBoard = () => {
         <RectangleBox className={styles.dashboard3}>
         <div className='col-md-9'>
           <span>Total Area Surveyed</span> <br/><br/>
-          <span >62 Acres</span>
+          <span >{data?.totalArea.toFixed(1)} Acres</span>
           </div>
           <div className='col-md-3'>
              <img src='https://cdn-icons-png.flaticon.com/512/187/187039.png' height={80} width={80} className='dashboard-img'/>

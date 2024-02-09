@@ -43,7 +43,11 @@ const Farmer = () => {
       },
       {
         accessorKey: 'totalAreaUnderCultivation',
-        header: 'Area'
+        header: 'Area',
+        accessorFn: (data) => {
+          const {totalAreaUnderCultivation} = data;
+            return totalAreaUnderCultivation!="-" ? `${data?.totalAreaUnderCultivation} Acres` : totalAreaUnderCultivation;
+        },
       },
       {
         accessorKey: 'cropsGrown',

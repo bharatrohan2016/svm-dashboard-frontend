@@ -128,6 +128,7 @@ export default function Sidebar() {
 
 
   React.useEffect(() => {
+    console.log("hit-sidebar");
     const handleResize = () => {
       // Check the window width to determine if it's a mobile device
       setIsMobile(window.innerWidth <= 768); // You can adjust the threshold as needed

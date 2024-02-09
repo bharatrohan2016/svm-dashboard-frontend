@@ -57,7 +57,7 @@ export const getMapsInfo = async () => {
 }
 
 
-export const getDBFirstRow = async() => {
+export const getDashboardInfo = async() => {
     try {
         console.log(JSON.parse(localStorage.getItem('token')));
         const config = {
@@ -70,6 +70,7 @@ export const getDBFirstRow = async() => {
         console.log(result);
         return result;
     } catch (error) {
+        console.log("hit");
         console.log(error);
     }
 }

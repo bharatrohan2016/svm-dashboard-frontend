@@ -22,21 +22,20 @@ function App() {
     <div className="App">
       <Router>
           <Routes>
-            <Route path='/' element={ <NavigateDashboard> <SignIn/></NavigateDashboard>} />
-            <Route element={<Sidebar /> }>
-              <Route path='/dashboard' 
-              element={ <ProtectedRoute> <DashBoard/></ProtectedRoute>} />
-              <Route path='/farmers' element={<ProtectedRoute> <Farmer/> </ProtectedRoute>} />
-              <Route path='/profile/:id' element={<ProtectedRoute> <FarmerProfile/> </ProtectedRoute>} />
-              <Route path='/test-url' element={<ProtectedRoute> <TestFile/> </ProtectedRoute>} />
-              <Route path='/about' element={<ProtectedRoute> <About/> </ProtectedRoute>} />
-              
-              <Route element={<Box style={{'color': 'lightgrey', borderTop: '1px solid lightgrey'}}>
-                Copyright © 2023 BharatRohan® - Revitalizing agriculture
-              </Box>}/>
-            </Route>
-            <Route path='/map' element={<ProtectedRoute> <Map/> </ProtectedRoute>} />
-            <Route path='*' element={<ErrorPage />} />
+              <Route path='/' element={ <NavigateDashboard> <SignIn/></NavigateDashboard>} />
+              <Route element={<Sidebar /> }>
+                <Route path='/dashboard' element={ <ProtectedRoute> <DashBoard/></ProtectedRoute>}  />
+                <Route path='/farmers' element={<ProtectedRoute> <Farmer/> </ProtectedRoute>} />
+                <Route path='/profile/:id' element={<ProtectedRoute> <FarmerProfile/> </ProtectedRoute>} />
+                <Route path='/test-url' element={<ProtectedRoute> <TestFile/> </ProtectedRoute>} />
+                <Route path='/about' element={<ProtectedRoute> <About/> </ProtectedRoute>} />
+                
+                <Route element={<Box style={{'color': 'lightgrey', borderTop: '1px solid lightgrey'}}>
+                  Copyright © 2023 BharatRohan® - Revitalizing agriculture
+                </Box>}/>
+              </Route>
+              <Route path='/map' element={<ProtectedRoute> <Map/> </ProtectedRoute>} />
+              <Route path='*' element={<ErrorPage />} />
           </Routes>
         </Router>
         <ToastContainer />
