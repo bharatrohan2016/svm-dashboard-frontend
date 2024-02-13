@@ -1,5 +1,5 @@
 import axios from 'axios';
-const URL = 'http://139.59.6.186';
+const URL = 'https://svmbackend.bharatrohan.in';
 // const URL = "http://localhost:3200"
 
 
