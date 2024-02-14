@@ -213,19 +213,21 @@ const DashBoard = () => {
           series={[
             {
               data: [
-                { id: 0, value: 38, label: 'Whatsapp'},
-                { id: 1, value: 17, label: 'Mobiles' },
-                { id: 2, value: 56, label: 'No\nWhatsapp' },
+                { id: 0, value: 38, label: 'Smart Phone'},
+                { id: 1, value: 84, label: 'Analog Phone' },
+                { id: 2, value: 20, label: 'No Phone', labelPosition: 95 },
               ],
               arcLabel: (item) => `${item.label} (${item.value})`,
-              cx: 70
+              cx: 70,
+              arcLabelMinAngle: 45,
             },
           ]}
           sx={{
             [`& .${pieArcLabelClasses.root}`]: {
               fill: 'white',
               fontWeight: 'bold',
-              fontSize: '10px'
+              fontSize: '6px',
+              textAnchor: 'center'
             },
           }}
           width={300}
