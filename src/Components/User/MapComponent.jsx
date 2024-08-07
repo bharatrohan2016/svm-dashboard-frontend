@@ -62,7 +62,7 @@ const MapComponent = () => {
               <Marker key={item.id} position={[item.lat, item.long]} icon={markerIcon}>
                 <Popup>
                   <h6>Field Number: {item.feildNumber}</h6>
-                  <h6>Farmer Name: <a href={`/profile/${item._id}`} target='_blank'>{item.name}</a> </h6>
+                  <h6>Farmer Name: <a href={`/#/profile/${item._id}`} target='_blank'>{item.name}</a> </h6>
                   <h6>Village Name: {item.village}</h6>
                   <h6>Area: {parseFloat(item.area).toFixed(2)} Acres</h6>
                 </Popup>
