@@ -23,9 +23,8 @@ const Farmer = () => {
             return data?.name;
         },
         Cell: ({ cell }) => {
-          console.log(cell);
             return (<div>
-              <a href={`/profile/${cell.row.original?._id}`} target='_blank'>{cell.row.original?.name}</a>
+              <a href={`/#/profile/${cell.row.original?._id}`}>{cell.row.original?.name}</a>
             </div>);
         }
       },

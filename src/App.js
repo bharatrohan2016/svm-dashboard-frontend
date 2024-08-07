@@ -26,7 +26,7 @@ function App() {
               <Route element={<Sidebar /> }>
                 <Route path='/dashboard' element={ <ProtectedRoute> <DashBoard/></ProtectedRoute>}  />
                 <Route path='/farmers' element={<ProtectedRoute> <Farmer/> </ProtectedRoute>} />
-                <Route path='/profile/:id' element={<ProtectedRoute> <FarmerProfile/> </ProtectedRoute>} />
+                <Route path='/profile/:id' element={<FarmerProfile/>} />
                 <Route path='/test-url' element={<ProtectedRoute> <TestFile/> </ProtectedRoute>} />
                 <Route path='/about' element={<ProtectedRoute> <About/> </ProtectedRoute>} />
                 
