@@ -193,6 +193,9 @@ export default function Sidebar() {
             sx: {
               backgroundColor: "#193C34",
               color: "white",
+              '& svg': {
+                color: 'white'
+              }
             }
           }} 
           variant="permanent" open={open}
