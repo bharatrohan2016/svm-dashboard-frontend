@@ -72,7 +72,7 @@ const FarmerFilters = (props) => {
                     </select>
                 </div>
                 <div className='col-md-3 mt-3'>
-                    <button className='btn btn-primary w-100' type='button' style={{backgroundColor : '#242b4d', border : 'none'}} onClick={handleClick}>Apply</button>
+                    <button className='btn btn-primary w-100' type='button' style={{backgroundColor : '#193C34', border : 'none'}} onClick={handleClick}>Apply</button>
                 </div>
             </div>
         </form>

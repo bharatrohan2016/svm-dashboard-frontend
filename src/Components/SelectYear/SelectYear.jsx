@@ -1,11 +1,12 @@
 import { Box, styled } from '@mui/material'
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const SelectYear = () => {
     const MainBox = styled(Box)`
         display: flex;
-        height: 100vh;
+        height: 80vh;
         width: 100vw;
         justify-content: space-evenly;
         align-items: center;
@@ -24,7 +25,7 @@ const SelectYear = () => {
         border: 1px solid black;
         border-radius: 20px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        background-color: #242B4D;
+        background-color: #193C34;
         color: #fff;
         @media (max-width: 480px) {
             height: 150px;
@@ -34,14 +35,17 @@ const SelectYear = () => {
 
     const navigate = useNavigate()
   return (
-    <MainBox>
-        <OptionBox onClick={() => {navigate('/dashboard')}}>
-            <h1>2023</h1>
-        </OptionBox>
-        <OptionBox onClick={() => {navigate('/other-dashboard')}}>
-            <h1>Others</h1>
-        </OptionBox>
-    </MainBox>
+    <>
+        <Navbar />
+        <MainBox>
+            <OptionBox onClick={() => {navigate('/dashboard')}}>
+                <h1>2023</h1>
+            </OptionBox>
+            <OptionBox onClick={() => {navigate('/other-dashboard')}}>
+                <h1>2024</h1>
+            </OptionBox>
+        </MainBox>
+    </>
   )
 }
 

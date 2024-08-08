@@ -111,7 +111,7 @@ const Footer = styled('div')({
 });
 
 
-export default function Sidebar() {
+export default function OtherSidebar() {
   const [open, setOpen] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
   const theme = useTheme();
@@ -128,7 +128,7 @@ export default function Sidebar() {
 
 
   React.useEffect(() => {
-    console.log("hit-sidebar");
+    console.log("hit-Other");
     const handleResize = () => {
       // Check the window width to determine if it's a mobile device
       setIsMobile(window.innerWidth <= 768); // You can adjust the threshold as needed
