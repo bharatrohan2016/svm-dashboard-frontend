@@ -52,16 +52,16 @@ header{
   color: black;
 }
 
-.css-2dum1v-MuiDrawer-docked .MuiDrawer-paper{
+/* .css-2dum1v-MuiDrawer-docked .MuiDrawer-paper{
   background-color: #193C34  !important;
-}
-
-.css-2dum1v-MuiDrawer-docked .MuiDrawer-paper svg{
-  color: white;
 }
 
 .css-1hsz34s-MuiDrawer-docked .MuiDrawer-paper {
   background-color: #193C34  !important;
+  color: white;
+} */
+
+.css-2dum1v-MuiDrawer-docked .MuiDrawer-paper svg{
   color: white;
 }
 

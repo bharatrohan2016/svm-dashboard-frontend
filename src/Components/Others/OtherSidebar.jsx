@@ -189,7 +189,14 @@ export default function OtherSidebar() {
             </Box>  
           </Tool>
         </AppBar>
-        <Drawer variant="permanent" open={open}>
+        <Drawer 
+         PaperProps={{
+            sx: {
+              backgroundColor: "#193C34",
+              color: "white",
+            }
+          }} 
+         variant="permanent" open={open}>
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
