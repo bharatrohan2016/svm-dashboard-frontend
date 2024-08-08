@@ -146,7 +146,7 @@ export default function OtherSidebar() {
       <Box sx={{ display: 'flex' }} style={{'overflow-x': 'hidden'}}>
         <CssBaseline />
         <AppBar position="fixed" open={open}>
-          <Tool>
+          <Tool sx={{color: 'black'}}>
             <IconButton
               color="inherit"
               aria-label="open drawer"

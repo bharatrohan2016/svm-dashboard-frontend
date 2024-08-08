@@ -48,11 +48,12 @@ body {
 }
 
 header{
-  background-color: #193C34 !important;
+  background-color: #EBEDE1 !important;
+  color: black;
 }
 
 .css-2dum1v-MuiDrawer-docked .MuiDrawer-paper{
-  background-color: #193C34 !important;
+  background-color: #193C34  !important;
 }
 
 .css-2dum1v-MuiDrawer-docked .MuiDrawer-paper svg{
@@ -60,7 +61,7 @@ header{
 }
 
 .css-1hsz34s-MuiDrawer-docked .MuiDrawer-paper {
-  background-color: #193C34 !important;
+  background-color: #193C34  !important;
   color: white;
 }
 
@@ -72,7 +73,7 @@ header{
   padding: 5px;
 }
 .css-1m5i5w0-MuiButtonBase-root-MuiListItemButton-root:hover{
-background-color: #76A238 !important;
+background-color: #76A238  !important;
 }
 
 

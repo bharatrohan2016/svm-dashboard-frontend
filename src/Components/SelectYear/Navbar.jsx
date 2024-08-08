@@ -29,7 +29,7 @@ export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar sx={{color: 'black'}}>
         <Box sx={{width: '100%', display: 'flex', justifyContent: 'space-between'}}> 
               {
                 !isMobile && <Box component='img' sx={{

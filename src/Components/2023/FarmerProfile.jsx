@@ -40,13 +40,13 @@ const FarmerProfile = () => {
     },[])
      return (
        <>
-       <h3 style={{textAlign : 'left', color : '#193C34'}}>Farmers Profile</h3>
+       <h3 style={{textAlign : 'left', color : '#193C34 '}}>Farmers Profile</h3>
         {
             data!=undefined ? 
             <div style={{textAlign : 'left'}}>
             <hr/>
             <div className="card mt-4">
-                <p style={{fontSize : '28px', padding : 0, margin: 0, color : "#193C34"}}><b>{data.name}</b></p>
+                <p style={{fontSize : '28px', padding : 0, margin: 0, color : "#193C34 "}}><b>{data.name}</b></p>
             </div>
             
             <div className="card mt-3">

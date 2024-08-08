@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import styles from './SignIn.module.css';
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="#193C34" align="center" {...props}>
+    <Typography variant="body2" color="#193C34 " align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://bharatrohan.in/">
         BharatRohan
@@ -87,13 +87,13 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: '#193C34' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#193C34 ' }}>
             <LockIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             User's Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, color : '#193C34' }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, color : '#193C34 ' }}>
             <TextField
               margin="normal"
               color="primary"
@@ -122,7 +122,7 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              style={{ backgroundColor: "#193C34", height : '50px', borderRadius : '20px' }}
+              style={{ backgroundColor: "#193C34 ", height : '50px', borderRadius : '20px' }}
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In
