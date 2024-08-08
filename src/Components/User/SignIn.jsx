@@ -62,7 +62,7 @@ export default function SignIn() {
 
       if (response) {
         localStorage.setItem('token', JSON.stringify(response.token));
-        navigate(`/dashboard`);
+        navigate(`/select-year`);
         toast.success('Login Successful');
       } else {
         toast.error('Incorrect username or password', {
