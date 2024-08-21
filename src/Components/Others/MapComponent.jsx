@@ -9,7 +9,7 @@ import {
   Popup
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { getFarmers, getMapsInfo } from '../../Service/api';
+import { getOtherFarmers } from '../../Service/api';
 import { CircularProgress } from '@mui/material';
 
 const MapComponent = () => {
@@ -22,7 +22,7 @@ const MapComponent = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getFarmers();
+      const result = await getOtherFarmers();
       console.log(result);
       setRes(result?.data);
     };
@@ -39,7 +39,7 @@ const MapComponent = () => {
   return (
     <>
       {res != undefined && res.length !== 0 ? (
-        <MapContainer center={[res[0].lat, res[0].long]} zoom={10} style={{ height: '100%', width: '100%' }}>
+        <MapContainer center={[res[0].lat, res[0].long]} zoom={7} style={{ height: '100%', width: '100%' }}>
           <LayersControl position="topright">
             <LayersControl.BaseLayer name="Street Map" >
               <TileLayer
@@ -61,8 +61,8 @@ const MapComponent = () => {
             item.lat !== null && item.long !== null ? (
               <Marker key={item.id} position={[item.lat, item.long]} icon={markerIcon}>
                 <Popup>
-                  <h6>Field Number: {item.feildNumber}</h6>
-                  <h6>Farmer Name: <a href={`/#/profile/${item._id}`} target='_blank'>{item.name}</a> </h6>
+                  <h6>Field Number: {item.feild_number}</h6>
+                  <h6>Farmer Name: <a href={`/#/profile/${item._id}`} target='_blank'>{item.farmerName}</a> </h6>
                   <h6>Village Name: {item.village}</h6>
                   <h6>Area: {parseFloat(item.area).toFixed(2)} Acres</h6>
                 </Popup>

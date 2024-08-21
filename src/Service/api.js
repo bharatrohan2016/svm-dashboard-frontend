@@ -1,6 +1,6 @@
 import axios from 'axios';
-const URL = 'https://svmbackend.bharatrohan.in';
-// const URL = "http://localhost:3200"
+// const URL = 'https://svmbackend.bharatrohan.in';
+const URL = "http://localhost:3200"
 
 
 export const signInUser = async(data) => {
@@ -89,3 +89,38 @@ export const getFileIdFromDriveLink = (link) => {
     }
   }
 
+export const getOtherFarmers = async () => {
+    try{
+        const result = await axios.get(`${URL}/api/farmer-2024`);
+        return result.data;
+    }catch(e){
+        console.log(e)
+    }
+}
+
+export const getOtherFarmersByQuery  = async (query) => {
+    try{
+        console.log(query)
+        const result = await axios.post(`${URL}/api/filter-farmer-2024`, query);
+        return result.data;
+    }catch(e){
+        console.log(e);
+    }
+}
+
+export const getOtherFarmersById  = async () => {
+    try{
+        const result = await axios.get(`${URL}/api/get-single-farmer-2024`);
+        return result.data;
+    }catch(e){
+        console.log(e);
+    }
+}
+export const getOtherTotalFarmers  = async () => {
+    try{
+        const result = await axios.get(`${URL}/api/totalitems-2024`);
+        return result.data;
+    }catch(e){
+        console.log(e);
+    }
+}

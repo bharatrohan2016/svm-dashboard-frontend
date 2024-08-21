@@ -3,7 +3,7 @@ import { MaterialReactTable } from 'material-react-table';
 import { Button, LinearProgress } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { exportCSV, getFarmers, getFarmersByQuery } from '../../Service/api';
+import { exportCSV, getFarmers, getFarmersByQuery, getOtherFarmers } from '../../Service/api';
 import FarmerFilters from './FarmerFilters';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -17,23 +17,23 @@ const Farmer = () => {
   const columns = useMemo(
     () => [
       {
-        id : 'name',
-        header: 'Name',
+        id : 'farmerName',
+        header: 'Farmer Name',
         accessorFn: (data) => {
-            return data?.name;
+            return data?.farmerName;
         },
         Cell: ({ cell }) => {
             return (<div>
-              <a href={`/#/profile/${cell.row.original?._id}`}>{cell.row.original?.name}</a>
+              <a href={`/#/profile/${cell.row.original?._id}`}>{cell.row.original?.farmerName}</a>
             </div>);
         }
       },
       {
-        accessorKey: 'fathersName',
+        accessorKey: 'fatherName',
         header: 'Fathers Name'
       },
       {
-        accessorKey: 'phone',
+        accessorKey: 'phoneNumber',
         header: 'Phone'
       },
       {
@@ -41,16 +41,23 @@ const Farmer = () => {
         header: 'Village'
       },
       {
-        accessorKey: 'totalAreaUnderCultivation',
+        accessorKey: 'area',
         header: 'Area',
         accessorFn: (data) => {
-          const {totalAreaUnderCultivation} = data;
-            return totalAreaUnderCultivation!="-" ? `${data?.totalAreaUnderCultivation} Acres` : totalAreaUnderCultivation;
+            return `${data?.area} Acres`;
         },
       },
       {
-        accessorKey: 'cropsGrown',
-        header: 'Crops Grown'
+        accessorKey: 'crops',
+        header: 'Crops Grown',
+        Cell: ({ cell }) => {
+          const data = cell.row.original;
+          return <div>
+          {
+            data?.crops.map((crop) => <span>{crop.cropName}</span>)
+          }
+        </div>
+      },
       }
     ],
     [],
@@ -94,7 +101,10 @@ const Farmer = () => {
   //   width: 1,
   // });
   useEffect(() => {
-    getFarmers().then((response) =>{ setData(response.data); });
+    getOtherFarmers().then((response) =>{
+      console.log(response.data);
+      setData(response.data); 
+    });
   }, [])
   return (
     <>
