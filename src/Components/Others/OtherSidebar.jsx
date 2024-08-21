@@ -208,7 +208,7 @@ export default function OtherSidebar() {
           <Divider />
           <List>
             <ListItem key="Dashboard" className={location.pathname==='/dashboard' ? styles.listColor : ''} disablePadding sx={{ display: 'block' }}>
-                <Link to="/dashboard"  style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Link to="/other-dashboard"  style={{ textDecoration: 'none', color: 'inherit' }}>
                 <ListItemButton
                     sx={{
                     minHeight: 48,
@@ -230,7 +230,7 @@ export default function OtherSidebar() {
                 </Link>
             </ListItem>
             <ListItem key="Farmers" className={location.pathname==='/farmers' || location.pathname.includes('profile') ? styles.listColor : ''} disablePadding sx={{ display: 'block' }}>
-                <Link to="/farmers" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Link to="/other-farmer" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <ListItemButton
                     sx={{
                     minHeight: 48,
@@ -296,7 +296,7 @@ export default function OtherSidebar() {
                     </Link>
             </ListItem> */}
             <ListItem key="About" className={location.pathname==='/about' ? styles.listColor : ''} disablePadding sx={{ display: 'block' }}>
-                    <Link to="/about" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Link to="/other-about" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <ListItemButton
                         sx={{
                         minHeight: 48,

@@ -17,8 +17,10 @@ import { Box } from '@mui/material';
 import TestFile from './Components/User/TestFile';
 import Map from './Components/2023/Map';
 import SelectYear from './Components/SelectYear/SelectYear';
-import OthersDasboard from './Components/Others/OthersDasboard';
+import OthersDasboard from './Components/Others/OthersDashboard';
 import OtherSidebar from './Components/Others/OtherSidebar';
+import OthersFarmer from './Components/Others/Farmer';
+import OtherAbout from './Components/Others/About';
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
               <Route path='/map' element={<ProtectedRoute> <Map/> </ProtectedRoute>} />
               <Route element={<OtherSidebar />}>
                 <Route path='/other-dashboard' element={<ProtectedRoute><OthersDasboard /></ProtectedRoute>} />
+                <Route path='/other-farmer' element={<ProtectedRoute><OthersFarmer /></ProtectedRoute>} />
+                <Route path='/other-about' element={<ProtectedRoute><OtherAbout /></ProtectedRoute>} />
               </Route>
               <Route path='/select-year' element={<ProtectedRoute><SelectYear /></ProtectedRoute>} />
               <Route path='*' element={<ErrorPage />} />
