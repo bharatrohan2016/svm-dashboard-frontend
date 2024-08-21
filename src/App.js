@@ -21,6 +21,7 @@ import OthersDasboard from './Components/Others/OthersDashboard';
 import OtherSidebar from './Components/Others/OtherSidebar';
 import OthersFarmer from './Components/Others/Farmer';
 import OtherAbout from './Components/Others/About';
+import OtherFarmerProfile from './Components/Others/FarmerProfile';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
               <Route element={<OtherSidebar />}>
                 <Route path='/other-dashboard' element={<ProtectedRoute><OthersDasboard /></ProtectedRoute>} />
                 <Route path='/other-farmer' element={<ProtectedRoute><OthersFarmer /></ProtectedRoute>} />
+                <Route path='/farmer-profile/:id' element={<ProtectedRoute><OtherFarmerProfile /></ProtectedRoute>} />
                 <Route path='/other-about' element={<ProtectedRoute><OtherAbout /></ProtectedRoute>} />
               </Route>
               <Route path='/select-year' element={<ProtectedRoute><SelectYear /></ProtectedRoute>} />

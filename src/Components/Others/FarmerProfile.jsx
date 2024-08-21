@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Filter from "./Filter";
-import { getFarmerById, getFileIdFromDriveLink } from "../../Service/api";
+import { getFarmerById, getFileIdFromDriveLink, getOtherFarmersById } from "../../Service/api";
 import { useParams } from "react-router-dom";
 
-const FarmerProfile = () => {
+const OtherFarmerProfile = () => {
     const {id} = useParams();
     const [data, setData] = useState(undefined);
     const [surveys, setSurveys] = useState([]);
@@ -28,13 +28,10 @@ const FarmerProfile = () => {
             setMessage("");
             setSurveys(surveys_);
         }
-
-        
-
     }
     useEffect(()=>{
-        getFarmerById(id).then((response) => {
-            console.log(response);
+        getOtherFarmersById(id).then((response) => {
+            console.log(response)
             setData(response.data);
         })
     },[])
@@ -46,47 +43,50 @@ const FarmerProfile = () => {
             <div style={{textAlign : 'left'}}>
             <hr/>
             <div className="card mt-4">
-                <p style={{fontSize : '28px', padding : 0, margin: 0, color : "#193C34 "}}><b>{data.name}</b></p>
+                <p style={{fontSize : '28px', padding : 0, margin: 0, color : "#193C34 "}}><b>{data.farmerName}</b></p>
             </div>
             
             <div className="card mt-3">
                 <h5 className="text-primary">Personal Details  </h5>
-                <p>Father's name : {data.fathersName && data.fathersName!="-" ? <span>{data.fathersName}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-                <p>Family Members : {data.familyMembers!="-" ? <span>{data.familyMembers}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-                <p>Children : {data.children!="-" ? <span>{data.children}</span> : <span className="badge bg-danger">Not Entered</span>} </p>
-                <p>Mobile : {data.phone!="-" ? <span>{data.phone}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-                <p>Tehsil :  {data.tehsil!="-" ? <span>{data.tehsil}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-                <p>Major Buyer :  {data.majorBuyer!="-" ? <span>{data.majorBuyer}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-                <p>Village : {data.village!="" ?  <span>{data.village}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-                <p>Block :  {data.block!="-" ? <span>{data.block}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-                <p>Aadhaar Number :  {data.aadhaarNumber && data.aadhaarNumber!="-" ? <span>{data.aadhaarNumber}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                
+                <p>Father's name : {data.fatherName && data.fatherName!="-" ? <span>{data.fatherName}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                <p>Mobile : {data.phoneNumber!="-" ? <span>{data.phoneNumber}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                <p>Gender :  {data.gender!="-" ? <span>{data.gender}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                <p>Date Of Birth :  {data.dateOfBirth!="-" ? <span>{data.dateOfBirth.split('T')[0]}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                <p>Aadhaar/PAN/ID :  {data.aadhaarNumber ? <span>{data.aadhaarNumber}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+            </div>
+            
+            <div className="card mt-3">
+               <h5 className="text-primary">Location Details </h5>
+               <p>Village  : {data.village && data.village!="-" ? <span>{data.village}</span> : <span className="badge bg-danger">Not Entered</span>} </p>
+               <p>Block : {data.block && data.block!="-" ? <span>{data.block}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+               <p>District :  {data.district && data.district!="-" ? <span>{data.district}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+               <p>State : {data.state && data.state!="-" ? <span>{data.state}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+            </div>
 
-            </div>
             <div className="card mt-3">
-                    <h5 className="text-primary">Account Information  </h5>
-                    <p>Bank Name : {data.bankName!="-" ? <span>{data.bankName}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-                    <p>Account Number : {data.accountNumber!="-" ? <span>{data.accountNumber}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-                    <p>IFSC : {data.ifsc!="-" ? <span>{data.ifsc}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+               <h5 className="text-primary">Crop Details </h5>
+               {
+                data.crops.map((crop) => <div>
+                    <p>Crop  : {crop.cropName ? <span>{crop.cropName}</span> : <span className="badge bg-danger">Not Entered</span>} </p>
+                    <p>Acreage : {data.area  ? <span>{data.area} Acres</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                    <p>Variety :  {crop.variety ? <span>{crop.variety}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                    <p>Season : {crop.season ? <span>{crop.season}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                    <p>Year : {crop.year ? <span>{crop.year}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                    <p>Yeild Per Acre : {crop.yieldPerAcre ? <span>{crop.yieldPerAcre}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                </div>
+                )
+               }
             </div>
-            <div className="card mt-3">
-               <h5 className="text-primary">Shipping Address </h5>
-               <p>Shipping Street : {data.shippingStreet && data.shippingStreet!="-" ? <span>{data.shippingStreet}</span> : <span className="badge bg-danger">Not Entered</span>} </p>
-               <p>Shipping Zip/Postal code : {data.shippingZipCode && data.shippingZipCode!="-" ? <span>{data.shippingZipCode}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-               <p>Shipping City :  {data.shippingCity && data.shippingCity!="-" ? <span>{data.shippingCity}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-               <p>Shipping State : {data.shippingState && data.shippingState!="-" ? <span>{data.shippingState}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-               <p>Shipping Country :  {data.shippingCountry && data.shippingCountry!="-" ? <span>{data.shippingCountry}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-            </div>
-            <div  className="card mt-3">
+            {/* <div  className="card mt-3">
                 <h5 className="text-primary">Billing Address </h5>
-
                 <p>Billing Street : {data.billingStreet && data.billingStreet!="" ?  <span>{data.billingStreet}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
                 <p>Billing Zip Code : {data.billingZipCode&& data.billingStreet!="-"  &&data.billingZipCode!="" ?  <span>{data.billingZipCode}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
                 <p>Billing City : {data.billingCity && data.billingCity!="-" ?  <span>{data.billingCity}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
                 <p>Billing State : {data.billingState && data.billingState!="-" ?  <span>{data.billingState}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
                 <p>Billing Country : {data.billingCountry &&data.billingCountry!="-" ?  <span>{data.billingCountry}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-                
-            </div>
-            <div  className="card mt-3">
+            </div> */}
+            {/* <div  className="card mt-3">
                 <h5 className="text-primary">Advisory Information </h5>
                 
                 <div className="row mt-3">
@@ -136,7 +136,7 @@ const FarmerProfile = () => {
 
 
                </div>
-            </div>
+            </div> */}
            
         </div> : 'Select a farmer name whose profile you want to view.'
         }
@@ -144,4 +144,4 @@ const FarmerProfile = () => {
     );
 }
 
-export default FarmerProfile;
+export default OtherFarmerProfile;

@@ -108,14 +108,16 @@ export const getOtherFarmersByQuery  = async (query) => {
     }
 }
 
-export const getOtherFarmersById  = async () => {
+export const getOtherFarmersById  = async (id) => {
+    console.log(id)
     try{
-        const result = await axios.get(`${URL}/api/get-single-farmer-2024`);
+        const result = await axios.get(`${URL}/api/get-single-farmer-2024/${id}`);
         return result.data;
     }catch(e){
         console.log(e);
     }
 }
+
 export const getOtherTotalFarmers  = async () => {
     try{
         const result = await axios.get(`${URL}/api/totalitems-2024`);

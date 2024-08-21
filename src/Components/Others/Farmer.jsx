@@ -24,7 +24,7 @@ const Farmer = () => {
         },
         Cell: ({ cell }) => {
             return (<div>
-              <a href={`/#/profile/${cell.row.original?._id}`}>{cell.row.original?.farmerName}</a>
+              <a href={`/#/farmer-profile/${cell.row.original?._id}`}>{cell.row.original?.farmerName}</a>
             </div>);
         }
       },
