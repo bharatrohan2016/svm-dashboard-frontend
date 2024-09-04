@@ -10,6 +10,7 @@ import styles from './Dashboard.module.css'
 import MapComponent from './MapComponent';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { getHeaders } from '../User/ProtectedRoute';
 const HeaderComponent = styled(Box)`
   display: flex;
   justify-content: space-around;
@@ -151,7 +152,8 @@ const OtherDashBoard = () => {
     //cropwise data for pie-chart
     const cropwiseFarmers = async () => {
       try{
-          const result = await axios.get(`${URL}/api/cropwise-farmers-number`);
+          const URL = 'https://svmbackend.bharatrohan.in';
+          const result = await axios.get(`${URL}/api/cropwise-farmers-number`, {headers : getHeaders()});
           const cropsData= result.data;
           console.log(cropsData);
           setCropWiseData(cropsData);

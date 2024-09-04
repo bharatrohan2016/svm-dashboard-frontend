@@ -4,7 +4,7 @@ const URL = 'https://svmbackend.bharatrohan.in';
 
 export function getHeaders(){
     const token = localStorage.getItem('token');
-    console.log(token)
+    // console.log(token)
     const headers = {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
