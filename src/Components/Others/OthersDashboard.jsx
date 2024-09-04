@@ -119,7 +119,7 @@ const MapBox = styled(Box)({
   },
 })
 
-const DashBoard = () => {
+const OtherDashBoard = () => {
   const navigate = useNavigate();
   const [area, setArea] = useState(0);
   const [size, setSize] = useState(0);
@@ -260,7 +260,7 @@ const DashBoard = () => {
   )
 }
 
-export default DashBoard
+export default OtherDashBoard;
 
 
 

@@ -2,6 +2,15 @@ import axios from 'axios';
 const URL = 'https://svmbackend.bharatrohan.in';
 // const URL = "http://localhost:3200"
 
+export function getHeaders(){
+    const token = localStorage.getItem('token');
+    console.log(token)
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+    };
+    return headers;
+}
 
 export const signInUser = async(data) => {
     try {
@@ -30,7 +39,7 @@ export const exportCSV = async (formData) =>{
 
 export const getFarmers = async () => {
     try{
-        const result = await axios.get(`${URL}/api/farmer`);
+        const result = await axios.get(`${URL}/api/farmer`, {headers : getHeaders()});
         return result.data;
     }catch(e){
         console.log(e)
@@ -79,19 +88,15 @@ export const getFarmerById = async(id) => {
     return result.data;
 }
 
-export const getFileIdFromDriveLink = (link) => {
-    const match = link.match(/\/file\/d\/([^/]+)/);
-  
-    if (match && match[1]) {
-      return match[1];
-    } else {
-      return null; // Link doesn't match the expected format
-    }
+export const getFileIdFromDriveLink = (driveLink) => {
+    const regex = /[-\w]{25,}/;
+    const match = driveLink.match(regex);
+    return match ? match[0] : null;
   }
 
 export const getOtherFarmers = async () => {
     try{
-        const result = await axios.get(`${URL}/api/farmer-2024`);
+        const result = await axios.get(`${URL}/api/farmer-2024`, {headers : getHeaders()});
         return result.data;
     }catch(e){
         console.log(e)
@@ -101,7 +106,7 @@ export const getOtherFarmers = async () => {
 export const getOtherFarmersByQuery  = async (query) => {
     try{
         console.log(query)
-        const result = await axios.post(`${URL}/api/filter-farmer-2024`, query);
+        const result = await axios.post(`${URL}/api/filter-farmer-2024`, query, {headers : getHeaders()});
         return result.data;
     }catch(e){
         console.log(e);
@@ -111,7 +116,7 @@ export const getOtherFarmersByQuery  = async (query) => {
 export const getOtherFarmersById  = async (id) => {
     console.log(id)
     try{
-        const result = await axios.get(`${URL}/api/get-single-farmer-2024/${id}`);
+        const result = await axios.get(`${URL}/api/get-single-farmer-2024/${id}`, {headers : getHeaders()});
         return result.data;
     }catch(e){
         console.log(e);
@@ -120,7 +125,17 @@ export const getOtherFarmersById  = async (id) => {
 
 export const getOtherTotalFarmers  = async () => {
     try{
-        const result = await axios.get(`${URL}/api/totalitems-2024`);
+        const result = await axios.get(`${URL}/api/totalitems-2024`, {headers : getHeaders()});
+        return result.data;
+    }catch(e){
+        console.log(e);
+    }
+}
+
+
+export const getPolygons = async () => {
+    try{
+        const result = await axios.get(`${URL}/api/polygons`, {headers : getHeaders()});
         return result.data;
     }catch(e){
         console.log(e);
