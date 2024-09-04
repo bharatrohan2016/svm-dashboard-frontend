@@ -1,6 +1,6 @@
 import axios from 'axios';
-// const URL = 'https://svmbackend.bharatrohan.in';
-const URL = "http://localhost:3200"
+const URL = 'https://svmbackend.bharatrohan.in';
+// const URL = "http://localhost:3200"
 
 export function getHeaders(){
     const token = localStorage.getItem('token');
