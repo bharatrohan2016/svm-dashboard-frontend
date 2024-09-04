@@ -20,7 +20,6 @@ const ProtectedRoute = ({children}) => {
     const navigate = useNavigate();
     useEffect(() => {
         if(localStorage.getItem('token')===undefined){
-            console.log("hit")
             navigate('/');
         }
     },[]);
