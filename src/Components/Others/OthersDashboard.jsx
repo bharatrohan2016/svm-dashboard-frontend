@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, CircularProgress, LinearProgress } from '@mui/material'
+import { Box, Button/*, CircularProgress, LinearProgress */} from '@mui/material'
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
-import { BarChart } from '@mui/x-charts/BarChart';
-import { ToastContainer, toast } from 'react-toastify';
+// import { BarChart } from '@mui/x-charts/BarChart';
+// import { ToastContainer, toast } from 'react-toastify';
 import styled from '@emotion/styled';
-import { getDashboardInfo, getFarmers, getOtherFarmers } from '../../Service/api';
+import { /*getDashboardInfo, getFarmers, */getOtherFarmers } from '../../Service/api';
 import styles from './Dashboard.module.css'
-import { useTheme } from '@emotion/react';
+// import { useTheme } from '@emotion/react';
 import MapComponent from './MapComponent';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 const HeaderComponent = styled(Box)`
   display: flex;
   justify-content: space-around;
@@ -47,17 +48,17 @@ const PieCharts = styled(Box)`
 
 
 
-const BarBox = styled(Box)`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 40vh;
-  @media (max-width: 400px) {
-    width: 70vw;
-    display: flex;
-    justify-content: start;
-  }
-`
+// const BarBox = styled(Box)`
+//   display: flex;
+//   justify-content: space-around;
+//   align-items: center;
+//   height: 40vh;
+//   @media (max-width: 400px) {
+//     width: 70vw;
+//     display: flex;
+//     justify-content: start;
+//   }
+// `
 
 const SectionThree = styled(Box)`
   display: flex;
@@ -97,17 +98,17 @@ const RectangleBox = styled(Box)`
   }
 `
 
-const BarBx = styled(Box)({
-  '@media(max-width: 400px)':{
-    overflowX: 'scroll',
-    paddingLeft : '5vw',
-    width: '80vw',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'start',
-    justifyContent: 'center',
-  }
-})
+// const BarBx = styled(Box)({
+//   '@media(max-width: 400px)':{
+//     overflowX: 'scroll',
+//     paddingLeft : '5vw',
+//     width: '80vw',
+//     display: 'flex',
+//     flexDirection: 'column',
+//     alignItems: 'start',
+//     justifyContent: 'center',
+//   }
+// })
 
 const MapBox = styled(Box)({
   height: '40vh',
@@ -122,8 +123,9 @@ const DashBoard = () => {
   const navigate = useNavigate();
   const [area, setArea] = useState(0);
   const [size, setSize] = useState(0);
-  const [object, setObject] = useState();
-  const theme = useTheme();
+  // const [object, setObject] = useState();
+  const [cropWiseData,setCropWiseData] = useState({});
+  // const theme = useTheme();
   useEffect(() => {
     const api_calls = async() =>{
       const response = await getOtherFarmers();
@@ -137,7 +139,7 @@ const DashBoard = () => {
         }
         setArea(area);
         setSize(response?.data.length)
-        setObject(obj);
+        // setObject(obj);
       }else{
         navigate('/');
       }
@@ -145,6 +147,20 @@ const DashBoard = () => {
 
     // random()
     api_calls();
+
+    //cropwise data for pie-chart
+    const cropwiseFarmers = async () => {
+      try{
+          const result = await axios.get(`${URL}/api/cropwise-farmers-number`);
+          const cropsData= result.data;
+          console.log(cropsData);
+          setCropWiseData(cropsData);
+      }catch(e){
+          console.log(e)
+      }
+    }
+    cropwiseFarmers();
+
   }, [])
 
 
@@ -168,7 +184,7 @@ const DashBoard = () => {
           <span >{size}</span>
           </div>
           <div className='col-md-3'>
-             <img src='https://cdn-icons-png.flaticon.com/512/187/187039.png' height={80} width={80} className='dashboard-img'/>
+             <img alt="" src='https://cdn-icons-png.flaticon.com/512/187/187039.png' height={80} width={80} className='dashboard-img'/>
           </div>
         </RectangleBox>
         <RectangleBox className={styles.dashboard2}>
@@ -184,7 +200,7 @@ const DashBoard = () => {
           </span>
           </div>
           <div className='col-md-3'>
-             <img src='https://cdn-icons-png.flaticon.com/512/187/187039.png' height={80} width={80} className='dashboard-img'/>
+             <img alt="" src='https://cdn-icons-png.flaticon.com/512/187/187039.png' height={80} width={80} className='dashboard-img'/>
           </div>
         </RectangleBox>
         <RectangleBox className={styles.dashboard3}>
@@ -193,7 +209,7 @@ const DashBoard = () => {
           <span >{area} Acres</span>
           </div>
           <div className='col-md-3'>
-             <img src='https://cdn-icons-png.flaticon.com/512/187/187039.png' height={80} width={80} className='dashboard-img'/>
+             <img alt="" src='https://cdn-icons-png.flaticon.com/512/187/187039.png' height={80} width={80} className='dashboard-img'/>
           </div>
         </RectangleBox>
       </HeaderComponent>
@@ -207,6 +223,39 @@ const DashBoard = () => {
         </MapBox>
         
       </SectionThree>
+      
+      <PieCharts>
+        <PieChart
+          series={[
+            {
+              data: [
+                { id: 0, value: cropWiseData.ginger, label: 'Ginger'},
+                { id: 1, value: cropWiseData.paddy, label: 'Paddy' },
+                // { id: 2, value: 20, label: 'No Phone', labelPosition: 95 },
+              ],
+              arcLabel: (item) => `${item.label} (${item.value})`,
+              cx: 70,
+              arcLabelMinAngle: 45,
+            },
+          ]}
+          sx={{
+            [`& .${pieArcLabelClasses.root}`]: {
+              fill: 'white',
+              fontWeight: 'bold',
+              fontSize: '6px',
+              textAnchor: 'center'
+            },
+          }}
+          width={300}
+          height={350}
+          slotProps={{
+            legend: {     
+              position: { vertical: 'middle', horizontal: 'right' },
+            }
+          }}
+        />
+      </PieCharts>
+
     </Box>
   )
 }
@@ -215,36 +264,36 @@ export default DashBoard
 
 
 
-// <PieCharts>
-//         <PieChart
-//           series={[
-//             {
-//               data: [
-//                 { id: 0, value: 38, label: 'Smart Phone'},
-//                 { id: 1, value: 84, label: 'Analog Phone' },
-//                 { id: 2, value: 20, label: 'No Phone', labelPosition: 95 },
-//               ],
-//               arcLabel: (item) => `${item.label} (${item.value})`,
-//               cx: 70,
-//               arcLabelMinAngle: 45,
-//             },
-//           ]}
-//           sx={{
-//             [`& .${pieArcLabelClasses.root}`]: {
-//               fill: 'white',
-//               fontWeight: 'bold',
-//               fontSize: '6px',
-//               textAnchor: 'center'
-//             },
-//           }}
-//           width={300}
-//           height={350}
-//           slotProps={{
-//             legend: {     
-//               position: { vertical: 'middle', horizontal: 'right' },
-//             }
-//           }}
-//         />
+/* <PieCharts>
+        <PieChart
+          series={[
+            {
+              data: [
+                { id: 0, value: 38, label: 'Smart Phone'},
+                { id: 1, value: 84, label: 'Analog Phone' },
+                { id: 2, value: 20, label: 'No Phone', labelPosition: 95 },
+              ],
+              arcLabel: (item) => `${item.label} (${item.value})`,
+              cx: 70,
+              arcLabelMinAngle: 45,
+            },
+          ]}
+          sx={{
+            [`& .${pieArcLabelClasses.root}`]: {
+              fill: 'white',
+              fontWeight: 'bold',
+              fontSize: '6px',
+              textAnchor: 'center'
+            },
+          }}
+          width={300}
+          height={350}
+          slotProps={{
+            legend: {     
+              position: { vertical: 'middle', horizontal: 'right' },
+            }
+          }}
+        /> */
     
 //           {/* <BarBox style={{padding: '0'}}> */}
 //             <BarChart
