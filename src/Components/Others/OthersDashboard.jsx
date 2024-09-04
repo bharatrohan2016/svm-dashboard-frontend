@@ -133,9 +133,11 @@ const OtherDashBoard = () => {
         let area = 0;
         for(let item of response?.data){
           obj[item.village] = obj[item.village] === undefined ? 1 : obj[item.village] + 1;
-          area += parseInt(item.area);
+          for(let map of item.maps){
+            area += parseInt(map.area);
+          }
         }
-        setArea(area);
+        setArea((area/4046.8564224).toFixed(2));
         setSize(response?.data.length)
         setObject(obj);
       }else{
@@ -175,7 +177,7 @@ const OtherDashBoard = () => {
         <div className='col-md-9'>
           <span>Last Date of Survey</span> <br/><br/>
           <span>
-            21/08/2024
+            17/07/2024
           {/* {date.toLocaleDateString('en-US', {
             year: 'numeric',
             month: '2-digit',
@@ -190,7 +192,7 @@ const OtherDashBoard = () => {
         <RectangleBox className={styles.dashboard3}>
         <div className='col-md-9'>
           <span>Total Area Surveyed</span> <br/><br/>
-          <span >{area} Acres</span>
+          <span>{area} Acres</span>
           </div>
           <div className='col-md-3'>
              <img src='https://cdn-icons-png.flaticon.com/512/187/187039.png' height={80} width={80} className='dashboard-img'/>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Filter from "./Filter";
 import { getFarmerById, getFileIdFromDriveLink, getOtherFarmersById } from "../../Service/api";
 import { useParams } from "react-router-dom";
+import moment from "moment/moment";
 
 const OtherFarmerProfile = () => {
     const {id} = useParams();
@@ -68,7 +69,7 @@ const OtherFarmerProfile = () => {
                     {
                         data.survey.map((item) => 
                         <div>
-                            <p><u>Survey Date</u> : 17-07-2024</p>
+                            <p><u>Survey Date</u> : {moment(item.survey_date).format("DD MMMM, YYYY")}</p>
                             <p><u>Crop</u> : {item.cropName}</p>
                             <p><u>Survey Photo</u> : </p>
                             <iframe style={{width : '100%'}} src={`https://drive.google.com/file/d/${getFileIdFromDriveLink(item.map_link)}/preview`} width="640" height="480" allow="autoplay"></iframe>
