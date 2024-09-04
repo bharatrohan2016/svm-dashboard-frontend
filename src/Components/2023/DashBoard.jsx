@@ -231,7 +231,7 @@ const DashBoard = () => {
             },
           }}
           width={300}
-          height={350}
+          height={450}
           slotProps={{
             legend: {     
               position: { vertical: 'middle', horizontal: 'right' },

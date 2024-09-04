@@ -9,7 +9,7 @@ import {
   Popup
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { getOtherFarmers } from '../../Service/api';
+import { getPolygons } from '../../Service/api';
 import { CircularProgress } from '@mui/material';
 
 const MapComponent = () => {
@@ -22,7 +22,7 @@ const MapComponent = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getOtherFarmers();
+      const result = await getPolygons();
       console.log(result);
       setRes(result?.data);
     };
@@ -39,7 +39,7 @@ const MapComponent = () => {
   return (
     <>
       {res != undefined && res.length !== 0 ? (
-        <MapContainer center={[res[0].lat, res[0].long]} zoom={7} style={{ height: '100%', width: '100%' }}>
+        <MapContainer center={[25.745497300972563, 92.07992434501648]} zoom={12} style={{ height: '100%', width: '100%' }}>
           <LayersControl position="topright">
             <LayersControl.BaseLayer name="Street Map" >
               <TileLayer
@@ -58,16 +58,19 @@ const MapComponent = () => {
 
           {res.map((item) => (
             // Check if both lat and long are not null before rendering the Marker
-            item.lat !== null && item.long !== null ? (
-              <Marker key={item.id} position={[item.lat, item.long]} icon={markerIcon}>
+            
+            item.maps.map((map, index) =>(
+              map.polygons[0] && map.polygons[0][0] && <Marker key={map._id} position={[map.polygons[0][0][0], map.polygons[0][0][1]]} icon={markerIcon}>
                 <Popup>
-                  <h6>Field Number: {item.feild_number}</h6>
-                  <h6>Farmer Name: <a href={`/#/profile/${item._id}`} target='_blank'>{item.farmerName}</a> </h6>
+                  <h6>Field Number: {index+1}</h6>
+                  <h6>Farmer Name: <a href={`/#/farmer-profile/${item._id}`} target='_blank'>{item.farmerName}</a> </h6>
+                  <h6>Crop Name: {map.crop_name}</h6>
                   <h6>Village Name: {item.village}</h6>
-                  <h6>Area: {parseFloat(item.area).toFixed(2)} Acres</h6>
+                  <h6>Area: {parseFloat(map.area).toFixed(2)} mt.sq</h6>
                 </Popup>
               </Marker>
-            ) : null // If either lat or long is null, don't render the Marker
+            ))
+             
           ))}
         </MapContainer>
        

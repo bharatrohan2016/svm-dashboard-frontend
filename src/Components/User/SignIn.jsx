@@ -61,7 +61,7 @@ export default function SignIn() {
       const response = await signInUser(login);
 
       if (response) {
-        localStorage.setItem('token', JSON.stringify(response.token));
+        localStorage.setItem('token', response.token);
         navigate(`/select-year`);
         toast.success('Login Successful');
       } else {

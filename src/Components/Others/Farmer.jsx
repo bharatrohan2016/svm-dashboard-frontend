@@ -3,7 +3,7 @@ import { MaterialReactTable } from 'material-react-table';
 import { Button, LinearProgress } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { exportCSV, getFarmers, getFarmersByQuery, getOtherFarmers } from '../../Service/api';
+import { exportCSV, getFarmers, getFarmersByQuery, getOtherFarmers, getOtherFarmersByQuery } from '../../Service/api';
 import FarmerFilters from './FarmerFilters';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -17,6 +17,10 @@ const Farmer = () => {
   const columns = useMemo(
     () => [
       {
+        accessorKey: 'excel_id',
+        header: 'Farmer ID'
+      },
+      {
         id : 'farmerName',
         header: 'Farmer Name',
         accessorFn: (data) => {
@@ -28,23 +32,47 @@ const Farmer = () => {
             </div>);
         }
       },
-      {
-        accessorKey: 'fatherName',
-        header: 'Fathers Name'
-      },
+      // {
+      //   accessorKey: 'fatherName',
+      //   header: 'Fathers Name'
+      // },
       {
         accessorKey: 'phoneNumber',
-        header: 'Phone'
+        header: 'Phone',
+        Cell: ({cell}) => {
+          const data = cell.row.original;
+          return (<div>
+            { data.phoneNumber === '' ? '-' : data.phoneNumber }
+          </div>);
+        }
+      },
+      {
+        accessorKey: 'state',
+        header: 'State'
+      },
+      {
+        accessorKey: 'district',
+        header: 'District'
+      },
+      {
+        accessorKey: 'block',
+        header: 'Block'
       },
       {
         accessorKey: 'village',
         header: 'Village'
       },
       {
-        accessorKey: 'area',
         header: 'Area',
         accessorFn: (data) => {
-            return `${data?.area} Acres`;
+          
+          
+          let area = 0;
+          const {maps} = data;
+          for(let map of maps){
+            area += map.area;
+          }
+          return `${(area/4046.8564224).toFixed(2)} Acres`;
         },
       },
       {
@@ -54,8 +82,14 @@ const Farmer = () => {
           const data = cell.row.original;
           return <div>
           {
-            data?.crops.map((crop) => <span>{crop.cropName}</span>)
+            data.crops.length === 0 ? <span>No crops to display</span> : 
+            <>
+              {
+                data?.crops.map((crop) => <span>{crop.cropName}</span>)
+              }
+            </>
           }
+          
         </div>
       },
       }
@@ -65,7 +99,7 @@ const Farmer = () => {
   
   const handleFilters = (query) => {
     
-    getFarmersByQuery(query).then((response) => {
+    getOtherFarmersByQuery(query).then((response) => {
       console.log(response);
       console.log(response)
       setData(response.data);
