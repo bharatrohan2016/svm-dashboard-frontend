@@ -7,7 +7,14 @@ import moment from "moment/moment";
 const OtherFarmerProfile = () => {
     const {id} = useParams();
     const [data, setData] = useState(undefined);
-    const [surveys, setSurveys] = useState([]);
+    const calculateAcerage = (cropName) => {
+        let totalArea = 0;
+        for(let map of data.maps){
+            if(map.crop_name === cropName)
+                totalArea += map.area;
+        }
+        return (totalArea/4046.8564224).toFixed(2);
+    }
    
     useEffect(()=>{
         getOtherFarmersById(id).then((response) => {
@@ -30,9 +37,9 @@ const OtherFarmerProfile = () => {
                 <h5 className="text-primary">Personal & Location Details  </h5>
                 <p>Farmer ID : {data.excel_id}</p>
                 {/* <p>Father's name : {data.fatherName && data.fatherName!="-" ? <span>{data.fatherName}</span> : <span className="badge bg-danger">Not Entered</span>}</p> */}
-                <p>Mobile : {data.phoneNumber!="-" ? <span>{data.phoneNumber}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-                <p>Gender :  {data.gender!="-" ? <span>{data.gender}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-                <p>Pincode : {data.pincode!="" ? <span>{data.postalCode}</span> : <span className="badge bg-danger">Not Entered</span> }</p>
+                <p>Mobile : {data.phoneNumber!="" ? <span>{data.phoneNumber}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                <p>Gender :  {data.gender!="" ? <span>{data.gender}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                <p>Pincode : {data.postalCode!="" ? <span>{data.postalCode}</span> : <span className="badge bg-danger">Not Entered</span> }</p>
                 {/* <p>Date Of Birth :  {data.dateOfBirth ? <span>{data.dateOfBirth.split('T')[0]}</span> : <span className="badge bg-danger">Not Entered</span>}</p> */}
                 {/* <p>Aadhaar/PAN/ID :  {data.aadhaarNumber ? <span>{data.aadhaarNumber}</span> : <span className="badge bg-danger">Not Entered</span>}</p> */}
                 <p>Village  : {data.village && data.village!="-" ? <span>{data.village}</span> : <span className="badge bg-danger">Not Entered</span>} </p>
@@ -49,7 +56,7 @@ const OtherFarmerProfile = () => {
                {
                 data.crops.map((crop) => <div>
                     <p>Crop  : {crop.cropName ? <span>{crop.cropName}</span> : <span className="badge bg-danger">Not Entered</span>} </p>
-                    <p>Acreage : {data.area  ? <span>{data.area} Acres</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                    <p>Acreage :  <span>{calculateAcerage(crop.cropName)} Acres</span> </p>
                     <p>Variety :  {crop.variety ? <span>{crop.variety}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
                     <p>Season : {crop.season ? <span>{crop.season}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
                     <p>Year : 2024</p>
@@ -67,11 +74,12 @@ const OtherFarmerProfile = () => {
                         data.survey.length === 0 && <span className="text-danger">No Surveys to display.</span>
                     }
                     {
-                        data.survey.map((item) => 
+                        data.survey.map((item, index) => 
                         <div>
-                            <p><u>Survey Date</u> : {moment(item.survey_date).format("DD MMMM, YYYY")}</p>
-                            <p><u>Crop</u> : {item.cropName}</p>
-                            <p><u>Survey Photo</u> : </p>
+                            <p><h6 style={{fontWeight : 700}}>Survey - {index+1}</h6></p>
+                            <span><u>Survey Date</u> : {moment(item.survey_date).format("DD MMMM, YYYY")}</span> <br/>
+                            <span><u>Crop</u> : {item.cropName}</span> <br/>
+                            <span><u>Survey Photo</u> : </span> <br/>
                             <iframe style={{width : '100%'}} src={`https://drive.google.com/file/d/${getFileIdFromDriveLink(item.map_link)}/preview`} width="640" height="480" allow="autoplay"></iframe>
                             <h5 className="mt-3"><span className="badge bg-warning">Agronomic Advisory</span></h5>
                             {/* <p>Advisory :</p> */}
@@ -79,6 +87,7 @@ const OtherFarmerProfile = () => {
                             Hope we were able to help you out!🙂 
                             <br/>
                             <span style={{fontSize : '16px', fontWeight : 'bolder'}}>- BharatRohan Airborne Innovations</span></p>
+                            <hr/>
                         </div>
                         )
                     }
