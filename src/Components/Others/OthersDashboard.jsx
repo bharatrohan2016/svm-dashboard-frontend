@@ -206,15 +206,8 @@ const OtherDashBoard = () => {
         </div>
       </div>
 
-      <div className={`col-md-6 ${styles.dashboard}`}>
-          <div className={styles.dashboardHeading}>
-              <span>Pie Chart Shows Number of Farmers Using Ginger & Paddy</span>
-          </div>
-          <div className={styles.dashboardchart}>
-            <CropArea/>
-          </div>
-        </div>
-        
+      
+
       <div className={styles.dashboard}>
         <div className={styles.dashboardHeading}>
             <span>Bar Graph shows different villages with number of Farmers Onboarded</span>
@@ -223,8 +216,16 @@ const OtherDashBoard = () => {
             <VillageWiseFarmer/>
         </div>
       </div>
-      <div className='row'>
-        <div className={`col-md-6 ${styles.dashboard}`}>
+      <div className='row justify-content-between'>
+      <div className={`col-md-5 ${styles.dashboard}`}>
+          <div className={styles.dashboardHeading}>
+              <span>Pie Chart Shows Number of Farmers Using Ginger & Paddy</span>
+          </div>
+          <div className={styles.dashboardchart}>
+            <CropArea/>
+          </div>
+        </div>
+        <div className={`col-md-5 ${styles.dashboard}`}>
           <div className={styles.dashboardHeading}>
               <span>Pie Chart Shows Number of Farmers Using Ginger & Paddy</span>
           </div>
@@ -235,7 +236,6 @@ const OtherDashBoard = () => {
         </div>
         
       </div>
-     
       </Box>
 
   )
