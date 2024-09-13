@@ -10,6 +10,7 @@ import { getHeaders } from '../User/ProtectedRoute';
 import VillageAreaChart from './VillageAreaChart';
 import CropPieChart from './CropPieChart';
 import VillageWiseFarmer from './VillageWiseFarmer';
+import CropArea from './CropArea';
 
 const HeaderComponent = styled(Box)`
   display: flex;
@@ -205,6 +206,15 @@ const OtherDashBoard = () => {
         </div>
       </div>
 
+      <div className={`col-md-6 ${styles.dashboard}`}>
+          <div className={styles.dashboardHeading}>
+              <span>Pie Chart Shows Number of Farmers Using Ginger & Paddy</span>
+          </div>
+          <div className={styles.dashboardchart}>
+            <CropArea/>
+          </div>
+        </div>
+        
       <div className={styles.dashboard}>
         <div className={styles.dashboardHeading}>
             <span>Bar Graph shows different villages with number of Farmers Onboarded</span>
@@ -213,15 +223,19 @@ const OtherDashBoard = () => {
             <VillageWiseFarmer/>
         </div>
       </div>
-      <div className={styles.dashboard}>
-        <div className={styles.dashboardHeading}>
-            <span>Pie Chart Shows Number of Farmers Using Ginger & Paddy</span>
+      <div className='row'>
+        <div className={`col-md-6 ${styles.dashboard}`}>
+          <div className={styles.dashboardHeading}>
+              <span>Pie Chart Shows Number of Farmers Using Ginger & Paddy</span>
+          </div>
+          <div className={styles.dashboardchart}>
+            <CropPieChart cropWiseData={cropWiseData}/>
+            
+          </div>
         </div>
-        <div className={styles.dashboardchart}>
-          <CropPieChart cropWiseData={cropWiseData}/>
-        </div>
+        
       </div>
-      
+     
       </Box>
 
   )

@@ -1,18 +1,20 @@
+
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
 import React from 'react'
 //  '#8a812c', '#8dbe3f', '#e8ba3a', '#578019', '#9a693d'
-const CropPieChart = ({cropWiseData}) => {
+
+const CropArea = () => {
   
-	return (
+  return (
 	<PieChart 
           series={[
             {
               data: [
-                { id: 0, value: cropWiseData.ginger, label: 'Ginger', color : '#578019'},
-                { id: 1, value: cropWiseData.paddy, label: 'Paddy', color : '#e8ba3a' },
+                { id: 0, value: 556984, label: 'Ginger', color : '#8dbe3f'},
+                { id: 1, value: 607683, label: 'Paddy', color : '#578019' },
                 // { id: 2, value: 20, label: 'No Phone', labelPosition: 95 }, '#8a812c', '#8dbe3f', '#e8ba3a', '#578019', '#9a693d'
               ],
-              arcLabel: (item) => `${item.label} (${item.value})`,
+              arcLabel: (item) => `${(item.value/4046.86).toFixed(2)} Acres`,
               cx: 70,
               arcLabelMinAngle: 45,
             },
@@ -32,9 +34,8 @@ const CropPieChart = ({cropWiseData}) => {
               position: { vertical: 'middle', horizontal: 'right' },
             }
           }}
-          
     />
-  );
+  )
 }
 
-export default CropPieChart
+export default CropArea
