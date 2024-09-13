@@ -10,11 +10,11 @@ const CropArea = () => {
           series={[
             {
               data: [
-                { id: 0, value: 556984, label: 'Ginger', color : '#8dbe3f'},
-                { id: 1, value: 607683, label: 'Paddy', color : '#578019' },
+                { id: 0, value: (556984/4046.86), label: 'Ginger', color : '#8dbe3f'},
+                { id: 1, value: (607683/4046.86), label: 'Paddy', color : '#578019' },
                 // { id: 2, value: 20, label: 'No Phone', labelPosition: 95 }, '#8a812c', '#8dbe3f', '#e8ba3a', '#578019', '#9a693d'
               ],
-              arcLabel: (item) => `${(item.value/4046.86).toFixed(2)} Acres`,
+              arcLabel: (item) => `${item.value.toFixed(2)} Acres`,
               cx: 70,
               arcLabelMinAngle: 45,
             },
