@@ -43,9 +43,9 @@ const OtherFarmerProfile = () => {
                 {/* <p>Date Of Birth :  {data.dateOfBirth ? <span>{data.dateOfBirth.split('T')[0]}</span> : <span className="badge bg-danger">Not Entered</span>}</p> */}
                 {/* <p>Aadhaar/PAN/ID :  {data.aadhaarNumber ? <span>{data.aadhaarNumber}</span> : <span className="badge bg-danger">Not Entered</span>}</p> */}
                 <p>Village  : {data.village && data.village!="-" ? <span>{data.village}</span> : <span className="badge bg-danger">Not Entered</span>} </p>
-               <p>Block : {data.block && data.block!="-" ? <span>{data.block}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-               <p>District :  {data.district && data.district!="-" ? <span>{data.district}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
-               <p>State : {data.state && data.state!="-" ? <span>{data.state}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                <p>Block : {data.block && data.block!="-" ? <span>{data.block}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                <p>District :  {data.district && data.district!="-" ? <span>{data.district}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
+                <p>State : {data.state && data.state!="-" ? <span>{data.state}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
             </div>
             
             <div className="card mt-3">

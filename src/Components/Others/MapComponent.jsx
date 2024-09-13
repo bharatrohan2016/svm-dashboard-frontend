@@ -16,8 +16,8 @@ const MapComponent = () => {
   const [res, setRes] = useState();
   const [markerIcon] = useState(new L.Icon({
     iconUrl: '/marker.svg',
-    iconSize: [20, 20],
-    iconAnchor: [10, 10]
+    iconSize: [25, 25],
+    iconAnchor: [15, 15]
   }));
 
   useEffect(() => {
@@ -48,11 +48,11 @@ const MapComponent = () => {
               />
             </LayersControl.BaseLayer>
             <LayersControl.BaseLayer name="Satellite Map" checked>
-              <TileLayer
-                attribution='&copy; <a href="http://mapbox.com/copyright">Mapbox</a>'
-                url='https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'
-                subdomains={['mt1','mt2','mt3']}
-              />
+            <TileLayer 
+                                attribution='&copy; <a href="http://mapbox.com/copyright">Mapbox</a>'
+                                url='http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}'
+                                subdomains={['mt1','mt2','mt3']}
+                            />
             </LayersControl.BaseLayer>
           </LayersControl>
 
@@ -62,11 +62,11 @@ const MapComponent = () => {
             item.maps.map((map, index) =>(
               map.polygons[0] && map.polygons[0][0] && <Marker key={map._id} position={[map.polygons[0][0][0], map.polygons[0][0][1]]} icon={markerIcon}>
                 <Popup>
-                  <h6>Field Number: {index+1}</h6>
-                  <h6>Farmer Name: <a href={`/#/farmer-profile/${item._id}`} target='_blank'>{item.farmerName}</a> </h6>
-                  <h6>Crop Name: {map.crop_name}</h6>
-                  <h6>Village Name: {item.village}</h6>
-                  <h6>Area: {parseFloat(map.area).toFixed(2)} mt.sq</h6>
+                  <p><u>Field Number:</u> <b>{index+1}</b></p>
+                  <p><u>Farmer Name:</u> <b><a href={`/#/farmer-profile/${item._id}`} target='_blank'>{item.farmerName}</a></b> </p>
+                  <p><u>Crop Name:</u> <b>{map.crop_name}</b></p>
+                  <p><u>Village Name:</u> <b>{item.village}</b></p>
+                  <p><u>Area:</u> <b>{(map.area/4046.86).toFixed(2)} Acres</b></p>
                 </Popup>
               </Marker>
             ))

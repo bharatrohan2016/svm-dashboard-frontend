@@ -141,3 +141,22 @@ export const getPolygons = async () => {
         console.log(e);
     }
 }
+
+
+export const getVillageWiseArea = async () => {
+    try{
+        const result = await axios.get(`${URL}/api/village-wise-area`, {headers : getHeaders()});
+        return result.data;
+    }catch(e){
+        console.log(e);
+    }
+}
+
+export const getVillageWiseFarmerCount = async () => {
+    try{
+        const result = await axios.get(`${URL}/api/village-wise-farmer-number`, {headers : getHeaders()});
+        return result.data;
+    }catch(e){
+        console.log(e);
+    }
+}
