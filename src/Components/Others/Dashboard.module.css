@@ -1,0 +1,48 @@
+
+.dashboard1 {
+    background: linear-gradient(-45deg, #e68a00 0%, #e8ba3a 100% );
+    color: black;
+}
+
+.dashboard2{
+    background: linear-gradient(-45deg, #8dbe3f 0%, #578019 100% );
+}
+
+.dashboard3{
+    background: linear-gradient(-45deg, #e8ba3a 0%, #9a693d 100% );
+}
+
+.dashboardHeading{
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    background-color : #193C34;
+    color: white;
+    text-transform: capitalize;
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+    font-size: 16px;
+}
+.dashboardchart{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 15px;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.dashboard{
+    margin: 30px 5px 30px 5px;
+}
+
+@media (min-width: 1000px){
+    .dashboardchart{
+      height: 350px !important;
+    }
+  }
+/* 
+
+* Prevents issues when the parent creates a 
+* stacking context. (For example, using the transform
+* property )
+*/
+
+        

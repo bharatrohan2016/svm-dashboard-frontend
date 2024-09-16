@@ -1,0 +1,19 @@
+
+.dashboard1 {
+    background: linear-gradient(-45deg, #103783 0%, #9bafd9 100% );
+}
+
+.dashboard2{
+    background: linear-gradient(-45deg, #ffd8be 0%, #9381ff 100% );
+}
+
+.dashboard3{
+    background: linear-gradient(-45deg, #c7f9cc 0%, #22577a 100% );
+}
+/* 
+* Prevents issues when the parent creates a 
+* stacking context. (For example, using the transform
+* property )
+*/
+
+        
