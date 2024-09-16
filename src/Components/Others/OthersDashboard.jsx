@@ -219,7 +219,7 @@ const OtherDashBoard = () => {
       <div className='row justify-content-between'>
       <div className={`col-md-5 ${styles.dashboard}`}>
           <div className={styles.dashboardHeading}>
-              <span>Pie Chart Shows Number of Farmers Using Ginger & Paddy</span>
+              <span>Crop wise area distribution</span>
           </div>
           <div className={styles.dashboardchart}>
             <CropArea/>
