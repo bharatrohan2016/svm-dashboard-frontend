@@ -34,7 +34,7 @@ const OtherFarmerProfile = () => {
             </div>
             
             <div className="card mt-3">
-                <h5 className="text-primary">Personal & Location Details  </h5>
+                <h3 className="text-primary">Personal & Location Details  </h3>
                 <p>Farmer ID : {data.excel_id}</p>
                 <p>Father's name : {data.fatherName && data.fatherName!="-" ? <span>{data.fatherName}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
                 <p>Mobile : {data.phoneNumber!="" ? <span>{data.phoneNumber}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
@@ -49,7 +49,7 @@ const OtherFarmerProfile = () => {
             </div>
             
             <div className="card mt-3">
-               <h5 className="text-primary">Crop Details </h5>
+               <h3 className="text-primary">Crop Details </h3>
                {
                 data.crops.length === 0 && <span className="text-danger">No Crops to display.</span>
                }
@@ -68,7 +68,7 @@ const OtherFarmerProfile = () => {
             </div>
            
             <div  className="card mt-3">
-                <h5 className="text-primary">Advisory Information </h5>
+                <h3 className="text-primary">Advisory Information </h3>
                <div className="row m-1 mt-3">
                     {
                         data.survey.length === 0 && <span className="text-danger">No Surveys to display.</span>
@@ -76,12 +76,12 @@ const OtherFarmerProfile = () => {
                     {
                         data.survey.map((item, index) => 
                         <div>
-                            <p><h6 style={{fontWeight : 700}}>Survey - {index+1}</h6></p>
+                            <p><h4 style={{fontWeight : 700}}>Survey - {item.survey_no}</h4></p>
                             <span><u>Survey Date</u> : {moment(item.survey_date).format("DD MMMM, YYYY")}</span> <br/>
                             <span><u>Crop</u> : {item.cropName}</span> <br/>
-                            <span><u>Survey Photo</u> : </span> <br/>
+                            <span><u>Survey Photo</u> :</span> <br/>
                             <iframe style={{width : '100%'}} src={`https://drive.google.com/file/d/${getFileIdFromDriveLink(item.map_link)}/preview`} width="640" height="480" allow="autoplay"></iframe>
-                            <h5 className="mt-3"><span className="badge bg-warning">Agronomic Advisory</span></h5>
+                            <p className="mt-3"><span style={{textDecoration : 'underline',fontSize : '14px', fontWeight : 'bolder'}}>Agronomic Advisory</span></p>
                             {/* <p>Advisory :</p> */}
                             <p>Hi BharatRohan farmer 👋👋, {item.treatment}.<br/>
                             Hope we were able to help you out!🙂 
