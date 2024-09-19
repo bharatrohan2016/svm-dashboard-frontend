@@ -28,13 +28,19 @@ const Farmer = () => {
         },
         Cell: ({ cell }) => {
             return (<div>
-              <a href={`/#/farmer-profile/${cell.row.original?._id}`}>{cell.row.original?.farmerName}</a>
+              <a href={`/#/farmer-profile/${cell.row.original?._id}`}>{cell.row.original?.farmerName.toUpperCase()}</a>
             </div>);
         }
       },
       {
         accessorKey: 'fatherName',
-        header: 'Fathers Name'
+        header: 'Fathers Name',
+        Cell: ({ cell }) => {
+          const data = cell.row.original;
+            return (<div>
+              <p>{data.fatherName!="" ? data.fatherName.toUpperCase() : <span style={{color : 'red'}}>Not Entered</span>}</p>
+            </div>);
+        }
       },
       {
         accessorKey: 'phoneNumber',
@@ -42,7 +48,7 @@ const Farmer = () => {
         Cell: ({cell}) => {
           const data = cell.row.original;
           return (<div>
-            { data.phoneNumber === '' ? '-' : data.phoneNumber }
+            { data.phoneNumber === '' ? <span style={{color : 'red'}}>Not Entered</span> : data.phoneNumber }
           </div>);
         }
       },
