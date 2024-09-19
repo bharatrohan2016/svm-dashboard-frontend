@@ -32,10 +32,10 @@ const Farmer = () => {
             </div>);
         }
       },
-      // {
-      //   accessorKey: 'fatherName',
-      //   header: 'Fathers Name'
-      // },
+      {
+        accessorKey: 'fatherName',
+        header: 'Fathers Name'
+      },
       {
         accessorKey: 'phoneNumber',
         header: 'Phone',

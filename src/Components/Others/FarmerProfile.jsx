@@ -36,7 +36,7 @@ const OtherFarmerProfile = () => {
             <div className="card mt-3">
                 <h5 className="text-primary">Personal & Location Details  </h5>
                 <p>Farmer ID : {data.excel_id}</p>
-                {/* <p>Father's name : {data.fatherName && data.fatherName!="-" ? <span>{data.fatherName}</span> : <span className="badge bg-danger">Not Entered</span>}</p> */}
+                <p>Father's name : {data.fatherName && data.fatherName!="-" ? <span>{data.fatherName}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
                 <p>Mobile : {data.phoneNumber!="" ? <span>{data.phoneNumber}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
                 <p>Gender :  {data.gender!="" ? <span>{data.gender}</span> : <span className="badge bg-danger">Not Entered</span>}</p>
                 <p>Pincode : {data.postalCode!="" ? <span>{data.postalCode}</span> : <span className="badge bg-danger">Not Entered</span> }</p>
