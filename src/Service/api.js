@@ -68,14 +68,7 @@ export const getMapsInfo = async () => {
 
 export const getDashboardInfo = async() => {
     try {
-        console.log(JSON.parse(localStorage.getItem('token')));
-        const config = {
-            headers: {
-                Authorization : `Bearer ${JSON.parse(localStorage.getItem('token'))}`
-            }
-        }
-        console.log(config);
-        const result = await axios.get(`${URL}/api/dashboard/totalitems`, config);
+        const result = await axios.get(`${URL}/api/dashboard/totalitems`);
         console.log(result);
         return result;
     } catch (error) {
