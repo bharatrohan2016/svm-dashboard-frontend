@@ -159,7 +159,7 @@ const OtherDashBoard = () => {
         <div className='col-md-9'>
           <span>Last Date of Survey</span> <br/><br/>
           <span>
-            27/08/2024
+            11/11/2024
           {/* {date.toLocaleDateString('en-US', {
             year: 'numeric',
             month: '2-digit',
