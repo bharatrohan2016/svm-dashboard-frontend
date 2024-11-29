@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-* {
+body {
   margin: 0;
 }
 
@@ -41,3 +41,61 @@
     transform: rotate(360deg);
   }
 }
+
+
+.Mui-focused{
+  color: black;
+}
+
+header{
+  background-color: #EBEDE1 !important;
+  color: black;
+}
+
+/* .css-2dum1v-MuiDrawer-docked .MuiDrawer-paper{
+  background-color: #193C34  !important;
+}
+
+.css-1hsz34s-MuiDrawer-docked .MuiDrawer-paper {
+  background-color: #193C34  !important;
+  color: white;
+} */
+
+/* .css-2dum1v-MuiDrawer-docked .MuiDrawer-paper svg{
+  color: white;
+}
+
+.css-1hsz34s-MuiDrawer-docked .MuiDrawer-paper svg {
+  color: white;
+} */
+
+.css-1m5i5w0-MuiButtonBase-root-MuiListItemButton-root{
+  padding: 5px;
+}
+.css-1m5i5w0-MuiButtonBase-root-MuiListItemButton-root:hover{
+background-color: #76A238  !important;
+}
+
+
+.card{
+  padding: 10px;
+  border-radius: 0;
+  border : none;
+  border-left: 3px solid #333955;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+@media (max-width : 400px) {
+  .dashboard-img{
+    display: none;
+  }
+  .css-8rwzss,.css-189bs4g{
+    overflow-x: hidden;
+  }
+  /* .css-b9xjnq-MuiChartsAxis-root.MuiChartsAxis-left .MuiChartsAxis-tickLabel{
+    text-anchor: start !important;
+  } */
+}
+
+
+
+

@@ -1,21 +1,18 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import React, { useState } from 'react';
+import { Box, Typography, Container } from '@mui/material';
 import Link from '@mui/material/Link';
-import Container from '@mui/material/Container';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Avatar, Button, Grid, TextField, Typography } from '@mui/material';
+import { Avatar, Button, TextField } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
+import { useNavigate } from 'react-router-dom';
 import { signInUser } from '../../Service/api';
-
+import { ToastContainer, toast } from 'react-toastify';
+import styles from './SignIn.module.css';
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography variant="body2" color="#193C34 " align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://bharatrohan.in/">
+        BharatRohan
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -31,58 +28,75 @@ const loginInitialValues = {
 }
 
 export default function SignIn() {
+  const navigate = useNavigate();
   const [login, setLogin] = useState(loginInitialValues)
-
   const onValueChange = (e) => {
-    setLogin({...login, [e.target.name]: e.target.value});
-  }
-  const navigate = useNavigate(); 
+    setLogin({ ...login, [e.target.name]: e.target.value });
+  };
 
-  const loginUser = async () => {
-    try {
-      let response = await signInUser(login);
-      console.log(response);
-      // localStorage.setItem("userInfo", JSON.stringify(response))
-      localStorage.setItem("token", JSON.stringify(response.token))
-      // localStorage.setItem("user", response.user)
-      // localStorage.setItem("id", response.id)
-      navigate(`/dashboard`)
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const validateEmail = (email) => {
+    // Regular expression for validating an email address
+    const regex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    return regex.test(email);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    if (!login.email.trim() || !login.password.trim()) {
+      // Check if either field is empty
+      toast.error('Both fields must be filled');
+      return;
+    }
+
+    if (!validateEmail(login.email)) {
+      // Check if the email is in a valid format
+      toast.error('Invalid email format');
+      return;
+    }
+
+    loginUser();
+  };
+  const loginUser = async () => {
+    try {
+      const response = await signInUser(login);
+
+      if (response) {
+        localStorage.setItem('token', response.token);
+        navigate(`/select-year`);
+        toast.success('Login Successful');
+      } else {
+        toast.error('Incorrect username or password', {
+          position: toast.POSITION.TOP_CENTER,
+          toastId: 2,
+          autoClose: 1000,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-
   return (
-    // <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs" style={{ backgroundColor: "#F0FFF0" }}>
+    <div className={styles.loginDiv}>
+      <Container className={styles.loginContainer} component="main" maxWidth="xs">
         {/* <CssBaseline /> */}
         <Box
           sx={{
-            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#193C34 ' }}>
             <LockIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             User's Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, color : '#193C34 ' }}>
             <TextField
               margin="normal"
+              color="primary"
               required
               fullWidth
               id="email"
@@ -108,28 +122,18 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              style={{ backgroundColor: "#00B000" }}
+              style={{ backgroundColor: "#193C34 ", height : '50px', borderRadius : '20px' }}
               sx={{ mt: 3, mb: 2 }}
-              onClick={() => loginUser()}
             >
               Sign In
             </Button>
-            {/* <Grid container>
-              <Grid item>
-                <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/business/signup" variant="body2">
-                  {"Want to become a seller, just click..."}
-                </Link>
-              </Grid>
-            </Grid> */}
+            
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        <Copyright sx={{ mt: 4, mb: 4 }} />
+        <ToastContainer/>
       </Container>
+      </div>
     // </ThemeProvider>
   );
 }
